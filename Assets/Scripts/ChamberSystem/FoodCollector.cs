@@ -8,13 +8,25 @@ public class FoodCollector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (hasFood)
-            return;
-
-        if (other.gameObject.GetComponent<ChamberFoodItem>() != null)
+        ChamberFoodItem chamberFoodItem = other.gameObject.GetComponent<ChamberFoodItem>();
+        if (chamberFoodItem != null)
         {
-            hasFood = true;
-            Destroy(other.gameObject);
+            if (!hasFood)
+            {
+                hasFood = true;
+                Destroy(other.gameObject);
+            }
+            return;
+        }
+
+        ChamberHealthManager chamberHealthManager = other.gameObject.GetComponent<ChamberHealthManager>();
+        if (chamberHealthManager != null)
+        {
+            if (hasFood)
+            {
+                hasFood = !chamberHealthManager.FeedFood();
+            }
+            return;
         }
     }
 }
