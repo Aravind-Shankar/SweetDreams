@@ -9,7 +9,7 @@ public class ChamberHealthManager : MonoBehaviour
 
     public bool FeedFood()
     {
-        // return true if fed successfully, false if not (e.g. when health is full)
+        // return true if fed successfully, false if not (e.g. when health is maxed)
         if (health < maxHealth)
         {
             ++health;
@@ -17,5 +17,14 @@ public class ChamberHealthManager : MonoBehaviour
         }
         else
             return false;
+    }
+
+    public bool UseForDrink()
+    {
+        // return true if used successfully, false if not (e.g. when health is insufficient)
+        if (health == 0)
+            return false;
+        --health;
+        return true;
     }
 }

@@ -3153,6 +3153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drinkObject: {fileID: 782823106}
   drinkPos: {fileID: 1820159172}
+  chamberParent: {fileID: 1863968748}
 --- !u!1 &1019161362
 GameObject:
   m_ObjectHideFlags: 0
