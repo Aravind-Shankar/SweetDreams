@@ -9,9 +9,10 @@ public class Machine : MonoBehaviour
 
     public void OnTriggerEnter(Collider other) {
         DrinkManager dm = other.GetComponent<DrinkManager>();
-        if (dm && dm.hasItem) {
+        if (dm && !dm.hasDrink) {
             dm.hasDrink = true;
-            dm.hasItem = false;
+            if (dm.hasItem)
+                dm.hasItem = false;
 
             drinkObject.transform.parent = null;
             drinkObject.transform.localScale = Vector3.one;
