@@ -361,8 +361,9 @@ GameObject:
   - component: {fileID: 219673747}
   - component: {fileID: 219673746}
   - component: {fileID: 219673745}
-  - component: {fileID: 219673748}
   - component: {fileID: 219673749}
+  - component: {fileID: 219673748}
+  - component: {fileID: 219673751}
   - component: {fileID: 219673750}
   m_Layer: 0
   m_Name: Sphere
@@ -478,6 +479,19 @@ Rigidbody:
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &219673750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219673743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a517d937ebdeef6468f62d68927287e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasFood: 0
+--- !u!114 &219673751
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3905,8 +3919,9 @@ GameObject:
   - component: {fileID: 1539588589}
   - component: {fileID: 1539588588}
   - component: {fileID: 1539588587}
+  - component: {fileID: 1539588590}
   m_Layer: 0
-  m_Name: Feed
+  m_Name: Food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3988,6 +4003,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539588585}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1539588590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539588585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a08a8ad437bf148b85c743412fe06d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1577749883
 GameObject:
   m_ObjectHideFlags: 0
