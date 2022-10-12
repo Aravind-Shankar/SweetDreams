@@ -82,28 +82,12 @@ public class CameraManager : MonoBehaviour
             float distanceToCollision = Vector3.Distance(cameraPivot.position, hit.point);
             Debug.Log(distanceToCollision);
             Debug.Log(hit.collider);
-            //Debug.DrawRay(cameraPivot.position, hit.point);
 
-            //Debug.Log(targetCameraDistanceFromPlayer);
             targetCameraDistanceFromPlayer = Mathf.Clamp(distanceToCollision - cameraCollisionOffset, minimumCollisionOffset, defaultCameraDistanceFromPlayer);
-            //Debug.Log(targetCameraDistanceFromPlayer);
-            //Debug.Log("-===-");
-            //targetCameraDistanceFromPlayer = Mathf.Clamp(0 - (distanceToCollision - cameraCollisionOffset), -minimumCollisionOffset, defaultCameraDistanceFromPlayer);
         }
 
-        //if (Mathf.Abs(targetCameraDistanceFromPlayer) < minimumCollisionOffset)
-        //{
-        //    Debug.Log("under minimum, adjusting..");
-        //    targetCameraDistanceFromPlayer = targetCameraDistanceFromPlayer - minimumCollisionOffset;
-        //}
-
-        //Debug.Log(targetPosition + " " + cameraVectorPosition);
-
-        cameraVectorPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, -targetCameraDistanceFromPlayer, 0.2f);
-        //cameraTransform.localPosition = cameraVectorPosition;
-        
         // targetCameraDistanceFromPlayer negated so that it's placed in the -Z which goes behind the player object
-        //cameraVectorPosition.z = -targetCameraDistanceFromPlayer;
+        cameraVectorPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, -targetCameraDistanceFromPlayer, 0.2f);
         cameraTransform.localPosition = cameraVectorPosition;
     }
 }
