@@ -10,7 +10,7 @@ public class CameraManager : MonoBehaviour
     public Transform cameraPivot;     // the object the camera uses to pivot (look up and down)
     public Transform cameraTransform; // the transform of the actual camera object in the scene
     public LayerMask collisionLayers; // the layers we want our camera to collide with
-    private float defaultCameraDistanceFromPlayer;
+    public float defaultCameraDistanceFromPlayer = 3f;
     private Vector3 cameraFollowVelocity = Vector3.zero;
     private Vector3 cameraVectorPosition;
 
@@ -31,7 +31,7 @@ public class CameraManager : MonoBehaviour
         inputManager = FindObjectOfType<InputManager>();
         targetTransform = FindObjectOfType<PlayerManager>().transform;
         cameraTransform = Camera.main.transform;
-        defaultCameraDistanceFromPlayer = cameraTransform.localPosition.z;
+        // defaultCameraDistanceFromPlayer = cameraTransform.localPosition.z;
     }
 
     public void HandleAllCameraMovement()
@@ -85,23 +85,25 @@ public class CameraManager : MonoBehaviour
             //Debug.DrawRay(cameraPivot.position, hit.point);
 
             //Debug.Log(targetCameraDistanceFromPlayer);
-            targetCameraDistanceFromPlayer = 0 - (distanceToCollision - cameraCollisionOffset);
+            targetCameraDistanceFromPlayer = Mathf.Clamp(distanceToCollision - cameraCollisionOffset, minimumCollisionOffset, defaultCameraDistanceFromPlayer);
             //Debug.Log(targetCameraDistanceFromPlayer);
             //Debug.Log("-===-");
             //targetCameraDistanceFromPlayer = Mathf.Clamp(0 - (distanceToCollision - cameraCollisionOffset), -minimumCollisionOffset, defaultCameraDistanceFromPlayer);
         }
 
-        //if (Mathf.Abs(targetPosition) < minimumCollisionOffset)
+        //if (Mathf.Abs(targetCameraDistanceFromPlayer) < minimumCollisionOffset)
         //{
         //    Debug.Log("under minimum, adjusting..");
-        //    targetPosition = targetPosition - minimumCollisionOffset;
+        //    targetCameraDistanceFromPlayer = targetCameraDistanceFromPlayer - minimumCollisionOffset;
         //}
 
         //Debug.Log(targetPosition + " " + cameraVectorPosition);
 
-        // cameraVectorPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, 0.2f);
+        cameraVectorPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, -targetCameraDistanceFromPlayer, 0.2f);
         //cameraTransform.localPosition = cameraVectorPosition;
-        cameraVectorPosition.z = targetCameraDistanceFromPlayer;
+        
+        // targetCameraDistanceFromPlayer negated so that it's placed in the -Z which goes behind the player object
+        //cameraVectorPosition.z = -targetCameraDistanceFromPlayer;
         cameraTransform.localPosition = cameraVectorPosition;
     }
 }
