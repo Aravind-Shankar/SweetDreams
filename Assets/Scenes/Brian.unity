@@ -213,12 +213,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d446f6c1f45bb09429bd15aaff1341a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementInput: {x: 0, y: 0}
-  cameraInput: {x: 0, y: 0}
   cameraInputVertical: 0
   cameraInputHorizontal: 0
   verticalInput: 0
   horizontalInput: 0
+  interactInputPressed: 0
 --- !u!136 &341955952
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -287,6 +286,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e37fbde3acb044bb5ca94d7842d35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &341955959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341955950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6328fdab8ca5bb548ba252e7102e3c27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerManager: {fileID: 0}
+  inputManager: {fileID: 0}
 --- !u!1 &354464585
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +541,7 @@ MonoBehaviour:
     m_Bits: 1
   defaultCameraDistanceFromPlayer: 3
   cameraCollisionOffset: 0.2
-  minimumCollisionOffset: 0.2
+  minimumCollisionOffset: 1
   cameraCollisionRadius: 0.2
   cameraFollowSpeed: 0.2
   cameraHorizontalSpeed: 0.5
