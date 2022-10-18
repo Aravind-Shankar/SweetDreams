@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CupDispenser : MonoBehaviour
+public class Dispenser : MonoBehaviour
 {
     //public GameObject cupPrefab;
     public Inventory inventory;
-    public GameObject cup;
+    public GameObject dispensedObject;
     public GameObject player;
+
     private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
@@ -15,19 +16,26 @@ public class CupDispenser : MonoBehaviour
         //cup = Instantiate(cupPrefab, new Vector3(-1, -1, -1), Quaternion.identity);
     }
 
-    public void DispenseCup()
+    public void Dispense()
     {
         // play cup dispensing sound
         // play particles for dispensing a cup
         //cup.transform.position = this.transform.position + new Vector3(0, 0, 3);
         // put it in player inventory
-        if (inventory.ContainsItem("Cup"))
-        {
+        ItemData item = dispensedObject.GetComponent<ItemData>();
 
-        } else
+        if (inventory.ContainsItem("Drink"))
+        {
+            // error say you already have cup
+            Debug.Log("You already have a cup!");
+        }
+        else
         {
             Debug.Log("Dispense");
-            GameObject newCup = Instantiate(cup, new Vector3(-1, -1, -1), Quaternion.identity);
+            GameObject newCup = Instantiate(dispensedObject, new Vector3(-1, -1, -1), Quaternion.identity);
+            ItemData drinkData = newCup.GetComponent<ItemData>();
+            drinkData.title = "Drink";
+
             inventory.AddItem(newCup);
 
             // make cup child of polyman
@@ -35,7 +43,5 @@ public class CupDispenser : MonoBehaviour
 
             newCup.transform.localPosition = new Vector3(.5f, 1, .5f);
         }
-        
-
     }
 }

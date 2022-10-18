@@ -20,12 +20,22 @@ public class Inventory : MonoBehaviour
         return inventory[index];
     }
 
+    public GameObject GetItem(string title)
+    {
+        return inventory.Find(x => x.GetComponent<ItemData>().title == title);
+    }
+
     public bool ContainsItem(string title)
     {
         return inventory.Exists(x => x.GetComponent<ItemData>().title == title);
     }
 
-    // removeItem
+    public void DestroyItem(string title)
+    {
+        GameObject item = this.GetItem(title);
+        inventory.Remove(item);
+        Destroy(item);
+    }
 
     // create a floating inventory over the player, rather than having a UI
     // potentially just do a minecraft inventory, or have a clock on the top right and the inventory on the top left

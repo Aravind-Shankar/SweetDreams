@@ -28,8 +28,6 @@ public class Interactable : MonoBehaviour
 
     void PerformInteraction()
     {
-
-        Debug.Log("Interaction");
         if (playerIsInRange)
         {
             interactAction.Invoke();
