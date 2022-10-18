@@ -36,8 +36,10 @@ public class InputManager : MonoBehaviour
 
             // this callback is called only once upon every key press of the Interact action
             // maybe do something here that either has PlayerManager listening to this callback, or having this callback call the playermanager function for interaction
-            playerControls.PlayerInteraction.Interact.performed += (i => interactInput = i.ReadValueAsButton());
-
+            playerControls.PlayerInteraction.Interact.performed += (i => {
+                interactInput = i.ReadValueAsButton();
+                EventManager.TriggerEvent("Interact");
+                });
         }
 
         playerControls.Enable();
@@ -64,6 +66,4 @@ public class InputManager : MonoBehaviour
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
         animatorManager.UpdateAnimatorValues(0, moveAmount);
     }
-
-
 }

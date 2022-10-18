@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
     public bool playerIsInRange = false;
+    public UnityEvent interactAction;
+
 
     // Start is called before the first frame update
     void Start()
@@ -12,13 +15,25 @@ public class Interactable : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        EventManager.StartListening("Interact", PerformInteraction);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(playerIsInRange)
+
+    }
+
+    void PerformInteraction()
+    {
+
+        Debug.Log("Interaction");
+        if (playerIsInRange)
         {
-            Debug.Log("Player is in range!");
-        } 
+            interactAction.Invoke();
+        }
     }
 
     private void OnTriggerEnter(Collider c)

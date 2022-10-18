@@ -8,20 +8,17 @@ public class PlayerInteraction : MonoBehaviour
     public PlayerManager playerManager;
     public InputManager inputManager;
 
+    public bool cupEquipped = false;
+
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void EquipCup()
     {
-        
+        cupEquipped = true;
+        Debug.Log("Cup equipped");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log(inputManager.interactInputPressed);
-    }
 }
