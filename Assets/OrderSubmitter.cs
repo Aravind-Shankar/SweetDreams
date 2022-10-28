@@ -19,9 +19,16 @@ public class OrderSubmitter : MonoBehaviour
             ItemData drinkData = inventory.GetItem("Drink").GetComponent<ItemData>();
             if (drinkData.hasLiquid == true)
             {
-                inventory.DestroyItem("Drink");
-                
+                inventory.RemoveItem("Drink");
+                Debug.Log("Submitted drink!");
+
+            } else
+            {
+                Debug.Log("Can't submit an empty drink! The customer wouldn't like that");
             }
+        } else
+        {
+            Debug.Log("You don't have a drink to submit!");
         }
     }
 }

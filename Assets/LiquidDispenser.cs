@@ -21,8 +21,11 @@ public class LiquidDispenser : MonoBehaviour
             ItemData drinkData = drink.GetComponent<ItemData>();
             drinkData.hasLiquid = true;
 
-            var drinkRenderer = drink.GetComponent<MeshRenderer>();
-            drinkRenderer.material.SetColor("_Color", Color.cyan);
+            Transform drinkFill = drink.transform.GetChild(1);
+            drinkFill.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(0, 0));
+            //var drinkRenderer = drink.GetComponent<MeshRenderer>();
+            //drinkRenderer.material.SetTextureOffset(
+            Debug.Log("Filled with Liquid");
         }
         else
         {
