@@ -1,0 +1,30 @@
+{
+    "customers":
+    [
+        {
+            "time":0,
+            "name":"Steven",
+            "orderid":0
+        },
+        {
+            "time":15,
+            "name":"Ryan", 
+            "orderid":1
+        },
+        {
+            "time":30,
+            "name":"Aravind",
+            "orderid":2
+        },
+        {
+            "time":45,
+            "name":"Brian",
+            "orderid":3
+        },
+        {
+            "time":60,
+            "name":"Ke",
+            "orderid":4
+        }
+    ]
+}
