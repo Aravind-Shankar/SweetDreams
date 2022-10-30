@@ -7,9 +7,10 @@ using UnityEngine.AI;
 public class CustomerAI : MonoBehaviour
 {
     private NavMeshAgent navMeshAgent;
-    private bool orderComplete;
+    public bool orderComplete = false;
     public GameObject barWaypoint;
     public GameObject leaveWaypoint;
+    private static int position = 0;
 
     public enum States
     {
@@ -23,10 +24,10 @@ public class CustomerAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        position++;
         aiState = States.Arriving;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        orderComplete = true; //CHANGE THIS
-        navMeshAgent.SetDestination(barWaypoint.transform.position);
+        navMeshAgent.SetDestination(barWaypoint.transform.position + new Vector3(2*position, 0, 0));
     }
 
     // Update is called once per frame
@@ -46,7 +47,7 @@ public class CustomerAI : MonoBehaviour
                 if (orderComplete) {
                     aiState = States.Leaving;
                     navMeshAgent.SetDestination(leaveWaypoint.transform.position);
-                    navMeshAgent.speed = 4;
+                    navMeshAgent.speed = 5;
                 }
                 break;
             
@@ -54,4 +55,5 @@ public class CustomerAI : MonoBehaviour
                 break;
         }
     }
+
 }

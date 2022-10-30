@@ -14,10 +14,10 @@ public class CustomerQueue : MonoBehaviour
     {
         customers = JsonUtility.FromJson<Customers>(jsonFile.text);
         customerQueue = new Queue<Customer>();
-        foreach (Customer customer in customers.customers)
+        for (int i = 0; i < customers.customers.Length; i++)
         {
-            Debug.Log(customer);
-            customerQueue.Enqueue(customer);
+            Debug.Log(customers.customers[i]);
+            customerQueue.Enqueue(customers.customers[i]);
         }
     }
 
@@ -28,7 +28,10 @@ public class CustomerQueue : MonoBehaviour
             Customer c = customerQueue.Dequeue();
             Debug.Log(c + " dequeued");
             c.customerObject = Instantiate(customerPrefab, new Vector3(-10,1,29), Quaternion.identity);
+            //TODO: drink system
         }
+        //TODO: when drink is finished, call that customer's UpdateOrder()
+        // ex: customers.customers[0].UpdateOrder();
     }
 }
 
@@ -38,12 +41,18 @@ public class Customers {
 }
 
 [System.Serializable]
-public class Customer {
+public class Customer{
 
     public int time;
     public string name;
     public int orderid;
     public GameObject customerObject;
+    public bool drinkDone;
+
+    public void UpdateOrder()
+    {
+        customerObject.GetComponent<CustomerAI>().orderComplete = true;
+    }
 
     public override string ToString() {
         return time.ToString() + ", " + name + ", " + orderid.ToString();
