@@ -4,39 +4,53 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public GameObject inventory;
+    public GameObject currentItem;
     public GameObject emptyItem;
+    private InventoryRenderer inventoryRenderer;
     private void Awake()
     {
+        emptyItem = new GameObject();
         //inventory = new List<GameObject>();
-        inventory = emptyItem;
+        currentItem = emptyItem;
     }
 
+    public ref GameObject GetCurrentItem()
+    {
+        return ref currentItem;
+    }
 
     public void SetItem(GameObject o)
     {
-        inventory = o;
+        currentItem.transform.position = new Vector3(-50, -50, -50);
+        currentItem = o;
     }
 
     public void RemoveItem()
     {
         // destroy GameObject first then remove from dictionary
-        inventory = emptyItem;
+        // move item back below stage
+        currentItem.transform.position = new Vector3(-50, -50, -50);
+
+        currentItem = emptyItem;
     }
 
     public bool HasItem()
     {
-        return inventory == emptyItem;
+        Debug.Log(currentItem != emptyItem);
+        return currentItem != emptyItem;
     }
 
-    public string GetItemType()
+    public ItemType GetItemType()
     {
-        ItemData data = inventory.GetComponent<ItemData>();
-        if (inventory != emptyItem && data != null) 
+        ItemData data = currentItem.GetComponent<ItemData>();
+
+        if (data == null)
         {
-            return data.title;
+            return ItemType.noItem;
         }
-        return "";
+
+        return data.type;
+
     }
     // create a floating inventory over the player, rather than having a UI
     // potentially just do a minecraft inventory, or have a clock on the top right and the inventory on the top left
