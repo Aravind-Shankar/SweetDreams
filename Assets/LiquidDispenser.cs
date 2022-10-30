@@ -26,7 +26,6 @@ public class LiquidDispenser : MonoBehaviour
             GameObject standardPotion = Instantiate(dispensedObject, new Vector3(-1, -1, -1), Quaternion.identity);
             
             ItemData drinkData = standardPotion.GetComponent<ItemData>();
-            drinkData.title = "Drink";
             drinkData.type = ItemType.standardPotion;
 
             inventory.SetItem(standardPotion);

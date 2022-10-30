@@ -5,9 +5,11 @@ using UnityEngine;
 public class Dispenser : MonoBehaviour
 {
     //public GameObject cupPrefab;
-    public Inventory inventory;
+    private Inventory inventory;
     public GameObject dispensedObject;
-    public GameObject player;
+    public ItemType objectType;
+
+    private GameObject player;
 
     private void Awake()
     {
@@ -34,27 +36,13 @@ public class Dispenser : MonoBehaviour
             GameObject newCup = Instantiate(dispensedObject, new Vector3(-1, -1, -1), Quaternion.identity);
             
             ItemData drinkData = newCup.GetComponent<ItemData>();
-            drinkData.title = "Drink";
-            drinkData.type = ItemType.emptyPotion;
+            drinkData.type = objectType;
 
             inventory.SetItem(newCup);
-
-
-            //// make cup child of polyman
-            //// to be replaced with inventory renderer code
-            //newCup.transform.SetParent(player.transform);
-
-            //newCup.transform.localPosition = new Vector3(.5f, 1, .5f);
         }
-        else if (inventory.GetItemType() == ItemType.emptyPotion
-                   || inventory.GetItemType() == ItemType.standardPotion
-                   || inventory.GetItemType() == ItemType.victoryPotion)
+        else
         {
-            // error say you already have cup
-            Debug.Log("You already have a potion!!");
-        } else
-        {
-            Debug.Log("You don't have space!");
+            Debug.Log("Your hands are full!");
         }
     }
 }

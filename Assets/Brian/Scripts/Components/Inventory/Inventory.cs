@@ -10,7 +10,6 @@ public class Inventory : MonoBehaviour
     private void Awake()
     {
         emptyItem = new GameObject();
-        //inventory = new List<GameObject>();
         currentItem = emptyItem;
     }
 
@@ -27,7 +26,6 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItem()
     {
-        // destroy GameObject first then remove from dictionary
         // move item back below stage
         currentItem.transform.position = new Vector3(-50, -50, -50);
 

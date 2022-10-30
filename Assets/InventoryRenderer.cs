@@ -24,10 +24,6 @@ public class InventoryRenderer : MonoBehaviour
 
         currentItem = inventory.GetCurrentItem();
 
-        // make cup child of polyman
-        // to be replaced with inventory renderer code
-        // currentItem.transform.SetParent(player.transform);
-
         currentItem.transform.localPosition = player.transform.position + (new Vector3(.5f, 1, .5f));
 
         
