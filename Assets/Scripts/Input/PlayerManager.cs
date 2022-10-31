@@ -8,16 +8,23 @@ public class PlayerManager : MonoBehaviour
     PlayerLocomotion playerLocomotion;
     CameraManager cameraManager;
 
+    SusBar susBar;
+
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
         cameraManager = FindObjectOfType<CameraManager>();
+
+        susBar = FindObjectOfType<SusBar>();
     }
 
     private void Update()
     {
         inputManager.HandleAllInputs();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            susBar.AddSus(5);
     }
 
     private void FixedUpdate() {

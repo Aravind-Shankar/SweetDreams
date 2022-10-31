@@ -9,9 +9,13 @@ public class CustomerQueue : MonoBehaviour
     private Customers customers;
     public GameObject customerPrefab;
 
+    public float loadTime;
+
     // Start is called before the first frame update
     void Start()
     {
+        loadTime = Time.time;
+
         customers = JsonUtility.FromJson<Customers>(jsonFile.text);
         customerQueue = new Queue<Customer>();
         for (int i = 0; i < customers.customers.Length; i++)
@@ -24,7 +28,7 @@ public class CustomerQueue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (customerQueue.Count > 0 && customerQueue.Peek().time <= Time.time) {
+        if (customerQueue.Count > 0 && customerQueue.Peek().time <= Time.time - loadTime) {
             Customer c = customerQueue.Dequeue();
             Debug.Log(c + " dequeued");
             c.customerObject = Instantiate(customerPrefab, new Vector3(-10,1,29), Quaternion.identity);
