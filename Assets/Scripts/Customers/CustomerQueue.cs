@@ -9,6 +9,7 @@ public class CustomerQueue : MonoBehaviour
     private Customers customers;
     public GameObject customerPrefab;
 
+    private int ordersCompletedCounter = 0;
     public float loadTime;
 
     // Start is called before the first frame update
@@ -37,6 +38,16 @@ public class CustomerQueue : MonoBehaviour
         //TODO: when drink is finished, call that customer's UpdateOrder()
         // ex: customers.customers[0].UpdateOrder();
     }
+
+    public void CompleteOrder()
+    {
+        if (ordersCompletedCounter <= 5)
+        {
+            customers.customers[ordersCompletedCounter].UpdateOrder();
+            ordersCompletedCounter += 1;
+        }
+    }
+
 }
 
 [System.Serializable]
