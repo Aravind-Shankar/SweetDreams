@@ -20,15 +20,7 @@ public class Dispenser : MonoBehaviour
 
     public void Dispense()
     {
-        // play cup dispensing sound
-        // play particles for dispensing a cup
-        //cup.transform.position = this.transform.position + new Vector3(0, 0, 3);
-        // put it in player inventory
-
-
         ItemData item = dispensedObject.GetComponent<ItemData>();
-
-
 
         if (!inventory.HasItem())
         {
