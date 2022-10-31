@@ -11,6 +11,10 @@ public class CustomerAI : MonoBehaviour
     public GameObject barWaypoint;
     public GameObject leaveWaypoint;
     private static int position = 0;
+    
+    private float triggerTime;
+    private float period = 1.0f;
+    private SusBar susBar;
 
     public enum States
     {
@@ -21,6 +25,10 @@ public class CustomerAI : MonoBehaviour
 
     public States aiState;
 
+    private void Awake() {
+        susBar = FindObjectOfType<SusBar>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +36,7 @@ public class CustomerAI : MonoBehaviour
         aiState = States.Arriving;
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.SetDestination(barWaypoint.transform.position + new Vector3(2*position, 0, 0));
+        triggerTime = Time.time;
     }
 
     // Update is called once per frame
@@ -48,6 +57,14 @@ public class CustomerAI : MonoBehaviour
                     aiState = States.Leaving;
                     navMeshAgent.SetDestination(leaveWaypoint.transform.position);
                     navMeshAgent.speed = 5;
+
+                    // Remove sus for finishing order
+                    susBar.RemoveSus(20.0f);
+                } else if (Time.time > triggerTime) {
+                    triggerTime += period;
+
+                    // Add sus every second the person is waiting
+                    susBar.AddSus(0.5f);
                 }
                 break;
             

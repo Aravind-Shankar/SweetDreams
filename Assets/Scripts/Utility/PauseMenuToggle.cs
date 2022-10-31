@@ -8,9 +8,12 @@ public class PauseMenuToggle : MonoBehaviour
     private CanvasGroup canvasGroup;
     public CameraManager cameraManager;
 
+    private Transform loseText;
+
     void Awake() {
         canvasGroup = GetComponent<CanvasGroup>();
         cameraManager = FindObjectOfType<CameraManager>();
+        loseText = transform.Find("Fail");
         if (canvasGroup == null) {
             Debug.LogError("No Canvas Group added!");
         }
@@ -21,20 +24,33 @@ public class PauseMenuToggle : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Escape)) {
             if (canvasGroup.interactable) {
-                canvasGroup.interactable = false;
-                canvasGroup.blocksRaycasts = false;
-                canvasGroup.alpha = 0f;
-                cameraManager.pauseGame = false;
-
-                Time.timeScale = 1f;
+                CloseMenu();
             } else {
-                canvasGroup.interactable = true;
-                canvasGroup.blocksRaycasts = true;
-                canvasGroup.alpha = 1f;
-                cameraManager.pauseGame = true;
-
-                Time.timeScale = 0f;
+                OpenMenu();
             }
         }
+    }
+
+    public void OpenMenu() {
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+        canvasGroup.alpha = 1f;
+        cameraManager.pauseGame = true;
+
+        Time.timeScale = 0f;
+    }
+
+    public void CloseMenu() {
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup.alpha = 0f;
+        cameraManager.pauseGame = false;
+
+        Time.timeScale = 1f;
+    }
+
+    public void Lose() {
+        OpenMenu();
+        loseText.gameObject.SetActive(true);
     }
 }
