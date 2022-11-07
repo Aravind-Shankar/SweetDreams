@@ -22,9 +22,6 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         inputManager.HandleAllInputs();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            susBar.AddSus(5);
     }
 
     private void FixedUpdate() {
