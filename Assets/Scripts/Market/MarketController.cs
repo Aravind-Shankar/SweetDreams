@@ -31,8 +31,6 @@ public class MarketController : MonoBehaviour
     {
         //get and update the distance between player and counter
         distanceFromCounter = Vector3.Distance(counter.transform.position, gameObject.transform.position);
-        print(counter.transform.position);
-        print(gameObject.transform.position);
 
         if (distanceFromCounter < distanceRequired) {
             isNextToCounter = true;
