@@ -8,6 +8,7 @@ public class CustomerQueue : MonoBehaviour
     private Queue<Customer> customerQueue;
     private Customers customers;
     public GameObject customerPrefab;
+    public PlayerMoney playerMoney;
 
     private int ordersCompletedCounter = 0;
     public float loadTime;
@@ -44,6 +45,7 @@ public class CustomerQueue : MonoBehaviour
         if (ordersCompletedCounter <= 5)
         {
             customers.customers[ordersCompletedCounter].UpdateOrder();
+            playerMoney.Money += 50;
             ordersCompletedCounter += 1;
         }
     }
