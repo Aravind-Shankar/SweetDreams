@@ -69,7 +69,7 @@ public class CustomerAI : MonoBehaviour
 
                     if (navMeshAgent.remainingDistance <= 1) {
                         navMeshAgent.SetDestination(new Vector3(Random.Range(-1.5f, 7), 0.1f, Random.Range(9, 16)));
-                        navMeshAgent.speed = 2f;
+                        navMeshAgent.speed = 3f;
                     }
 
                     // Add sus every second the person is waiting
