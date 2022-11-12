@@ -8,7 +8,8 @@ public class MarketController : MonoBehaviour
 {
     public GameObject counter;
     public GameObject marketUI;
-    public CameraManager cameraManager;
+    
+    PlayerManager playerManager;
 
     //the distance required for player to open market
     public float distanceRequired;
@@ -20,10 +21,9 @@ public class MarketController : MonoBehaviour
     //player's distance from counter, default set to positive infinity
     private float distanceFromCounter = float.PositiveInfinity;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        playerManager = FindObjectOfType<PlayerManager>();
     }
 
     // Update is called once per frame
@@ -53,21 +53,18 @@ public class MarketController : MonoBehaviour
                 {
                     //set market UI active
                     //toggle boolean menuIsOpen
+                    //disable movement
                     //disable camera movement
                     marketUI.SetActive(true);
                     menuIsOpen = !menuIsOpen;
-                    cameraManager.pauseGame = true;
+                    playerManager.pauseGame += 1;
                 } else
                 {
                     marketUI.SetActive(false);
                     menuIsOpen = !menuIsOpen;
-                    cameraManager.pauseGame = false;
+                    playerManager.pauseGame -= 1;
                 }
             }
-        } else
-        {
-            marketUI.SetActive(false);
-            cameraManager.pauseGame = false;
         }
     }
 }
