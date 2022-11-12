@@ -9,9 +9,17 @@ public class CustomerQueue : MonoBehaviour
     private Customers customers;
     public GameObject customerPrefab;
     public PlayerMoney playerMoney;
+    public GameObject spawnPoint;
 
     private int ordersCompletedCounter = 0;
     public float loadTime;
+    public int finishedCustomers;
+
+    PauseMenuToggle menu;
+
+    private void Awake() {
+        menu = FindObjectOfType<PauseMenuToggle>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -33,11 +41,15 @@ public class CustomerQueue : MonoBehaviour
         if (customerQueue.Count > 0 && customerQueue.Peek().time <= Time.time - loadTime) {
             Customer c = customerQueue.Dequeue();
             Debug.Log(c + " dequeued");
-            c.customerObject = Instantiate(customerPrefab, new Vector3(-10,1,29), Quaternion.identity);
+            c.customerObject = Instantiate(customerPrefab, spawnPoint.transform.position, Quaternion.identity);
             //TODO: drink system
         }
         //TODO: when drink is finished, call that customer's UpdateOrder()
         // ex: customers.customers[0].UpdateOrder();
+
+        if (finishedCustomers == customers.customers.Length) {
+            menu.Win();
+        }
     }
 
     public void CompleteOrder()

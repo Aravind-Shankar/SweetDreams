@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public int pauseGame = 0;
+
     InputManager inputManager;
     PlayerLocomotion playerLocomotion;
     CameraManager cameraManager;
@@ -21,14 +23,18 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        inputManager.HandleAllInputs();
+        if (pauseGame < 0)
+            Debug.LogError("PauseGame value should not be below 0.");
+
+        inputManager.HandleAllInputs(pauseGame == 0);
     }
 
     private void FixedUpdate() {
-        playerLocomotion.HandleAllMovement();
+        playerLocomotion.HandleAllMovement(pauseGame == 0);
     }
 
     private void LateUpdate() {
-        cameraManager.HandleAllCameraMovement();
+        if (pauseGame == 0)
+            cameraManager.HandleAllCameraMovement();
     }
 }

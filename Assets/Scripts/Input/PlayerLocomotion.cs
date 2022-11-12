@@ -26,13 +26,13 @@ public class PlayerLocomotion : MonoBehaviour
         cameraObject = Camera.main.transform;
     }
 
-    public void HandleAllMovement() {
-        HandleMovement();
-        HandleRotation();
+    public void HandleAllMovement(bool notPaused) {
+        HandleMovement(notPaused);
+        HandleRotation(notPaused);
         HandleStairsSlopes();
     }
 
-    private void HandleMovement() {
+    private void HandleMovement(bool notPaused) {
         moveDirection = cameraObject.forward * inputManager.verticalInput;
         moveDirection += cameraObject.right * inputManager.horizontalInput;
         moveDirection.Normalize();
@@ -50,10 +50,12 @@ public class PlayerLocomotion : MonoBehaviour
         
 
         Vector3 movementVelocity = moveDirection;
+        if (!notPaused)
+            movementVelocity = Vector3.zero;
         playerRigidbody.velocity = movementVelocity;
     }
 
-    private void HandleRotation() {
+    private void HandleRotation(bool notPaused) {
         Vector3 targetDirection = Vector3.zero;
 
         targetDirection = cameraObject.forward * inputManager.verticalInput;
@@ -67,7 +69,8 @@ public class PlayerLocomotion : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
         Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-        transform.rotation = playerRotation;
+        if (notPaused)
+            transform.rotation = playerRotation;
     }
 
     private void HandleStairsSlopes() {

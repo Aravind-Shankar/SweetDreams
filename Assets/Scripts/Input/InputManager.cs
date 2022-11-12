@@ -55,7 +55,9 @@ public class InputManager : MonoBehaviour
         playerControls.Disable();
     }
 
-    public void HandleAllInputs() {
+    public void HandleAllInputs(bool notPaused) {
+        if (!notPaused)
+            movementInput = Vector2.zero;
         HandleMovementInput();
         HandleSprintingInput();
     }
