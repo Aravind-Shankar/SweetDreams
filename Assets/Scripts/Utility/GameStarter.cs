@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameStarter : MonoBehaviour
 {
+    LevelLoader levelLoader;
+
+    private void Awake() {
+        levelLoader = FindObjectOfType<LevelLoader>();
+    }
+
     public void StartGame() {
-        SceneManager.LoadScene("Store");
-        Time.timeScale = 1f;
+        levelLoader.StartGame();
     }
 
 }
