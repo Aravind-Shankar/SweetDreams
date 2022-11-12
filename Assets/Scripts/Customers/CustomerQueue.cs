@@ -8,6 +8,7 @@ public class CustomerQueue : MonoBehaviour
     private Queue<Customer> customerQueue;
     private Customers customers;
     public GameObject customerPrefab;
+    public GameObject spawnPoint;
 
     private int ordersCompletedCounter = 0;
     public float loadTime;
@@ -39,7 +40,7 @@ public class CustomerQueue : MonoBehaviour
         if (customerQueue.Count > 0 && customerQueue.Peek().time <= Time.time - loadTime) {
             Customer c = customerQueue.Dequeue();
             Debug.Log(c + " dequeued");
-            c.customerObject = Instantiate(customerPrefab, new Vector3(-10,1,29), Quaternion.identity);
+            c.customerObject = Instantiate(customerPrefab, spawnPoint.transform.position, Quaternion.identity);
             //TODO: drink system
         }
         //TODO: when drink is finished, call that customer's UpdateOrder()

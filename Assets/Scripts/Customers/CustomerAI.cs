@@ -38,7 +38,7 @@ public class CustomerAI : MonoBehaviour
         position++;
         aiState = States.Arriving;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.SetDestination(barWaypoint.transform.position + new Vector3(2*position, 0, 0));
+        navMeshAgent.SetDestination(barWaypoint.transform.position);
         triggerTime = Time.time;
     }
 
@@ -51,7 +51,6 @@ public class CustomerAI : MonoBehaviour
                 if (navMeshAgent.pathPending == false && navMeshAgent.remainingDistance <= 1) 
                 {
                     aiState = States.Waiting;
-                    navMeshAgent.speed = 0;
                 }
                 break;
             
@@ -66,7 +65,12 @@ public class CustomerAI : MonoBehaviour
 
                     customerQueue.finishedCustomers++;
                 } else if (Time.time > triggerTime) {
-                    triggerTime += period;
+                    triggerTime++;
+
+                    if (navMeshAgent.remainingDistance <= 1) {
+                        navMeshAgent.SetDestination(new Vector3(Random.Range(-1.5f, 7), 0.1f, Random.Range(9, 16)));
+                        navMeshAgent.speed = 2f;
+                    }
 
                     // Add sus every second the person is waiting
                     susBar.AddSus(0.5f);
