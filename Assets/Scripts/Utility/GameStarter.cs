@@ -12,6 +12,9 @@ public class GameStarter : MonoBehaviour
     }
 
     public void StartGame() {
+        // Weird bug in Main menu where the level loader instance gets lost
+        levelLoader = FindObjectOfType<LevelLoader>();
+
         levelLoader.StartGame();
     }
 
