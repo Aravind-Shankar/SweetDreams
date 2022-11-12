@@ -6,14 +6,17 @@ using UnityEngine;
 public class PauseMenuToggle : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
-    public CameraManager cameraManager;
+    
+    PlayerManager playerManager;
 
     private Transform loseText;
+    private Transform winText;
 
     void Awake() {
         canvasGroup = GetComponent<CanvasGroup>();
-        cameraManager = FindObjectOfType<CameraManager>();
+        playerManager = FindObjectOfType<PlayerManager>();
         loseText = transform.Find("Fail");
+        winText = transform.Find("Win");
         if (canvasGroup == null) {
             Debug.LogError("No Canvas Group added!");
         }
@@ -35,7 +38,7 @@ public class PauseMenuToggle : MonoBehaviour
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1f;
-        cameraManager.pauseGame = true;
+        playerManager.pauseGame += 1;
 
         Time.timeScale = 0f;
     }
@@ -44,7 +47,7 @@ public class PauseMenuToggle : MonoBehaviour
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0f;
-        cameraManager.pauseGame = false;
+        playerManager.pauseGame -= 1;
 
         Time.timeScale = 1f;
     }
@@ -52,5 +55,10 @@ public class PauseMenuToggle : MonoBehaviour
     public void Lose() {
         OpenMenu();
         loseText.gameObject.SetActive(true);
+    }
+
+    public void Win() {
+        OpenMenu();
+        winText.gameObject.SetActive(true);
     }
 }

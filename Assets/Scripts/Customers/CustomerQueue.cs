@@ -11,6 +11,13 @@ public class CustomerQueue : MonoBehaviour
 
     private int ordersCompletedCounter = 0;
     public float loadTime;
+    public int finishedCustomers;
+
+    PauseMenuToggle menu;
+
+    private void Awake() {
+        menu = FindObjectOfType<PauseMenuToggle>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +44,10 @@ public class CustomerQueue : MonoBehaviour
         }
         //TODO: when drink is finished, call that customer's UpdateOrder()
         // ex: customers.customers[0].UpdateOrder();
+
+        if (finishedCustomers == customers.customers.Length) {
+            menu.Win();
+        }
     }
 
     public void CompleteOrder()

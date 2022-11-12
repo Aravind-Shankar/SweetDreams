@@ -16,6 +16,8 @@ public class CustomerAI : MonoBehaviour
     private float period = 1.0f;
     private SusBar susBar;
 
+    CustomerQueue customerQueue;
+
     public enum States
     {
         Arriving,
@@ -27,6 +29,7 @@ public class CustomerAI : MonoBehaviour
 
     private void Awake() {
         susBar = FindObjectOfType<SusBar>();
+        customerQueue = FindObjectOfType<CustomerQueue>();
     }
 
     // Start is called before the first frame update
@@ -60,6 +63,8 @@ public class CustomerAI : MonoBehaviour
 
                     // Remove sus for finishing order
                     susBar.RemoveSus(20.0f);
+
+                    customerQueue.finishedCustomers++;
                 } else if (Time.time > triggerTime) {
                     triggerTime += period;
 
