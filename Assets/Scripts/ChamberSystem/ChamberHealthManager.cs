@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ChamberHealthManager : MonoBehaviour
 {
     public int maxHealth = 2;
-    public int health = 0;
+    public TextMeshProUGUI healthText;
+
+    private int _health;
+
+    private void Start()
+    {
+        _health = maxHealth;
+        SetHealthText();
+    }
+
+    private void SetHealthText()
+    {
+        healthText.text = $"Health: {_health}/{maxHealth}";
+    }
 
     public bool FeedFood()
     {
         // return true if fed successfully, false if not (e.g. when health is maxed)
-        if (health < maxHealth)
+        if (_health < maxHealth)
         {
-            ++health;
+            ++_health;
+            SetHealthText();
             return true;
         }
         else
@@ -22,9 +37,10 @@ public class ChamberHealthManager : MonoBehaviour
     public bool UseForDrink()
     {
         // return true if used successfully, false if not (e.g. when health is insufficient)
-        if (health == 0)
+        if (_health == 0)
             return false;
-        --health;
+        --_health;
+        SetHealthText();
         return true;
     }
 }
