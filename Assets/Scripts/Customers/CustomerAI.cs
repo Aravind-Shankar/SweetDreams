@@ -15,6 +15,8 @@ public class CustomerAI : MonoBehaviour
     public bool orderComplete = false;
     [HideInInspector]
     public Potion orderedPotion;
+    [HideInInspector]
+    public PotionPanel potionPanel;
 
     private NavMeshAgent navMeshAgent;
     private float triggerTime;
@@ -41,6 +43,9 @@ public class CustomerAI : MonoBehaviour
         aiState = States.Arriving;
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.SetDestination(barWaypoint.transform.position);
+
+        if (potionPanel)
+            potionPanel.Clear();
         triggerTime = Time.time;
     }
 
@@ -55,6 +60,9 @@ public class CustomerAI : MonoBehaviour
                 {
                     aiState = States.Waiting;
                     orderText.text = "Order: " + orderedPotion.name;
+
+                    if (potionPanel)
+                        potionPanel.SetPotion(orderedPotion);
                 }
                 break;
             
@@ -69,6 +77,9 @@ public class CustomerAI : MonoBehaviour
 
                     customerQueue.finishedCustomers++;
                     orderText.text = "";
+
+                    if (potionPanel)
+                        Destroy(potionPanel.gameObject);
                 } else if (Time.time > triggerTime) {
                     triggerTime++;
 

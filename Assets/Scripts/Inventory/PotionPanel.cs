@@ -11,21 +11,12 @@ public class PotionPanel : MonoBehaviour
     public CanvasGroup priceCanvasGroup; 
     public TextMeshProUGUI potionPriceText;
 
-    public PotionSO debug_PotionSO;
-
     private CanvasGroup _overallCanvasGroup;
 
-    private void Start()
+    private void Awake()
     {
         _overallCanvasGroup = GetComponent<CanvasGroup>();
         this.Clear();
-
-        Invoke("DebugSetPotion", 2f);
-    }
-
-    private void DebugSetPotion()
-    {
-        this.SetPotion(debug_PotionSO.potions[0]);
     }
 
     public void Clear()

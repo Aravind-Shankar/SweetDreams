@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CustomerQueue : MonoBehaviour
 {
     public CustomerSO customerSO;
     public GameObject spawnPoint;
+    [Header("Active Orders UI")]
+    public RectTransform orderViewContent;
+    public GameObject potionPanelPrefab;
+    public Vector3 potionPanelScale = Vector3.one;
 
     [HideInInspector]
     public int finishedCustomers;
@@ -42,9 +47,21 @@ public class CustomerQueue : MonoBehaviour
     void Update()
     {
         if (customerQueue.Count > 0 && customerQueue.Peek().arrivalTime <= Time.time - loadTime) {
-            Customer c = customerQueue.Dequeue();
-            Debug.Log(c + " dequeued");
-            c.Setup(Instantiate(customerPrefab, spawnPoint.transform.position, Quaternion.identity), customerSO.potionSO);
+            Customer customer = customerQueue.Dequeue();
+            Debug.Log(customer + " dequeued");
+
+            GameObject potionPanelObject = null;
+            if (orderViewContent && potionPanelPrefab)
+            {
+                potionPanelObject = Instantiate(potionPanelPrefab);
+                potionPanelObject.transform.SetParent(orderViewContent.transform, false);
+                potionPanelObject.transform.localScale = potionPanelScale;
+            }
+
+            customer.Setup(
+                Instantiate(customerPrefab, spawnPoint.transform.position, Quaternion.identity),
+                customerSO.potionSO, potionPanelObject
+            );
             //TODO: drink system
         }
         //TODO: when drink is finished, call that customer's UpdateOrder()
