@@ -28,6 +28,7 @@ public class EventLog : MonoBehaviour
 
     public GameObject eventLogTextPrefab;
     public RectTransform contentRectTransform;
+    public float logLifetimeSeconds;
 
     public void AddLog(string logMessage, Color color)
     {
@@ -38,5 +39,7 @@ public class EventLog : MonoBehaviour
         TextMeshProUGUI newLogText = newLogObject.GetComponent<TextMeshProUGUI>();
         newLogText.text = logMessage;
         newLogText.color = color;
+
+        Destroy(newLogObject, logLifetimeSeconds);
     }
 }

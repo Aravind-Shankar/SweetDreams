@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventLogTextPrefab: {fileID: 6329690013530794263, guid: 8c18583b184a2124594d47f1a23f58f9, type: 3}
   contentRectTransform: {fileID: 6177266393169902561}
+  logLifetimeSeconds: 15
 --- !u!1 &6177266392144856063
 GameObject:
   m_ObjectHideFlags: 0
