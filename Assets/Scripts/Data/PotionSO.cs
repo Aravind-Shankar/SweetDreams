@@ -17,4 +17,5 @@ public class Potion
     public int id;
     public int sellingPrice;
     public Sprite icon;
+    public ItemType itemType;
 }

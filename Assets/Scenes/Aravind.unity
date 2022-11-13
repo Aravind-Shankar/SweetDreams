@@ -3272,6 +3272,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8088313984335223614, guid: bc242c8fdfc40fe46ad6eb08cae3af8b, type: 3}
+      propertyPath: potionSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 77d3dce5e8afa4a4a9e7303efdbb1e25, type: 2}
+    - target: {fileID: 8088313984335223614, guid: bc242c8fdfc40fe46ad6eb08cae3af8b, type: 3}
+      propertyPath: inHandPotionPanel
+      value: 
+      objectReference: {fileID: 889997057}
     - target: {fileID: 8088313984335223615, guid: bc242c8fdfc40fe46ad6eb08cae3af8b, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -3829,6 +3837,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884234717}
   m_Mesh: {fileID: -5261089924202358143, guid: 14e167cd9fb3147889c151390b2cc8b6, type: 3}
+--- !u!114 &889997057 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4040773724337054074, guid: bbcf2e5101b84ef4ca82137fcde76543, type: 3}
+  m_PrefabInstance: {fileID: 5054690755455291348}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db2f66f98d79584f82b5b009688a673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &905295924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9420,9 +9439,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 701707873}
     m_Modifications:
+    - target: {fileID: 5054690755806841129, guid: bbcf2e5101b84ef4ca82137fcde76543, type: 3}
+      propertyPath: m_Name
+      value: In-Hand Potion Panel
+      objectReference: {fileID: 0}
     - target: {fileID: 5054690757105178771, guid: bbcf2e5101b84ef4ca82137fcde76543, type: 3}
       propertyPath: m_Name
-      value: In-Hand Potion
+      value: In-Hand Potion View
       objectReference: {fileID: 0}
     - target: {fileID: 5054690757105178780, guid: bbcf2e5101b84ef4ca82137fcde76543, type: 3}
       propertyPath: m_Pivot.x

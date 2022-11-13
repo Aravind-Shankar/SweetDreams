@@ -21,11 +21,7 @@ public class InventoryRenderer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         currentItem = inventory.GetCurrentItem();
-
         currentItem.transform.localPosition = player.transform.position + (new Vector3(.5f, 1, .5f));
-
-        
     }
 }
