@@ -3,8 +3,28 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerMoney : MonoBehaviour
+public class MoneySystem : MonoBehaviour
 {
+    private static MoneySystem _instance;
+
+    public static MoneySystem Instance
+    {
+        get
+        {
+            if (!_instance)
+            {
+                _instance = FindObjectOfType(typeof(MoneySystem)) as MoneySystem;
+
+                if (!_instance)
+                {
+                    Debug.LogError("There needs to be exactly one active MoneySystem script on a GameObject in your scene.");
+                }
+            }
+
+            return _instance;
+        }
+    }
+
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI moneyUpdateText;
 
