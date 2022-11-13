@@ -44,7 +44,7 @@ public class CustomerQueue : MonoBehaviour
         if (customerQueue.Count > 0 && customerQueue.Peek().arrivalTime <= Time.time - loadTime) {
             Customer c = customerQueue.Dequeue();
             Debug.Log(c + " dequeued");
-            c.Setup(Instantiate(customerPrefab, spawnPoint.transform.position, Quaternion.identity));
+            c.Setup(Instantiate(customerPrefab, spawnPoint.transform.position, Quaternion.identity), customerSO.potionSO);
             //TODO: drink system
         }
         //TODO: when drink is finished, call that customer's UpdateOrder()

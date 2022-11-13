@@ -6,6 +6,7 @@ using UnityEngine;
 public class CustomerSO : ScriptableObject
 {
     public GameObject customerPrefab;
+    public PotionSO potionSO;
 
     [Tooltip("Elements should be in order of arrival time.")]
     public Customer[] customers;
@@ -20,9 +21,10 @@ public class Customer
 
     private CustomerAI _customerAI;
 
-    public void Setup(GameObject customerObject)
+    public void Setup(GameObject customerObject, PotionSO potionSO)
     {
         _customerAI = customerObject.GetComponent<CustomerAI>();
+        _customerAI.orderedPotion = potionSO.potions[orderedPotionID];
     }
 
     public void UpdateOrder()

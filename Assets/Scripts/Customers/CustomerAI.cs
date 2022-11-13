@@ -2,19 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class CustomerAI : MonoBehaviour
 {
-    private NavMeshAgent navMeshAgent;
-    public bool orderComplete = false;
+    public TextMeshProUGUI orderText;
     public GameObject barWaypoint;
     public GameObject leaveWaypoint;
-    
+
+    [HideInInspector]
+    public bool orderComplete = false;
+    [HideInInspector]
+    public Potion orderedPotion;
+
+    private NavMeshAgent navMeshAgent;
     private float triggerTime;
     private SusBar susBar;
-
-    CustomerQueue customerQueue;
+    private CustomerQueue customerQueue;
 
     public enum States
     {
@@ -45,9 +50,11 @@ public class CustomerAI : MonoBehaviour
         switch (aiState) {
 
             case States.Arriving:
+                orderText.text = "";
                 if (navMeshAgent.pathPending == false && navMeshAgent.remainingDistance <= 1) 
                 {
                     aiState = States.Waiting;
+                    orderText.text = "Order: " + orderedPotion.name;
                 }
                 break;
             
@@ -61,6 +68,7 @@ public class CustomerAI : MonoBehaviour
                     susBar.RemoveSus(20.0f);
 
                     customerQueue.finishedCustomers++;
+                    orderText.text = "";
                 } else if (Time.time > triggerTime) {
                     triggerTime++;
 

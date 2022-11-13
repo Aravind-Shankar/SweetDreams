@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Customers
   m_EditorClassIdentifier: 
   customerPrefab: {fileID: 7390147178476184357, guid: 4803fb9687c4345818d6ca2063d67794, type: 3}
+  potionSO: {fileID: 11400000, guid: 77d3dce5e8afa4a4a9e7303efdbb1e25, type: 2}
   customers:
   - arrivalTime: 0
     name: Steven
