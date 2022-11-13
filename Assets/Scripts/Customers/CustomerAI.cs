@@ -59,7 +59,7 @@ public class CustomerAI : MonoBehaviour
                 if (navMeshAgent.pathPending == false && navMeshAgent.remainingDistance <= 1) 
                 {
                     aiState = States.Waiting;
-                    orderText.text = "Order: " + orderedPotion.name;
+                    orderText.text = orderedPotion.name;
 
                     if (potionPanel)
                         potionPanel.SetPotion(orderedPotion);
