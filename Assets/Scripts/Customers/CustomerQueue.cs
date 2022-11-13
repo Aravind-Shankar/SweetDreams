@@ -56,6 +56,7 @@ public class CustomerQueue : MonoBehaviour
         if (ordersCompletedCounter <= 5)
         {
             customers.customers[ordersCompletedCounter].UpdateOrder();
+            MoneySystem.Instance.Money += 50;
             ordersCompletedCounter += 1;
         }
     }

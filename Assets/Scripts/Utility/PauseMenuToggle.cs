@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(CanvasGroup))]
+using TMPro;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class PauseMenuToggle : MonoBehaviour
 {
+    public TextMeshProUGUI pauseStateText;
+
     private CanvasGroup canvasGroup;
     
     PlayerManager playerManager;
@@ -20,6 +23,11 @@ public class PauseMenuToggle : MonoBehaviour
         if (canvasGroup == null) {
             Debug.LogError("No Canvas Group added!");
         }
+        else
+        {
+            canvasGroup.interactable = false;
+            pauseStateText.text = "Pause";
+        }
     }
 
     // Update is called once per frame
@@ -27,8 +35,10 @@ public class PauseMenuToggle : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Escape)) {
             if (canvasGroup.interactable) {
+                pauseStateText.text = "Pause";
                 CloseMenu();
             } else {
+                pauseStateText.text = "Resume";
                 OpenMenu();
             }
         }
