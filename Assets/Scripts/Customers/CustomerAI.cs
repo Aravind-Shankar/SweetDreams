@@ -10,10 +10,8 @@ public class CustomerAI : MonoBehaviour
     public bool orderComplete = false;
     public GameObject barWaypoint;
     public GameObject leaveWaypoint;
-    private static int position = 0;
     
     private float triggerTime;
-    private float period = 1.0f;
     private SusBar susBar;
 
     CustomerQueue customerQueue;
@@ -35,7 +33,6 @@ public class CustomerAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        position++;
         aiState = States.Arriving;
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.SetDestination(barWaypoint.transform.position);

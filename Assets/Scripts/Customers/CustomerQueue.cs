@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class CustomerQueue : MonoBehaviour
 {
-    public TextAsset jsonFile;
-    private Queue<Customer> customerQueue;
-    private Customers customers;
-    public GameObject customerPrefab;
+    public CustomerSO customerSO;
     public GameObject spawnPoint;
 
-    private int ordersCompletedCounter = 0;
-    public float loadTime;
+    [HideInInspector]
     public int finishedCustomers;
+
+    private Queue<Customer> customerQueue;
+    private GameObject customerPrefab;
+    private Customer[] customers;
+    private int ordersCompletedCounter = 0;
+    private float loadTime;
 
     PauseMenuToggle menu;
 
@@ -25,28 +27,30 @@ public class CustomerQueue : MonoBehaviour
     {
         loadTime = Time.time;
 
-        customers = JsonUtility.FromJson<Customers>(jsonFile.text);
+        customers = customerSO.customers;
+        customerPrefab = customerSO.customerPrefab;
+
         customerQueue = new Queue<Customer>();
-        for (int i = 0; i < customers.customers.Length; i++)
+        for (int i = 0; i < customers.Length; i++)
         {
-            Debug.Log(customers.customers[i]);
-            customerQueue.Enqueue(customers.customers[i]);
+            Debug.Log(customers[i]);
+            customerQueue.Enqueue(customers[i]);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (customerQueue.Count > 0 && customerQueue.Peek().time <= Time.time - loadTime) {
+        if (customerQueue.Count > 0 && customerQueue.Peek().arrivalTime <= Time.time - loadTime) {
             Customer c = customerQueue.Dequeue();
             Debug.Log(c + " dequeued");
-            c.customerObject = Instantiate(customerPrefab, spawnPoint.transform.position, Quaternion.identity);
+            c.Setup(Instantiate(customerPrefab, spawnPoint.transform.position, Quaternion.identity));
             //TODO: drink system
         }
         //TODO: when drink is finished, call that customer's UpdateOrder()
         // ex: customers.customers[0].UpdateOrder();
 
-        if (finishedCustomers == customers.customers.Length) {
+        if (finishedCustomers == customers.Length) {
             menu.Win();
         }
     }
@@ -55,34 +59,10 @@ public class CustomerQueue : MonoBehaviour
     {
         if (ordersCompletedCounter <= 5)
         {
-            customers.customers[ordersCompletedCounter].UpdateOrder();
+            customers[ordersCompletedCounter].UpdateOrder();
             MoneySystem.Instance.Money += 50;
             ordersCompletedCounter += 1;
         }
     }
 
-}
-
-[System.Serializable]
-public class Customers {
-    public Customer[] customers;
-}
-
-[System.Serializable]
-public class Customer{
-
-    public int time;
-    public string name;
-    public int orderid;
-    public GameObject customerObject;
-    public bool drinkDone;
-
-    public void UpdateOrder()
-    {
-        customerObject.GetComponent<CustomerAI>().orderComplete = true;
-    }
-
-    public override string ToString() {
-        return time.ToString() + ", " + name + ", " + orderid.ToString();
-    }
 }
