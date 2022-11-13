@@ -15,9 +15,9 @@ public class MarketController : MonoBehaviour
     public float distanceRequired;
 
     //if player is next to counter
-    public bool isNextToCounter = false;
+    private bool isNextToCounter = false;
     //if the market menu is open
-    public bool menuIsOpen = false;
+    private bool menuIsOpen = false;
     //player's distance from counter, default set to positive infinity
     private float distanceFromCounter = float.PositiveInfinity;
 
@@ -45,26 +45,29 @@ public class MarketController : MonoBehaviour
     // Open Market UI
     void MarketContol()
     {
-        if (isNextToCounter)
+        if (Input.GetKeyDown(KeyCode.E) && isNextToCounter)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (!menuIsOpen)
-                {
-                    //set market UI active
-                    //toggle boolean menuIsOpen
-                    //disable movement
-                    //disable camera movement
-                    marketUI.SetActive(true);
-                    menuIsOpen = !menuIsOpen;
-                    playerManager.pauseGame += 1;
-                } else
-                {
-                    marketUI.SetActive(false);
-                    menuIsOpen = !menuIsOpen;
-                    playerManager.pauseGame -= 1;
-                }
-            }
+            ToggleMarketUI();
+        }
+    }
+
+    public void ToggleMarketUI()
+    {
+        if (!menuIsOpen)
+        {
+            //set market UI active
+            //toggle boolean menuIsOpen
+            //disable movement
+            //disable camera movement
+            marketUI.SetActive(true);
+            menuIsOpen = !menuIsOpen;
+            playerManager.pauseGame += 1;
+        }
+        else
+        {
+            marketUI.SetActive(false);
+            menuIsOpen = !menuIsOpen;
+            playerManager.pauseGame -= 1;
         }
     }
 }
