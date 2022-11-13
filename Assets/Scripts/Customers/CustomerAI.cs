@@ -2,21 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class CustomerAI : MonoBehaviour
 {
-    private NavMeshAgent navMeshAgent;
-    public bool orderComplete = false;
+    public TextMeshProUGUI orderText;
     public GameObject barWaypoint;
     public GameObject leaveWaypoint;
-    private static int position = 0;
-    
-    private float triggerTime;
-    private float period = 1.0f;
-    private SusBar susBar;
 
-    CustomerQueue customerQueue;
+    [HideInInspector]
+    public bool orderComplete = false;
+    [HideInInspector]
+    public Potion orderedPotion;
+    [HideInInspector]
+    public PotionPanel potionPanel;
+
+    private NavMeshAgent navMeshAgent;
+    private float triggerTime;
+    private SusBar susBar;
+    private CustomerQueue customerQueue;
 
     public enum States
     {
@@ -35,10 +40,12 @@ public class CustomerAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        position++;
         aiState = States.Arriving;
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.SetDestination(barWaypoint.transform.position);
+
+        if (potionPanel)
+            potionPanel.Clear();
         triggerTime = Time.time;
     }
 
@@ -48,9 +55,14 @@ public class CustomerAI : MonoBehaviour
         switch (aiState) {
 
             case States.Arriving:
+                orderText.text = "";
                 if (navMeshAgent.pathPending == false && navMeshAgent.remainingDistance <= 1) 
                 {
                     aiState = States.Waiting;
+                    orderText.text = orderedPotion.name;
+
+                    if (potionPanel)
+                        potionPanel.SetPotion(orderedPotion);
                 }
                 break;
             
@@ -64,6 +76,10 @@ public class CustomerAI : MonoBehaviour
                     susBar.RemoveSus(20.0f);
 
                     customerQueue.finishedCustomers++;
+                    orderText.text = "";
+
+                    if (potionPanel)
+                        Destroy(potionPanel.gameObject);
                 } else if (Time.time > triggerTime) {
                     triggerTime++;
 

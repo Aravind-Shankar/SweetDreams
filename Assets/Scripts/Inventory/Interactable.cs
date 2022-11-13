@@ -5,8 +5,10 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    public bool playerIsInRange = false;
     public UnityEvent interactAction;
+
+    [HideInInspector]
+    public bool playerIsInRange = false;
 
 
     // Start is called before the first frame update
