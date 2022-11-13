@@ -8,9 +8,39 @@ public class LiquidDispenser : MonoBehaviour
     private Inventory inventory;
     public GameObject dispensedObject;
 
+    public GameObject chamberParent;
+    private ChamberHealthManager[] chamberHealthManagers;
+
     private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
+        chamberHealthManagers = chamberParent.GetComponentsInChildren<ChamberHealthManager>();
+    }
+
+    private bool TryUseChamber()
+    {
+        int numChambers = chamberHealthManagers.Length;
+        int rnd;
+        ChamberHealthManager temp;
+
+        for (int i = 0; i < numChambers - 1; i++)
+        {
+            rnd = Random.Range(i, numChambers);
+            temp = chamberHealthManagers[i];
+            chamberHealthManagers[i] = chamberHealthManagers[rnd];
+            chamberHealthManagers[rnd] = temp;
+        }
+
+        foreach (ChamberHealthManager chm in chamberHealthManagers)
+        {
+            if (chm.UseForDrink())
+            {
+                print($"Used chamber: {chm.gameObject.name}");
+                return true;
+            }
+        }
+        print("No chamber available!");
+        return false;
     }
 
     public void DispenseLiquid()
@@ -18,25 +48,33 @@ public class LiquidDispenser : MonoBehaviour
         ItemType currItemType = inventory.GetItemType();
         if (currItemType == ItemType.emptyPotion)
         {
-            // fill up cup
-            // aka replace item with standard potion
-            //GameObject drink = inventory.GetCurrentItem();
-            //ItemData drinkData = drink.GetComponent<ItemData>();
-            //drinkData.hasLiquid = true;
-            GameObject standardPotion = Instantiate(dispensedObject, new Vector3(-1, -1, -1), Quaternion.identity);
-            
-            ItemData drinkData = standardPotion.GetComponent<ItemData>();
-            drinkData.type = ItemType.standardPotion;
+            if (TryUseChamber())
+            {
+                // fill up cup
+                // aka replace item with standard potion
+                //GameObject drink = inventory.GetCurrentItem();
+                //ItemData drinkData = drink.GetComponent<ItemData>();
+                //drinkData.hasLiquid = true;
+                GameObject standardPotion = Instantiate(dispensedObject, new Vector3(-1, -1, -1), Quaternion.identity);
 
-            inventory.SetItem(standardPotion);
+                ItemData drinkData = standardPotion.GetComponent<ItemData>();
+                drinkData.type = ItemType.standardPotion;
 
-            // if replacing standard potion item with filled potion entirely, this is not needed
-            //Transform drinkFill = drink.transform.GetChild(1);
-            //drinkFill.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(0, 0));
-            //var drinkRenderer = drink.GetComponent<MeshRenderer>();
-            //drinkRenderer.material.SetTextureOffset(
-            Debug.Log("Filled with Liquid");
-        } else if (currItemType == ItemType.standardPotion || currItemType == ItemType.victoryPotion)
+                inventory.SetItem(standardPotion);
+
+                // if replacing standard potion item with filled potion entirely, this is not needed
+                //Transform drinkFill = drink.transform.GetChild(1);
+                //drinkFill.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(0, 0));
+                //var drinkRenderer = drink.GetComponent<MeshRenderer>();
+                //drinkRenderer.material.SetTextureOffset(
+                Debug.Log("Filled with Liquid");
+            }
+            else
+            {
+                Debug.Log("Filling liquid failed due to low chamber health!");
+            }
+        }
+        else if (currItemType == ItemType.standardPotion || currItemType == ItemType.victoryPotion)
         {
             Debug.Log("Your potion already has liquid!");
         }

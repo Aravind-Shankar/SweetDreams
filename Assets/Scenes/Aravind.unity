@@ -1391,6 +1391,10 @@ PrefabInstance:
       value: LiquidDispenser
       objectReference: {fileID: 0}
     - target: {fileID: 7317939653596602427, guid: a55eb8fd7fa62354ca4d566ee64e0fb0, type: 3}
+      propertyPath: chamberParent
+      value: 
+      objectReference: {fileID: 1863968748}
+    - target: {fileID: 7317939653596602427, guid: a55eb8fd7fa62354ca4d566ee64e0fb0, type: 3}
       propertyPath: dispensedObject
       value: 
       objectReference: {fileID: 114014709}
@@ -2167,6 +2171,10 @@ PrefabInstance:
       propertyPath: m_WarningMessage
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1617301632269894640, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8392193275502414048, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: m_Name
       value: HumanChamber (2)
@@ -2213,6 +2221,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8392193275502414049, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794322634681412624, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5491,6 +5503,10 @@ PrefabInstance:
       propertyPath: m_WarningMessage
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1617301632269894640, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8392193275502414048, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: m_Name
       value: HumanChamber (1)
@@ -5537,6 +5553,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8392193275502414049, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794322634681412624, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7010,6 +7030,10 @@ PrefabInstance:
       propertyPath: m_WarningMessage
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1617301632269894640, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8392193275502414048, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: m_Name
       value: HumanChamber (3)
@@ -7056,6 +7080,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8392193275502414049, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794322634681412624, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

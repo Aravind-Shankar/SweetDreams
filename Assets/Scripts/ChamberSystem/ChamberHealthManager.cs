@@ -7,6 +7,7 @@ public class ChamberHealthManager : MonoBehaviour
 {
     public int maxHealth = 2;
     public TextMeshProUGUI healthText;
+    public Gradient textColorGradient;
 
     private int _health;
 
@@ -19,6 +20,7 @@ public class ChamberHealthManager : MonoBehaviour
     private void SetHealthText()
     {
         healthText.text = $"Health: {_health}/{maxHealth}";
+        healthText.color = textColorGradient.Evaluate((float)(_health) / maxHealth);
     }
 
     public bool FeedFood()
