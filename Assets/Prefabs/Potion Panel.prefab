@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 568009521582663406}
   - component: {fileID: 568009521582663440}
   - component: {fileID: 568009521582663407}
+  - component: {fileID: 8779646096700837566}
+  - component: {fileID: 3463756366707572837}
   m_Layer: 5
   m_Name: Potion Panel
   m_TagString: Untagged
@@ -78,6 +80,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8779646096700837566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568009521582663405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db2f66f98d79584f82b5b009688a673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potionIcon: {fileID: 1549669675744170174}
+  potionNameText: {fileID: 8885164275107275912}
+  priceCanvasGroup: {fileID: 1540169518674634144}
+  potionPriceText: {fileID: 8532195944188264014}
+  debug_PotionSO: {fileID: 11400000, guid: 77d3dce5e8afa4a4a9e7303efdbb1e25, type: 2}
+--- !u!225 &3463756366707572837
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568009521582663405}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &3423942882227716816
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7981738647037266015}
   - component: {fileID: 7372672519208951451}
+  - component: {fileID: 1540169518674634144}
   m_Layer: 5
   m_Name: Price Panel
   m_TagString: Untagged
@@ -258,6 +290,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5008344203581602160}
   m_CullTransparentMesh: 1
+--- !u!225 &1540169518674634144
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008344203581602160}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &6515808320843500912
 GameObject:
   m_ObjectHideFlags: 0
