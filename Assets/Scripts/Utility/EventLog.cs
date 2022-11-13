@@ -26,6 +26,16 @@ public class EventLog : MonoBehaviour
         }
     }
 
+    public static void LogInfo(string logMessage)
+    {
+        Instance.AddLog(logMessage, Color.black);
+    }
+
+    public static void LogError(string logMessage)
+    {
+        Instance.AddLog(logMessage, Color.red);
+    }
+
     public GameObject eventLogTextPrefab;
     public RectTransform contentRectTransform;
     public float logLifetimeSeconds;

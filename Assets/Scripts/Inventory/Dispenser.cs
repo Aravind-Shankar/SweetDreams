@@ -34,7 +34,7 @@ public class Dispenser : MonoBehaviour
         }
         else
         {
-            Debug.Log("Your hands are full!");
+            EventLog.LogError("Your hands are full, cannot dispense anything now!");
         }
     }
 }

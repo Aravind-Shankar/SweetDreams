@@ -24,7 +24,7 @@ public class TrashCanHandler : MonoBehaviour
         if (inventory.HasItem())
         {
             inventory.RemoveItem();
-            Debug.Log("Item thrown away");
+            EventLog.LogInfo("Item thrown away");
         }
 
     }

@@ -21,13 +21,12 @@ public class OrderSubmitter : MonoBehaviour
         if (inventory.GetItemType() == itemSubmissionType)
         {
             inventory.RemoveItem();
-            Debug.Log("Submitted Drink!");
+            EventLog.Instance.AddLog("Delivered the order correctly!", Color.green);
             customerQueue.CompleteOrder();
-
         }
         else
         {
-            Debug.Log("You don't have the right drink to submit!");
+            EventLog.LogError("You don't have the right potion to deliver!");
         }
     }
 }

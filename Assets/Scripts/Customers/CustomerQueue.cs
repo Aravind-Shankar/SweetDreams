@@ -38,7 +38,6 @@ public class CustomerQueue : MonoBehaviour
         customerQueue = new Queue<Customer>();
         for (int i = 0; i < customers.Length; i++)
         {
-            Debug.Log(customers[i]);
             customerQueue.Enqueue(customers[i]);
         }
     }
@@ -48,7 +47,7 @@ public class CustomerQueue : MonoBehaviour
     {
         if (customerQueue.Count > 0 && customerQueue.Peek().arrivalTime <= Time.time - loadTime) {
             Customer customer = customerQueue.Dequeue();
-            Debug.Log(customer + " dequeued");
+            EventLog.LogInfo("New customer arriving!");
 
             GameObject potionPanelObject = null;
             if (orderViewContent && potionPanelPrefab)
