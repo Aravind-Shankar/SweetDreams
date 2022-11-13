@@ -47,7 +47,7 @@ public class MarketController : MonoBehaviour
     {
         if (isNextToCounter)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 if (!menuIsOpen)
                 {

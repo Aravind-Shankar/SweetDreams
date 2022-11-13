@@ -51,6 +51,9 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItem()
     {
+        if (!HasItem())
+            return;
+
         // move item back below stage
         currentItem.transform.position = new Vector3(-50, -50, -50);
 
@@ -61,6 +64,9 @@ public class Inventory : MonoBehaviour
 
     public void DropItem()
     {
+        if (!HasItem())
+            return;
+
         currentItem.AddComponent<Rigidbody>();
         currentItem.AddComponent<SphereCollider>();
 
@@ -71,7 +77,6 @@ public class Inventory : MonoBehaviour
 
     public bool HasItem()
     {
-        Debug.Log(currentItem != emptyItem);
         return currentItem != emptyItem;
     }
 
