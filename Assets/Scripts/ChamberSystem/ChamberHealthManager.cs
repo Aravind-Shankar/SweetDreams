@@ -10,9 +10,11 @@ public class ChamberHealthManager : MonoBehaviour
     public Gradient textColorGradient;
 
     private int _health;
+    private Inventory _inventory;
 
     private void Start()
     {
+        _inventory = FindObjectOfType<Inventory>();
         _health = maxHealth;
         SetHealthText();
     }
@@ -23,17 +25,25 @@ public class ChamberHealthManager : MonoBehaviour
         healthText.color = textColorGradient.Evaluate((float)(_health) / maxHealth);
     }
 
-    public bool FeedFood()
+    public void FeedFood()
     {
-        // return true if fed successfully, false if not (e.g. when health is maxed)
-        if (_health < maxHealth)
+        if (_inventory.GetItemType() == ItemType.chamberFood)
         {
-            ++_health;
-            SetHealthText();
-            return true;
+            if (_health < maxHealth)
+            {
+                ++_health;
+                SetHealthText();
+                _inventory.RemoveItem();
+            }
+            else
+            {
+                print("Health full already!");
+            }
         }
         else
-            return false;
+        {
+            print("Need chamber food to feed the chamber!");
+        }
     }
 
     public bool UseForDrink()

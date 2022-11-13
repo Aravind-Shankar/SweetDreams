@@ -55,6 +55,7 @@ public class Inventory : MonoBehaviour
         currentItem.transform.position = new Vector3(-50, -50, -50);
 
         currentItem = emptyItem;
+        currentItemData = null;
         inHandPotionPanel.Clear();
     }
 
@@ -64,6 +65,7 @@ public class Inventory : MonoBehaviour
         currentItem.AddComponent<SphereCollider>();
 
         currentItem = emptyItem;
+        currentItemData = null;
         inHandPotionPanel.Clear();
     }
 

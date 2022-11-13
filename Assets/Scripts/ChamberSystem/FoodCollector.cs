@@ -24,7 +24,8 @@ public class FoodCollector : MonoBehaviour
         {
             if (hasFood)
             {
-                hasFood = !chamberHealthManager.FeedFood();
+                chamberHealthManager.FeedFood();
+                hasFood = false;
             }
             return;
         }
