@@ -11,6 +11,7 @@ public class PotionPanel : MonoBehaviour
     public TextMeshProUGUI potionNameText;
     public CanvasGroup priceCanvasGroup; 
     public TextMeshProUGUI potionPriceText;
+    public TextMeshProUGUI currentIndicatorText;
     public IngredientSO ingredientSO;
 
     private CanvasGroup _overallCanvasGroup;
@@ -28,6 +29,7 @@ public class PotionPanel : MonoBehaviour
         _overallCanvasGroup.interactable = false;
         _overallCanvasGroup.blocksRaycasts = false;
         _potion = null;
+        currentIndicatorText.enabled = false;
     }
 
     public void SetPotion(Potion potion, bool showPrice = true)
@@ -50,6 +52,11 @@ public class PotionPanel : MonoBehaviour
         {
             priceCanvasGroup.alpha = 0;
         }
+    }
+
+    public void SetAsCurrent()
+    {
+        currentIndicatorText.enabled = true;
     }
 
     public void ShowRecipe()

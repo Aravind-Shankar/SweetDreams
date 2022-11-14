@@ -74,9 +74,18 @@ public class CustomerQueue : MonoBehaviour
         customerAI.potionPanel = potionPanelObject.GetComponent<PotionPanel>();
     }
 
+    private void UpdateCurrentOrder()
+    {
+        if (customerAIOrderQueue.Count == 0)
+            return;
+
+        customerAIOrderQueue.Peek().potionPanel.SetAsCurrent();
+    }
+
     public void AddActiveOrder(CustomerAI customerAI)
     {
         customerAIOrderQueue.Enqueue(customerAI);
+        UpdateCurrentOrder();
     }
 
     public bool TryCompleteOrder()
@@ -100,6 +109,7 @@ public class CustomerQueue : MonoBehaviour
             currentCustomerAI.orderComplete = true;
             MoneySystem.Instance.Money += orderedPotion.sellingPrice;
             customerAIOrderQueue.Dequeue();
+            UpdateCurrentOrder();
             EventLog.Log("Delivered the current order correctly!", Color.green);
             return true;
         }
