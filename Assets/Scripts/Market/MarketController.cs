@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class MarketController : MonoBehaviour
 {
     public GameObject counter;
     public GameObject marketUI;
+    public IngredientSO ingredientSO;
+    public RectTransform ingredientListContentTransform;
+    public GameObject marketIngredientPanelPrefab;
     
     PlayerManager playerManager;
 
@@ -31,23 +34,32 @@ public class MarketController : MonoBehaviour
     {
         //get and update the distance between player and counter
         distanceFromCounter = Vector3.Distance(counter.transform.position, gameObject.transform.position);
-
-        if (distanceFromCounter < distanceRequired) {
-            isNextToCounter = true;
-        } else
-        {
-            isNextToCounter = false;
-        }
-
-        MarketContol();
-    }
-
-    // Open Market UI
-    void MarketContol()
-    {
+        isNextToCounter = distanceFromCounter < distanceRequired;
         if (Input.GetKeyDown(KeyCode.E) && isNextToCounter)
         {
             ToggleMarketUI();
+        }
+    }
+
+    private void PopulateIngredientListUI()
+    {
+        foreach (var ingredient in ingredientSO.ingredients)
+        {
+            GameObject ingredientPanelObject = Instantiate(marketIngredientPanelPrefab);
+            ingredientPanelObject.transform.SetParent(ingredientListContentTransform);
+            ingredientPanelObject.transform.localScale = Vector3.one;   // otherwise it gets scaled for some reason
+
+            MarketIngredientPanel ingredientPanel = ingredientPanelObject.GetComponent<MarketIngredientPanel>();
+            ingredientPanel.SetIngredient(ingredient); 
+        }
+    }
+
+    private void ClearIngredientListUI()
+    {
+        for (int i = 0; i < ingredientListContentTransform.childCount; ++i)
+        {
+            Transform child = ingredientListContentTransform.GetChild(i);
+            Destroy(child.gameObject);
         }
     }
 
@@ -60,11 +72,13 @@ public class MarketController : MonoBehaviour
             //disable movement
             //disable camera movement
             marketUI.SetActive(true);
+            PopulateIngredientListUI();
             menuIsOpen = !menuIsOpen;
             playerManager.pauseGame += 1;
         }
         else
         {
+            ClearIngredientListUI();
             marketUI.SetActive(false);
             menuIsOpen = !menuIsOpen;
             playerManager.pauseGame -= 1;

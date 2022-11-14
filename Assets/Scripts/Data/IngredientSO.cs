@@ -13,6 +13,7 @@ public class IngredientSO : ScriptableObject
 public class Ingredient
 {
     public string name;
+    public string description;
     public int id;
     public int cost;
     //public Sprite icon;
