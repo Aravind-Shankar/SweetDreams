@@ -21,10 +21,8 @@ public class ItemData : MonoBehaviour
 
 public enum ItemType
 {
-    emptyPotion, // potion 0
-    standardPotion, // 1
-    victoryPotion, // 2
+    emptyPotion,
+    standardPotion,
     chamberFood,
-    victoryExtract,
     noItem,
 }

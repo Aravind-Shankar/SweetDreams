@@ -74,7 +74,7 @@ public class LiquidDispenser : MonoBehaviour
                 EventLog.LogError("Filling liquid failed due to low chamber health!");
             }
         }
-        else if (currItemType == ItemType.standardPotion || currItemType == ItemType.victoryPotion)
+        else if (currItemType == ItemType.standardPotion)
         {
             EventLog.LogError("Your potion already has dream liquid!");
         }
