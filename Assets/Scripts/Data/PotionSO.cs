@@ -40,6 +40,7 @@ public class Potion
     public int sellingPrice;
     public Sprite icon;
     public Color iconColor = Color.white;
+    public Color potionColor = Color.magenta;
 
     [HideInInspector]
     public Dictionary<int, int> ingredientFrequency;

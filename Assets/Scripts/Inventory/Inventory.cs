@@ -6,6 +6,7 @@ public class Inventory : MonoBehaviour
 {
     public PotionSO potionSO;
     public PotionPanel inHandPotionPanel;
+
     public Dictionary<int, int> inHandIngredientFrequency = new Dictionary<int, int>();
 
     [HideInInspector]
@@ -31,15 +32,21 @@ public class Inventory : MonoBehaviour
 
     private void UpdateHeldPotion()
     {
+        PotionRenderHelper renderHelper = currentItem.GetComponent<PotionRenderHelper>();
+
         if (GetItemType() == ItemType.validPotion)
         {
             Potion inHandPotion = potionSO.FindMatchingPotion(inHandIngredientFrequency);
             inHandPotionPanel.SetPotion(inHandPotion, inHandPotion != potionSO.wildcardPotion);
+            if (renderHelper)
+                renderHelper.ColorPotion(true, inHandPotion.potionColor);
         }
         else
         {
             inHandIngredientFrequency.Clear();
             inHandPotionPanel.Clear();
+            if (GetItemType() == ItemType.emptyPotion && renderHelper)
+                renderHelper.ColorPotion(false, Color.black);
         }
     }
 
