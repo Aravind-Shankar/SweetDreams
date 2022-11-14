@@ -20,10 +20,10 @@ MonoBehaviour:
     orderedPotionID: 0
   - arrivalTime: 15
     name: Ryan
-    orderedPotionID: 0
+    orderedPotionID: 1
   - arrivalTime: 30
     name: Aravind
-    orderedPotionID: 0
+    orderedPotionID: 1
   - arrivalTime: 45
     name: Brian
     orderedPotionID: 0

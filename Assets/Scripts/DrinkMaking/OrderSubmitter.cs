@@ -18,15 +18,9 @@ public class OrderSubmitter : MonoBehaviour
 
     public void SubmitOrder()
     {
-        if (inventory.GetItemType() == itemSubmissionType)
+        if (customerQueue.TryCompleteOrder())
         {
             inventory.RemoveItem();
-            EventLog.Log("Delivered the order correctly!", Color.green);
-            customerQueue.CompleteOrder();
-        }
-        else
-        {
-            EventLog.LogError("You don't have the right potion to deliver!");
         }
     }
 }

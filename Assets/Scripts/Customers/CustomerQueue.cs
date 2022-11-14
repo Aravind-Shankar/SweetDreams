@@ -12,19 +12,18 @@ public class CustomerQueue : MonoBehaviour
     public GameObject potionPanelPrefab;
     public Vector3 potionPanelScale = Vector3.one;
 
-    [HideInInspector]
-    public int finishedCustomers;
-
-    private Queue<Customer> customerQueue;
+    private Inventory inventory;
+    private Queue<Customer> customerSpawnQueue;
+    private Queue<CustomerAI> customerAIOrderQueue;
     private GameObject customerPrefab;
     private Customer[] customers;
-    private int ordersCompletedCounter = 0;
     private float loadTime;
 
     PauseMenuToggle menu;
 
     private void Awake() {
         menu = FindObjectOfType<PauseMenuToggle>();
+        inventory = FindObjectOfType<Inventory>();
     }
 
     // Start is called before the first frame update
@@ -35,49 +34,79 @@ public class CustomerQueue : MonoBehaviour
         customers = customerSO.customers;
         customerPrefab = customerSO.customerPrefab;
 
-        customerQueue = new Queue<Customer>();
+        customerSpawnQueue = new Queue<Customer>();
         for (int i = 0; i < customers.Length; i++)
         {
-            customerQueue.Enqueue(customers[i]);
+            customerSpawnQueue.Enqueue(customers[i]);
         }
+        customerAIOrderQueue = new Queue<CustomerAI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (customerQueue.Count > 0 && customerQueue.Peek().arrivalTime <= Time.time - loadTime) {
-            Customer customer = customerQueue.Dequeue();
-            EventLog.LogInfo("New customer arriving!");
-
-            GameObject potionPanelObject = null;
-            if (orderViewContent && potionPanelPrefab)
-            {
-                potionPanelObject = Instantiate(potionPanelPrefab);
-                potionPanelObject.transform.SetParent(orderViewContent.transform, false);
-                potionPanelObject.transform.localScale = potionPanelScale;
-            }
-
-            customer.Setup(
-                Instantiate(customerPrefab, spawnPoint.transform.position, Quaternion.identity),
-                customerSO.potionSO, potionPanelObject
-            );
-            //TODO: drink system
+        if (customerSpawnQueue.Count > 0 && customerSpawnQueue.Peek().arrivalTime <= Time.time - loadTime) {
+            Customer customer = customerSpawnQueue.Dequeue();
+            SpawnCustomer(customer);
         }
-        //TODO: when drink is finished, call that customer's UpdateOrder()
-        // ex: customers.customers[0].UpdateOrder();
 
-        if (finishedCustomers == customers.Length) {
+        if (customerSpawnQueue.Count == 0 && customerAIOrderQueue.Count == 0) {
+            // no new customers to spawn, no customers with active orders => won!
             menu.Win();
         }
     }
 
-    public void CompleteOrder()
+    private void SpawnCustomer(Customer customer)
     {
-        if (ordersCompletedCounter <= 5)
+        EventLog.LogInfo("New customer arriving!");
+
+        GameObject potionPanelObject = null;
+        if (orderViewContent && potionPanelPrefab)
         {
-            customers[ordersCompletedCounter].UpdateOrder();
-            MoneySystem.Instance.Money += 50;
-            ordersCompletedCounter += 1;
+            potionPanelObject = Instantiate(potionPanelPrefab);
+            potionPanelObject.transform.SetParent(orderViewContent.transform, false);
+            potionPanelObject.transform.localScale = potionPanelScale;
+        }
+
+        GameObject customerObject = Instantiate(customerPrefab, spawnPoint.transform.position, Quaternion.identity);
+        CustomerAI customerAI = customerObject.GetComponent<CustomerAI>();
+        customerAI.orderedPotion = customerSO.potionSO.potions[customer.orderedPotionID];
+        customerAI.potionPanel = potionPanelObject.GetComponent<PotionPanel>();
+    }
+
+    public void AddActiveOrder(CustomerAI customerAI)
+    {
+        customerAIOrderQueue.Enqueue(customerAI);
+    }
+
+    public bool TryCompleteOrder()
+    {
+        if (customerAIOrderQueue.Count == 0)
+        {
+            EventLog.LogError("Can't deliver when there are no active orders!");
+            return false;
+        }
+
+        if (inventory.GetItemType() != ItemType.validPotion)
+        {
+            EventLog.LogError("You don't have a potion in hand to deliver!");
+            return false;
+        }
+
+        CustomerAI currentCustomerAI = customerAIOrderQueue.Peek();
+        Potion orderedPotion = currentCustomerAI.orderedPotion;
+        if (orderedPotion.IngredientsMatching(inventory.inHandIngredientFrequency))
+        {
+            currentCustomerAI.orderComplete = true;
+            MoneySystem.Instance.Money += orderedPotion.sellingPrice;
+            customerAIOrderQueue.Dequeue();
+            EventLog.Log("Delivered the current order correctly!", Color.green);
+            return true;
+        }
+        else
+        {
+            EventLog.LogError("Your potion and the ordered one don't match!");
+            return false;
         }
     }
 

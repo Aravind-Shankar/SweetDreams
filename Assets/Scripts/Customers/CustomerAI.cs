@@ -60,6 +60,7 @@ public class CustomerAI : MonoBehaviour
                 {
                     aiState = States.Waiting;
                     orderText.text = orderedPotion.name;
+                    customerQueue.AddActiveOrder(this);
 
                     if (potionPanel)
                         potionPanel.SetPotion(orderedPotion);
@@ -67,7 +68,8 @@ public class CustomerAI : MonoBehaviour
                 break;
             
             case States.Waiting:
-                if (orderComplete) {
+                if (orderComplete)
+                {
                     aiState = States.Leaving;
                     navMeshAgent.SetDestination(leaveWaypoint.transform.position);
                     navMeshAgent.speed = 5;
@@ -75,12 +77,13 @@ public class CustomerAI : MonoBehaviour
                     // Remove sus for finishing order
                     susBar.RemoveSus(20.0f);
 
-                    customerQueue.finishedCustomers++;
                     orderText.text = "";
 
                     if (potionPanel)
                         Destroy(potionPanel.gameObject);
-                } else if (Time.time > triggerTime) {
+                }
+                else if (Time.time > triggerTime)
+                {
                     triggerTime++;
 
                     if (navMeshAgent.remainingDistance <= 1) {
