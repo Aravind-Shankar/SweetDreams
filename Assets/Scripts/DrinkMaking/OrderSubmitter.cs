@@ -21,7 +21,7 @@ public class OrderSubmitter : MonoBehaviour
         if (inventory.GetItemType() == itemSubmissionType)
         {
             inventory.RemoveItem();
-            EventLog.Instance.AddLog("Delivered the order correctly!", Color.green);
+            EventLog.Log("Delivered the order correctly!", Color.green);
             customerQueue.CompleteOrder();
         }
         else

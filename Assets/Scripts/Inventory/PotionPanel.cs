@@ -52,13 +52,13 @@ public class PotionPanel : MonoBehaviour
         }
 
         Color logColor = Color.blue, headerColor = Color.magenta;
-        EventLog.Instance.AddLog($"*****************", headerColor);
+        EventLog.Log($"*****************", headerColor);
         foreach (var pair in _potion.ingredientComposition)
         {
-            EventLog.Instance.AddLog($"{ingredientSO.ingredients[pair.id].name} : {pair.count}x", logColor);
+            EventLog.Log($"{ingredientSO.ingredients[pair.id].name} : {pair.count}x", logColor);
         }
-        EventLog.Instance.AddLog("Dream Liquid (from Dream Machine)", logColor);
-        EventLog.Instance.AddLog($"{_potion.name} recipe:", headerColor);
-        EventLog.Instance.AddLog($"*****************", headerColor);
+        EventLog.Log("Dream Liquid (from Dream Machine)", logColor);
+        EventLog.Log($"{_potion.name} recipe:", headerColor);
+        EventLog.Log($"*****************", headerColor);
     }
 }

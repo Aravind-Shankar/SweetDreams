@@ -26,6 +26,11 @@ public class EventLog : MonoBehaviour
         }
     }
 
+    public static void Log(string logMessage, Color color)
+    {
+        Instance.AddLog(logMessage, color);
+    }
+
     public static void LogInfo(string logMessage)
     {
         Instance.AddLog(logMessage, Color.black);
