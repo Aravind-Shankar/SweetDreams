@@ -13,6 +13,7 @@ public class MarketIngredientPanel : MonoBehaviour
     public Button buyButton;
 
     private CanvasGroup _overallCanvasGroup;
+    private Ingredient _ingredient;
 
     private void Awake()
     {
@@ -23,6 +24,8 @@ public class MarketIngredientPanel : MonoBehaviour
     public void Clear()
     {
         _overallCanvasGroup.alpha = 0;
+
+        _ingredient = null;
     }
 
     public void SetIngredient(Ingredient ingredient)
@@ -32,5 +35,26 @@ public class MarketIngredientPanel : MonoBehaviour
         ingredientNameText.text = ingredient.name;
         ingredientDescriptionText.text = ingredient.description;
         ingredientPriceText.text = ingredient.cost.ToString();
+
+        _ingredient = ingredient;
+    }
+
+    public void BuyAndAdd()
+    {
+        if (_ingredient == null)
+        {
+            Debug.LogError("Trying to buy null ingredient!");
+            return;
+        }
+
+        if (MoneySystem.Instance.Money < _ingredient.cost)
+        {
+            EventLog.LogError("Insufficient money to buy this item!");
+        }
+        else
+        {
+            MoneySystem.Instance.Money -= _ingredient.cost;
+            EventLog.LogInfo($"Bought & added one {_ingredient.name}!");
+        }
     }
 }
