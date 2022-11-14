@@ -12,9 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc913e39508e31458ab051b0a255001, type: 3}
   m_Name: Potions
   m_EditorClassIdentifier: 
-  potions:
-  - name: Basic Dream Potion
-    id: 0
-    sellingPrice: 50
+  ingredientSO: {fileID: 11400000, guid: 48738e151929cde4b8c81a7cc1c17041, type: 2}
+  wildcardPotion:
+    name: ??? Potion
+    id: -1
+    ingredientComposition: []
+    sellingPrice: -1
     icon: {fileID: 21300000, guid: 67e612dc0fa02ec4681843e3f8563ed9, type: 3}
-    itemType: 1
+    iconColor: {r: 0, g: 0, b: 0, a: 1}
+    potionColor: {r: 0, g: 0, b: 0, a: 1}
+  potions:
+  - name: Standard Dream Potion
+    id: 0
+    ingredientComposition: []
+    sellingPrice: 100
+    icon: {fileID: 21300000, guid: 67e612dc0fa02ec4681843e3f8563ed9, type: 3}
+    iconColor: {r: 1, g: 1, b: 1, a: 1}
+    potionColor: {r: 0.735849, g: 0, b: 0.5808698, a: 1}
+  - name: Victory Dream Potion
+    id: 1
+    ingredientComposition:
+    - id: 0
+      count: 1
+    sellingPrice: 150
+    icon: {fileID: 21300000, guid: 67e612dc0fa02ec4681843e3f8563ed9, type: 3}
+    iconColor: {r: 0, g: 0.941309, b: 1, a: 1}
+    potionColor: {r: 0, g: 0.36839294, b: 1, a: 1}

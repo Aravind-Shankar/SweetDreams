@@ -20,7 +20,6 @@ public class Interactable : MonoBehaviour
     private void OnEnable()
     {
         EventManager.StartListening("Interact", PerformInteraction);
-        Debug.Log("Listening");
     }
 
     // Update is called once per frame

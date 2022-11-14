@@ -21,20 +21,6 @@ public class Customer
 
     private CustomerAI _customerAI;
 
-    public void Setup(GameObject customerObject, PotionSO potionSO, GameObject potionPanelObject)
-    {
-        _customerAI = customerObject.GetComponent<CustomerAI>();
-        _customerAI.orderedPotion = potionSO.potions[orderedPotionID];
-
-        if (potionPanelObject)
-            _customerAI.potionPanel = potionPanelObject.GetComponent<PotionPanel>();
-    }
-
-    public void UpdateOrder()
-    {
-        _customerAI.orderComplete = true;
-    }
-
     public override string ToString()
     {
         return arrivalTime.ToString() + ", " + name + ", " + orderedPotionID.ToString();

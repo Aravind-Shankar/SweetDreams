@@ -18,16 +18,9 @@ public class OrderSubmitter : MonoBehaviour
 
     public void SubmitOrder()
     {
-        if (inventory.GetItemType() == itemSubmissionType)
+        if (customerQueue.TryCompleteOrder())
         {
             inventory.RemoveItem();
-            Debug.Log("Submitted Drink!");
-            customerQueue.CompleteOrder();
-
-        }
-        else
-        {
-            Debug.Log("You don't have the right drink to submit!");
         }
     }
 }

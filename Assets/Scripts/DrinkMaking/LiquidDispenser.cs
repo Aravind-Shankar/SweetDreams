@@ -35,11 +35,11 @@ public class LiquidDispenser : MonoBehaviour
         {
             if (chm.UseForDrink())
             {
-                print($"Used chamber: {chm.gameObject.name}");
+                //print($"Used chamber: {chm.gameObject.name}");
                 return true;
             }
         }
-        print("No chamber available!");
+        //print("No chamber available!");
         return false;
     }
 
@@ -58,7 +58,7 @@ public class LiquidDispenser : MonoBehaviour
                 GameObject standardPotion = Instantiate(dispensedObject, new Vector3(-1, -1, -1), Quaternion.identity);
 
                 ItemData drinkData = standardPotion.GetComponent<ItemData>();
-                drinkData.type = ItemType.standardPotion;
+                drinkData.type = ItemType.validPotion;
 
                 inventory.SetItem(standardPotion);
 
@@ -67,20 +67,20 @@ public class LiquidDispenser : MonoBehaviour
                 //drinkFill.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(0, 0));
                 //var drinkRenderer = drink.GetComponent<MeshRenderer>();
                 //drinkRenderer.material.SetTextureOffset(
-                Debug.Log("Filled with Liquid");
+                EventLog.LogInfo("Filled bottle with Dream Liquid.");
             }
             else
             {
-                Debug.Log("Filling liquid failed due to low chamber health!");
+                EventLog.LogError("Filling liquid failed due to low chamber health!");
             }
         }
-        else if (currItemType == ItemType.standardPotion || currItemType == ItemType.victoryPotion)
+        else if (currItemType == ItemType.validPotion)
         {
-            Debug.Log("Your potion already has liquid!");
+            EventLog.LogError("Your potion already has dream liquid!");
         }
         else
         {
-            Debug.Log("No Drink in hand!");
+            EventLog.LogError("No bottle in hand - can't fill dream liquid!");
         }
     }
 }

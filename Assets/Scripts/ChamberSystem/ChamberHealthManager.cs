@@ -37,12 +37,12 @@ public class ChamberHealthManager : MonoBehaviour
             }
             else
             {
-                print("Health full already!");
+                EventLog.LogError("Health full already, can't feed food!");
             }
         }
         else
         {
-            print("Need chamber food to feed the chamber!");
+            EventLog.LogError("Need to hold chamber food to feed the chamber!");
         }
     }
 
