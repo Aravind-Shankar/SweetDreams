@@ -39,6 +39,7 @@ public class Potion
     public IngredientIDCountPair[] ingredientComposition;
     public int sellingPrice;
     public Sprite icon;
+    public Color iconColor = Color.white;
 
     [HideInInspector]
     public Dictionary<int, int> ingredientFrequency;

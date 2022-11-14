@@ -38,6 +38,7 @@ public class PotionPanel : MonoBehaviour
         _potion = potion;
 
         potionIcon.sprite = potion.icon;
+        potionIcon.color = potion.iconColor;
         potionNameText.text = potion.name;
 
         if (showPrice)
