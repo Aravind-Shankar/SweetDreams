@@ -13,11 +13,18 @@ public class PotionSO : ScriptableObject
 }
 
 [System.Serializable]
+public struct IngredientIDCountPair
+{
+    public int id;
+    public int count;
+}
+
+[System.Serializable]
 public class Potion
 {
     public string name;
     public int id;
-    public int[] ingredientIds;
+    public IngredientIDCountPair[] ingredientComposition;
     public int sellingPrice;
     public Sprite icon;
     public ItemType itemType;
