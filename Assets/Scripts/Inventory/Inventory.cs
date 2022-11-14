@@ -20,9 +20,12 @@ public class Inventory : MonoBehaviour
     {
         emptyItem = new GameObject();
         currentItem = emptyItem;
-        UpdateHeldPotion();
+    }
 
+    private void Start()
+    {
         EventManager.StartListening("Drop", DropItem);
+        UpdateHeldPotion();
     }
 
     public ref GameObject GetCurrentItem()

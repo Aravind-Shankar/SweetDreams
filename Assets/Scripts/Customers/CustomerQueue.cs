@@ -15,6 +15,7 @@ public class CustomerQueue : MonoBehaviour
     private Inventory inventory;
     private Queue<Customer> customerSpawnQueue;
     private Queue<CustomerAI> customerAIOrderQueue;
+    private bool orderPending;
     private GameObject customerPrefab;
     private Customer[] customers;
     private float loadTime;
@@ -40,6 +41,7 @@ public class CustomerQueue : MonoBehaviour
             customerSpawnQueue.Enqueue(customers[i]);
         }
         customerAIOrderQueue = new Queue<CustomerAI>();
+        orderPending = false;
     }
 
     // Update is called once per frame
@@ -50,8 +52,8 @@ public class CustomerQueue : MonoBehaviour
             SpawnCustomer(customer);
         }
 
-        if (customerSpawnQueue.Count == 0 && customerAIOrderQueue.Count == 0) {
-            // no new customers to spawn, no customers with active orders => won!
+        if (customerSpawnQueue.Count == 0 && customerAIOrderQueue.Count == 0 && !orderPending) {
+            // no new customers to spawn, no customers with active orders, no orders pending => won!
             menu.Win();
         }
     }
@@ -72,6 +74,8 @@ public class CustomerQueue : MonoBehaviour
         CustomerAI customerAI = customerObject.GetComponent<CustomerAI>();
         customerAI.orderedPotion = customerSO.potionSO.potions[customer.orderedPotionID];
         customerAI.potionPanel = potionPanelObject.GetComponent<PotionPanel>();
+
+        orderPending = true;
     }
 
     private void UpdateCurrentOrder()
@@ -80,6 +84,7 @@ public class CustomerQueue : MonoBehaviour
             return;
 
         customerAIOrderQueue.Peek().potionPanel.SetAsCurrent();
+        orderPending = false;
     }
 
     public void AddActiveOrder(CustomerAI customerAI)

@@ -10,8 +10,9 @@ public class LevelLoader : MonoBehaviour
     public float transitionTime = 1;
 
     public void StartGame() {
-        StartCoroutine(LoadLevel("Store"));
+        // weird bug: when restarting after a win, the transition never happens, no matter the order of these statements
         Time.timeScale = 1f;
+        StartCoroutine(LoadLevel("Store"));
     }
 
     IEnumerator LoadLevel(string level) {
