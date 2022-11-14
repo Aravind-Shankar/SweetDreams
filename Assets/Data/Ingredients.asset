@@ -24,5 +24,5 @@ MonoBehaviour:
     cost: 60
   - name: Mood Spiker
     description: Shoots up energy levels. Made from crushed frozen hearts.
-    id: 1
+    id: 2
     cost: 90

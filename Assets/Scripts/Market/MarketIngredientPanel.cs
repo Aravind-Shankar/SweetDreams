@@ -14,9 +14,11 @@ public class MarketIngredientPanel : MonoBehaviour
 
     private CanvasGroup _overallCanvasGroup;
     private Ingredient _ingredient;
+    private Inventory _inventory;
 
     private void Awake()
     {
+        _inventory = FindObjectOfType<Inventory>();
         _overallCanvasGroup = GetComponent<CanvasGroup>();
         this.Clear();
     }
@@ -24,6 +26,8 @@ public class MarketIngredientPanel : MonoBehaviour
     public void Clear()
     {
         _overallCanvasGroup.alpha = 0;
+        _overallCanvasGroup.interactable = false;
+        _overallCanvasGroup.blocksRaycasts = false;
 
         _ingredient = null;
     }
@@ -31,6 +35,8 @@ public class MarketIngredientPanel : MonoBehaviour
     public void SetIngredient(Ingredient ingredient)
     {
         _overallCanvasGroup.alpha = 1;
+        _overallCanvasGroup.interactable = true;
+        _overallCanvasGroup.blocksRaycasts = true;
 
         ingredientNameText.text = ingredient.name;
         ingredientDescriptionText.text = ingredient.description;
@@ -50,6 +56,10 @@ public class MarketIngredientPanel : MonoBehaviour
         if (MoneySystem.Instance.Money < _ingredient.cost)
         {
             EventLog.LogError("Insufficient money to buy this item!");
+        }
+        else if (!_inventory.AddIngredient(_ingredient))
+        {
+            EventLog.LogError("Cannot add because no valid potion in hand!");
         }
         else
         {

@@ -58,7 +58,7 @@ public class LiquidDispenser : MonoBehaviour
                 GameObject standardPotion = Instantiate(dispensedObject, new Vector3(-1, -1, -1), Quaternion.identity);
 
                 ItemData drinkData = standardPotion.GetComponent<ItemData>();
-                drinkData.type = ItemType.standardPotion;
+                drinkData.type = ItemType.validPotion;
 
                 inventory.SetItem(standardPotion);
 
@@ -74,7 +74,7 @@ public class LiquidDispenser : MonoBehaviour
                 EventLog.LogError("Filling liquid failed due to low chamber health!");
             }
         }
-        else if (currItemType == ItemType.standardPotion)
+        else if (currItemType == ItemType.validPotion)
         {
             EventLog.LogError("Your potion already has dream liquid!");
         }

@@ -22,7 +22,7 @@ public class ItemData : MonoBehaviour
 public enum ItemType
 {
     emptyPotion,
-    standardPotion,
+    validPotion,
     chamberFood,
     noItem,
 }

@@ -30,7 +30,7 @@ public class PotionPanel : MonoBehaviour
         _potion = null;
     }
 
-    public void SetPotion(Potion potion)
+    public void SetPotion(Potion potion, bool showPrice = true)
     {
         _overallCanvasGroup.alpha = 1;
         _overallCanvasGroup.interactable = true;
@@ -39,8 +39,16 @@ public class PotionPanel : MonoBehaviour
 
         potionIcon.sprite = potion.icon;
         potionNameText.text = potion.name;
-        priceCanvasGroup.alpha = 1;
-        potionPriceText.text = potion.sellingPrice.ToString();
+
+        if (showPrice)
+        {
+            priceCanvasGroup.alpha = 1;
+            potionPriceText.text = potion.sellingPrice.ToString();
+        }
+        else
+        {
+            priceCanvasGroup.alpha = 0;
+        }
     }
 
     public void ShowRecipe()
@@ -53,10 +61,21 @@ public class PotionPanel : MonoBehaviour
 
         Color logColor = Color.blue, headerColor = Color.black;
         EventLog.LogInfo("-----------------");
-        foreach (var pair in _potion.ingredientComposition)
+        if (_potion.ingredientFrequency != null)
         {
-            EventLog.Log($"{ingredientSO.ingredients[pair.id].name} : {pair.count}x", logColor);
+            foreach (var pair in _potion.ingredientFrequency)
+            {
+                EventLog.Log($"{ingredientSO.ingredients[pair.Key].name} : {pair.Value}x", logColor);
+            }
         }
+        else
+        {
+            foreach (var pair in _potion.ingredientComposition)
+            {
+                EventLog.Log($"{ingredientSO.ingredients[pair.id].name} : {pair.count}x", logColor);
+            }
+        }
+        
         EventLog.Log("Dream Liquid (from Dream Machine)", logColor);
         EventLog.Log($"{_potion.name} recipe:", headerColor);
         EventLog.LogInfo("-----------------");

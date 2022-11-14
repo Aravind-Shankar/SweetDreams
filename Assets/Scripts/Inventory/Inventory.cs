@@ -6,20 +6,20 @@ public class Inventory : MonoBehaviour
 {
     public PotionSO potionSO;
     public PotionPanel inHandPotionPanel;
+    public Dictionary<int, int> inHandIngredientFrequency = new Dictionary<int, int>();
 
     [HideInInspector]
     public GameObject currentItem;
     [HideInInspector]
     public GameObject emptyItem;
 
-    private InventoryRenderer inventoryRenderer;
     private ItemData currentItemData;
 
     private void Awake()
     {
         emptyItem = new GameObject();
         currentItem = emptyItem;
-        inHandPotionPanel.Clear();
+        UpdateHeldPotion();
 
         EventManager.StartListening("Drop", DropItem);
     }
@@ -29,24 +29,41 @@ public class Inventory : MonoBehaviour
         return ref currentItem;
     }
 
+    private void UpdateHeldPotion()
+    {
+        if (GetItemType() == ItemType.validPotion)
+        {
+            Potion inHandPotion = potionSO.FindMatchingPotion(inHandIngredientFrequency);
+            inHandPotionPanel.SetPotion(inHandPotion, inHandPotion != potionSO.wildcardPotion);
+        }
+        else
+        {
+            inHandIngredientFrequency.Clear();
+            inHandPotionPanel.Clear();
+        }
+    }
+
+    public bool AddIngredient(Ingredient ingredient)
+    {
+        if (GetItemType() != ItemType.validPotion)
+            return false;
+
+        int ingredientID = ingredient.id;
+        if (inHandIngredientFrequency.ContainsKey(ingredientID))
+            inHandIngredientFrequency[ingredientID]++;
+        else
+            inHandIngredientFrequency[ingredientID] = 1;
+        UpdateHeldPotion();
+        return true;
+    }
+
     public void SetItem(GameObject o)
     {
         currentItem.transform.position = new Vector3(-50, -50, -50);
         currentItem = o;
 
         currentItemData = currentItem.GetComponent<ItemData>();
-        bool potionAbsent = true;
-        foreach (var potion in potionSO.potions)
-        {
-            if (potion.itemType == currentItemData.type)
-            {
-                inHandPotionPanel.SetPotion(potion);
-                potionAbsent = false;
-                break;
-            }
-        }
-        if (potionAbsent)
-            inHandPotionPanel.Clear();
+        UpdateHeldPotion();
     }
 
     public void RemoveItem()
@@ -59,7 +76,7 @@ public class Inventory : MonoBehaviour
 
         currentItem = emptyItem;
         currentItemData = null;
-        inHandPotionPanel.Clear();
+        UpdateHeldPotion();
     }
 
     public void DropItem()
@@ -72,7 +89,7 @@ public class Inventory : MonoBehaviour
 
         currentItem = emptyItem;
         currentItemData = null;
-        inHandPotionPanel.Clear();
+        UpdateHeldPotion();
     }
 
     public bool HasItem()
