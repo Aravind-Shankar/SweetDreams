@@ -73,14 +73,14 @@ public class PotionPanel : MonoBehaviour
         {
             foreach (var pair in _potion.ingredientFrequency)
             {
-                EventLog.Log($"{ingredientSO.ingredients[pair.Key].name} : {pair.Value}x", logColor);
+                EventLog.Log($"{pair.Key} : {pair.Value}x", logColor);
             }
         }
         else
         {
             foreach (var pair in _potion.ingredientComposition)
             {
-                EventLog.Log($"{ingredientSO.ingredients[pair.id].name} : {pair.count}x", logColor);
+                EventLog.Log($"{pair.ingredientName} : {pair.count}x", logColor);
             }
         }
         

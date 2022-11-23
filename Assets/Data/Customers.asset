@@ -17,16 +17,16 @@ MonoBehaviour:
   customers:
   - arrivalTime: 0
     name: Steven
-    orderedPotionID: 0
+    orderedPotionName: Standard Dream Potion
   - arrivalTime: 15
     name: Ryan
-    orderedPotionID: 1
+    orderedPotionName: Victory Dream Potion
   - arrivalTime: 30
     name: Aravind
-    orderedPotionID: 1
+    orderedPotionName: Victory Dream Potion
   - arrivalTime: 45
     name: Brian
-    orderedPotionID: 0
+    orderedPotionName: Standard Dream Potion
   - arrivalTime: 60
     name: Ke
-    orderedPotionID: 0
+    orderedPotionName: Standard Dream Potion
