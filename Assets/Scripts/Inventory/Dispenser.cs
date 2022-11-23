@@ -19,13 +19,12 @@ public class Dispenser : MonoBehaviour
     {
         if (!inventory.HasItem())
         {
-            Debug.Log("Dispense");
-            GameObject newCup = Instantiate(dispensedObject, new Vector3(-1, -1, -1), Quaternion.identity);
+            GameObject newObject = Instantiate(dispensedObject, new Vector3(-1, -1, -1), Quaternion.identity);
             
-            ItemData drinkData = newCup.GetComponent<ItemData>();
-            drinkData.type = objectType;
+            ItemData itemData = newObject.GetComponent<ItemData>();
+            itemData.type = objectType;
 
-            inventory.SetItem(newCup);
+            inventory.SetItem(newObject);
             if (dispensedMessage != null && dispensedMessage != "")
                 EventLog.LogInfo(dispensedMessage);
         }

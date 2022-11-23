@@ -65,10 +65,7 @@ public class Potion
             ingredientFrequency = new Dictionary<string, int>();
             foreach (var pair in ingredientComposition)
             {
-                if (ingredientFrequency.ContainsKey(pair.ingredientName))
-                    ingredientFrequency[pair.ingredientName]++;
-                else
-                    ingredientFrequency[pair.ingredientName] = 1;
+                ingredientFrequency[pair.ingredientName] = pair.count;
             }
         }
 
