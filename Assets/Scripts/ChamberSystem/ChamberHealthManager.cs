@@ -34,6 +34,8 @@ public class ChamberHealthManager : MonoBehaviour
                 ++_health;
                 SetHealthText();
                 _inventory.RemoveItem();
+
+                EventLog.LogInfo("Fed food to chamber.");
             }
             else
             {

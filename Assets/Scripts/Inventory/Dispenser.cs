@@ -8,20 +8,15 @@ public class Dispenser : MonoBehaviour
     private Inventory inventory;
     public GameObject dispensedObject;
     public ItemType objectType;
-
-    private GameObject player;
+    public string dispensedMessage;
 
     private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        //cup = Instantiate(cupPrefab, new Vector3(-1, -1, -1), Quaternion.identity);
     }
 
     public void Dispense()
     {
-        ItemData item = dispensedObject.GetComponent<ItemData>();
-
         if (!inventory.HasItem())
         {
             Debug.Log("Dispense");
@@ -31,10 +26,12 @@ public class Dispenser : MonoBehaviour
             drinkData.type = objectType;
 
             inventory.SetItem(newCup);
+            if (dispensedMessage != null && dispensedMessage != "")
+                EventLog.LogInfo(dispensedMessage);
         }
         else
         {
-            EventLog.LogError("Your hands are full, cannot dispense anything now!");
+            EventLog.LogError("Your hands are full, cannot dispense now!");
         }
     }
 }
