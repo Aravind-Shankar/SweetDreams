@@ -12,14 +12,16 @@ public class PauseMenuToggle : MonoBehaviour
     
     PlayerManager playerManager;
 
-    private Transform loseText;
-    private Transform winText;
+    private Transform losePanel;
+    private Transform winPanel;
+    private Transform pausePanel;
 
     void Awake() {
         canvasGroup = GetComponent<CanvasGroup>();
         playerManager = FindObjectOfType<PlayerManager>();
-        loseText = transform.Find("Fail");
-        winText = transform.Find("Win");
+        losePanel = transform.Find("LosePanel");
+        winPanel = transform.Find("WinPanel");
+        pausePanel = transform.Find("PausePanel");
         if (canvasGroup == null) {
             Debug.LogError("No Canvas Group added!");
         }
@@ -37,9 +39,11 @@ public class PauseMenuToggle : MonoBehaviour
             if (canvasGroup.interactable) {
                 pauseStateText.text = "Pause";
                 CloseMenu();
+                pausePanel.gameObject.SetActive(false);
             } else {
                 pauseStateText.text = "Resume";
                 OpenMenu();
+                pausePanel.gameObject.SetActive(true);
             }
         }
     }
@@ -64,11 +68,17 @@ public class PauseMenuToggle : MonoBehaviour
 
     public void Lose() {
         OpenMenu();
-        loseText.gameObject.SetActive(true);
+        losePanel.gameObject.SetActive(true);
+        GameObject score = losePanel.transform.Find("Score").gameObject;
+        TextMeshProUGUI textmeshPro = score.GetComponent<TextMeshProUGUI>();
+        textmeshPro.SetText("Score: {0}", MoneySystem.Instance.Money);
     }
 
     public void Win() {
         OpenMenu();
-        winText.gameObject.SetActive(true);
+        winPanel.gameObject.SetActive(true);
+        GameObject score = winPanel.transform.Find("Score").gameObject;
+        TextMeshProUGUI textmeshPro = score.GetComponent<TextMeshProUGUI>();
+        textmeshPro.SetText("Score: {0}", MoneySystem.Instance.Money);
     }
 }
