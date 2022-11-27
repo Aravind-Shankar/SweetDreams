@@ -6,23 +6,26 @@ using TMPro;
 public class ChamberHealthManager : MonoBehaviour
 {
     public int maxHealth = 2;
-    public TextMeshProUGUI healthText;
-    public Gradient textColorGradient;
+    public MeshRenderer tintRenderer;
+    public Color defaultColor;
+    public Color zeroHealthColor;
 
     private int _health;
+    private float _tintAlpha;
     private Inventory _inventory;
 
     private void Start()
     {
         _inventory = FindObjectOfType<Inventory>();
         _health = maxHealth;
-        SetHealthText();
+        _tintAlpha = tintRenderer.material.color.a;
+        ShowHealthStatus();
     }
 
-    private void SetHealthText()
+    private void ShowHealthStatus()
     {
-        healthText.text = $"Health: {_health}/{maxHealth}";
-        healthText.color = textColorGradient.Evaluate((float)(_health) / maxHealth);
+        var currentColor = _health == 0 ? zeroHealthColor : defaultColor;
+        tintRenderer.material.color = new Color(currentColor.r, currentColor.g, currentColor.b, _tintAlpha);
     }
 
     public void FeedFood()
@@ -32,7 +35,7 @@ public class ChamberHealthManager : MonoBehaviour
             if (_health < maxHealth)
             {
                 _health = maxHealth;
-                SetHealthText();
+                ShowHealthStatus();
                 _inventory.RemoveItem();
 
                 EventLog.LogInfo("Fed food to chamber.");
@@ -54,7 +57,7 @@ public class ChamberHealthManager : MonoBehaviour
         if (_health == 0)
             return false;
         --_health;
-        SetHealthText();
+        ShowHealthStatus();
         return true;
     }
 }
