@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
     public PotionSO potionSO;
     public PotionPanel inHandPotionPanel;
 
-    public Dictionary<int, int> inHandIngredientFrequency = new Dictionary<int, int>();
+    public Dictionary<string, int> inHandIngredientFrequency = new Dictionary<string, int>();
 
     [HideInInspector]
     public GameObject currentItem;
@@ -39,7 +39,7 @@ public class Inventory : MonoBehaviour
 
         if (GetItemType() == ItemType.validPotion)
         {
-            Potion inHandPotion = potionSO.FindMatchingPotion(inHandIngredientFrequency);
+            Potion inHandPotion = potionSO.LookupPotionByIngredients(inHandIngredientFrequency);
             inHandPotionPanel.SetPotion(inHandPotion, inHandPotion != potionSO.wildcardPotion);
             if (renderHelper)
                 renderHelper.ColorPotion(true, inHandPotion.potionColor);
@@ -58,11 +58,12 @@ public class Inventory : MonoBehaviour
         if (GetItemType() != ItemType.validPotion)
             return false;
 
-        int ingredientID = ingredient.id;
-        if (inHandIngredientFrequency.ContainsKey(ingredientID))
-            inHandIngredientFrequency[ingredientID]++;
+        string ingredientName = ingredient.name;
+        if (inHandIngredientFrequency.ContainsKey(ingredientName))
+            inHandIngredientFrequency[ingredientName]++;
         else
-            inHandIngredientFrequency[ingredientID] = 1;
+            inHandIngredientFrequency[ingredientName] = 1;
+
         UpdateHeldPotion();
         return true;
     }

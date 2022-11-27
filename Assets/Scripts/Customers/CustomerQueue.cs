@@ -72,7 +72,7 @@ public class CustomerQueue : MonoBehaviour
 
         GameObject customerObject = Instantiate(customerPrefab, spawnPoint.transform.position, Quaternion.identity);
         CustomerAI customerAI = customerObject.GetComponent<CustomerAI>();
-        customerAI.orderedPotion = customerSO.potionSO.potions[customer.orderedPotionID];
+        customerAI.orderedPotion = customerSO.potionSO.LookupPotionByName(customer.orderedPotionName);
         customerAI.potionPanel = potionPanelObject.GetComponent<PotionPanel>();
 
         orderPending = true;

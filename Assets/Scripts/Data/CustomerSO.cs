@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "Customers", menuName = "ScriptableObjects/CustomerSO", order = 1)]
 public class CustomerSO : ScriptableObject
@@ -15,14 +16,12 @@ public class CustomerSO : ScriptableObject
 [System.Serializable]
 public class Customer
 {
-    public int arrivalTime;
     public string name;
-    public int orderedPotionID;
-
-    private CustomerAI _customerAI;
+    public int arrivalTime;
+    public string orderedPotionName;
 
     public override string ToString()
     {
-        return arrivalTime.ToString() + ", " + name + ", " + orderedPotionID.ToString();
+        return arrivalTime.ToString() + ", " + name + ", " + orderedPotionName;
     }
 }

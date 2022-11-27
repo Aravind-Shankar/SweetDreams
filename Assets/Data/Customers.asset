@@ -15,18 +15,18 @@ MonoBehaviour:
   customerPrefab: {fileID: 7390147178476184357, guid: 4803fb9687c4345818d6ca2063d67794, type: 3}
   potionSO: {fileID: 11400000, guid: 77d3dce5e8afa4a4a9e7303efdbb1e25, type: 2}
   customers:
-  - arrivalTime: 0
-    name: Steven
-    orderedPotionID: 0
-  - arrivalTime: 15
-    name: Ryan
-    orderedPotionID: 1
-  - arrivalTime: 30
-    name: Aravind
-    orderedPotionID: 1
-  - arrivalTime: 45
-    name: Brian
-    orderedPotionID: 0
-  - arrivalTime: 60
-    name: Ke
-    orderedPotionID: 0
+  - name: Steven
+    arrivalTime: 0
+    orderedPotionName: Victory Dream Potion
+  - name: Ryan
+    arrivalTime: 15
+    orderedPotionName: Ecstatic Potion
+  - name: Aravind
+    arrivalTime: 30
+    orderedPotionName: Anti-Depressant Potion
+  - name: Brian
+    arrivalTime: 45
+    orderedPotionName: Standard Dream Potion
+  - name: Ke
+    arrivalTime: 60
+    orderedPotionName: Zen Potion
