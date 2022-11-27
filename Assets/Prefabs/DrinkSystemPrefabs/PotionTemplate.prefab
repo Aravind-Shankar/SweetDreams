@@ -141,8 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillMeshRenderer: {fileID: 4732145614797071306}
-  isFilled: 0
-  fillColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &4563219820799182612
 GameObject:
   m_ObjectHideFlags: 0

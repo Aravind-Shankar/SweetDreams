@@ -42,7 +42,7 @@ public class Inventory : MonoBehaviour
             Potion inHandPotion = potionSO.LookupPotionByIngredients(inHandIngredientFrequency);
             inHandPotionPanel.SetPotion(inHandPotion, inHandPotion != potionSO.wildcardPotion);
             if (renderHelper)
-                renderHelper.ColorPotion(true, inHandPotion.potionColor);
+                renderHelper.ColorPotion(true, inHandPotion.color);
         }
         else
         {
@@ -101,6 +101,8 @@ public class Inventory : MonoBehaviour
         currentItem = emptyItem;
         currentItemData = null;
         UpdateHeldPotion();
+
+        EventLog.LogInfo("Dropped item in hand.");
     }
 
     public bool HasItem()

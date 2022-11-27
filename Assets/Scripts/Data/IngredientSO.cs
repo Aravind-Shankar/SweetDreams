@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Ingredients", menuName = "ScriptableObjects/IngredientSO", order = 1)]
 public class IngredientSO : ScriptableObject
 {
-    [Tooltip("Ensure: array indices match the ids of the respective elements.")]
     public Ingredient[] ingredients;
 }
 
