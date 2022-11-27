@@ -67,7 +67,7 @@ public class LiquidDispenser : MonoBehaviour
                 //drinkFill.gameObject.GetComponent<Renderer>().material.SetTextureOffset("_MainTex", new Vector2(0, 0));
                 //var drinkRenderer = drink.GetComponent<MeshRenderer>();
                 //drinkRenderer.material.SetTextureOffset(
-                EventLog.LogInfo("Filled bottle with Dream Liquid.");
+                EventLog.LogInfo("Filled flask with Dream Liquid.");
             }
             else
             {
@@ -80,7 +80,7 @@ public class LiquidDispenser : MonoBehaviour
         }
         else
         {
-            EventLog.LogError("No bottle in hand - can't fill dream liquid!");
+            EventLog.LogError("No flask in hand - can't fill dream liquid!");
         }
     }
 }
