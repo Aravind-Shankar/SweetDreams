@@ -9877,6 +9877,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pause Indicator
       objectReference: {fileID: 0}
+    - target: {fileID: 3041450236422162545, guid: 3be2d5c6fbb708b49bdad18cc0d056ef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3041450236422162550, guid: 3be2d5c6fbb708b49bdad18cc0d056ef, type: 3}
       propertyPath: m_Pivot.x
       value: 1
