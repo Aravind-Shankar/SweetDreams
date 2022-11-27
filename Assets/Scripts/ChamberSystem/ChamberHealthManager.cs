@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class ChamberHealthManager : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class ChamberHealthManager : MonoBehaviour
     public MeshRenderer tintRenderer;
     public Color defaultColor;
     public Color zeroHealthColor;
+    public GameObject statusPanel;
 
     private int _health;
     private float _tintAlpha;
@@ -26,6 +27,7 @@ public class ChamberHealthManager : MonoBehaviour
     {
         var currentColor = _health == 0 ? zeroHealthColor : defaultColor;
         tintRenderer.material.color = new Color(currentColor.r, currentColor.g, currentColor.b, _tintAlpha);
+        statusPanel.SetActive(_health == 0);
     }
 
     public void FeedFood()
