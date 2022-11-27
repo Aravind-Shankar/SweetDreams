@@ -12,6 +12,7 @@ public class ChamberHealthManager : MonoBehaviour
     public GameObject statusPanel;
 
     private int _health;
+    private bool _statusFlashing;
     private float _tintAlpha;
     private Inventory _inventory;
 
@@ -20,6 +21,7 @@ public class ChamberHealthManager : MonoBehaviour
         _inventory = FindObjectOfType<Inventory>();
         _health = maxHealth;
         _tintAlpha = tintRenderer.material.color.a;
+        _statusFlashing = false;
         ShowHealthStatus();
     }
 
@@ -27,7 +29,26 @@ public class ChamberHealthManager : MonoBehaviour
     {
         var currentColor = _health == 0 ? zeroHealthColor : defaultColor;
         tintRenderer.material.color = new Color(currentColor.r, currentColor.g, currentColor.b, _tintAlpha);
-        statusPanel.SetActive(_health == 0);
+
+        if (_health == 0)
+        {
+            if (!_statusFlashing)
+            {
+                InvokeRepeating(nameof(ToggleStatusPanel), 0f, 1f);
+                _statusFlashing = true;
+            }
+        }
+        else
+        {
+            CancelInvoke(nameof(ToggleStatusPanel));
+            statusPanel.SetActive(false);
+            _statusFlashing = false;
+        }
+    }
+
+    private void ToggleStatusPanel()
+    {
+        statusPanel.SetActive(!statusPanel.activeSelf);
     }
 
     public void FeedFood()
