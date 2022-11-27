@@ -15,14 +15,15 @@ MonoBehaviour:
   ingredients:
   - name: Victory Extract
     description: Induces victory in dreams. Made from blood, sweat and tears.
-    id: 0
     cost: 30
   - name: De-Depresso
     description: Helps rewire the brain against depression. Made from brains and
       coffee
-    id: 1
     cost: 60
   - name: Mood Spiker
     description: Shoots up energy levels. Made from crushed frozen hearts.
-    id: 2
     cost: 90
+  - name: The Calm Storm
+    description: Brings a strong sense of peace and calm. Made from organs of pandas
+      and turtles.
+    cost: 120

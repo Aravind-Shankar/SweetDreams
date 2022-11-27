@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Potions", menuName = "ScriptableObjects/PotionSO", order = 1)]
 public class PotionSO : ScriptableObject
@@ -13,7 +12,22 @@ public class PotionSO : ScriptableObject
     [Tooltip("Ensure: array indices match the ids of the respective elements.")]
     public Potion[] potions;
 
-    public Potion FindMatchingPotion(Dictionary<int, int> queryIngredientFrequency)
+    private Dictionary<string, Potion> _potionsDict = null;
+    public Potion LookupPotionByName(string potionName)
+    {
+        if (_potionsDict == null)
+        {
+            _potionsDict = new Dictionary<string, Potion>();
+            foreach (var potion in potions)
+            {
+                _potionsDict.Add(potion.name, potion);
+            }
+        }
+
+        return _potionsDict[potionName];
+    }
+
+    public Potion LookupPotionByIngredients(Dictionary<string, int> queryIngredientFrequency)
     {
         foreach (var potion in potions)
             if (potion.IngredientsMatching(queryIngredientFrequency))
@@ -25,9 +39,9 @@ public class PotionSO : ScriptableObject
 }
 
 [System.Serializable]
-public struct IngredientIDCountPair
+public struct IngredientNameCountPair
 {
-    public int id;
+    public string ingredientName;
     public int count;
 }
 
@@ -35,36 +49,32 @@ public struct IngredientIDCountPair
 public class Potion
 {
     public string name;
-    public int id;
-    public IngredientIDCountPair[] ingredientComposition;
+    public IngredientNameCountPair[] ingredientComposition;
     public int sellingPrice;
     public Sprite icon;
     public Color iconColor = Color.white;
     public Color potionColor = Color.magenta;
 
     [HideInInspector]
-    public Dictionary<int, int> ingredientFrequency;
+    public Dictionary<string, int> ingredientFrequency;
 
-    public bool IngredientsMatching(Dictionary<int, int> queryIngredientFrequency)
+    public bool IngredientsMatching(Dictionary<string, int> queryIngredientFrequency)
     {
         if (ingredientFrequency == null)
         {
-            ingredientFrequency = new Dictionary<int, int>();
+            ingredientFrequency = new Dictionary<string, int>();
             foreach (var pair in ingredientComposition)
             {
-                if (ingredientFrequency.ContainsKey(pair.id))
-                    ingredientFrequency[pair.id]++;
-                else
-                    ingredientFrequency[pair.id] = 1;
+                ingredientFrequency[pair.ingredientName] = pair.count;
             }
         }
 
-        foreach (var id in ingredientFrequency.Keys)
-            if (!queryIngredientFrequency.ContainsKey(id) || queryIngredientFrequency[id] != ingredientFrequency[id])
+        foreach (var name in ingredientFrequency.Keys)
+            if (!queryIngredientFrequency.ContainsKey(name) || queryIngredientFrequency[name] != ingredientFrequency[name])
                 return false;
 
-        foreach (var id in queryIngredientFrequency.Keys)
-            if (!ingredientFrequency.ContainsKey(id) || queryIngredientFrequency[id] != ingredientFrequency[id])
+        foreach (var name in queryIngredientFrequency.Keys)
+            if (!ingredientFrequency.ContainsKey(name) || queryIngredientFrequency[name] != ingredientFrequency[name])
                 return false;
 
         return true;

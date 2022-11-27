@@ -268,8 +268,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b1b9979053a21489aa2561439a4ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dispensedObject: {fileID: 0}
-  objectType: 4
+  dispensedObject: {fileID: 8337893845188198759, guid: 096fcee4a5ea6c94ba4ee0d3fee5c92c, type: 3}
+  objectType: 2
+  dispensedMessage: Dispensed chamber food.
 --- !u!1 &2438607076128150648
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9332fce7b39107a4dabbf13fe3e51f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerIsInRange: 0
   interactAction:
     m_PersistentCalls:
       m_Calls:
@@ -343,6 +343,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  playerIsInRange: 0
 --- !u!1 &2620720076884519083
 GameObject:
   m_ObjectHideFlags: 0
