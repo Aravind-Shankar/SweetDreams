@@ -31,7 +31,7 @@ public class ChamberHealthManager : MonoBehaviour
         {
             if (_health < maxHealth)
             {
-                ++_health;
+                _health = maxHealth;
                 SetHealthText();
                 _inventory.RemoveItem();
 
