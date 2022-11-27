@@ -255,6 +255,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowInfo"",
+                    ""type"": ""Button"",
+                    ""id"": ""f91d0dd1-c59e-4f78-bd8c-c6086da9f535"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -304,12 +313,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f1e91e7f-e8f2-427f-9d4d-214e6da740c7"",
+                    ""id"": ""85e92dfb-43f5-4d94-9bf2-b3f3520a98a2"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Drop"",
+                    ""action"": ""ShowInfo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -327,6 +336,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_B = m_PlayerActions.FindAction("B", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Drop = m_PlayerActions.FindAction("Drop", throwIfNotFound: true);
+        m_PlayerActions_ShowInfo = m_PlayerActions.FindAction("ShowInfo", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -430,6 +440,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_B;
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_Drop;
+    private readonly InputAction m_PlayerActions_ShowInfo;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -437,6 +448,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @B => m_Wrapper.m_PlayerActions_B;
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputAction @Drop => m_Wrapper.m_PlayerActions_Drop;
+        public InputAction @ShowInfo => m_Wrapper.m_PlayerActions_ShowInfo;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -455,6 +467,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Drop.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDrop;
                 @Drop.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDrop;
                 @Drop.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnDrop;
+                @ShowInfo.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnShowInfo;
+                @ShowInfo.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnShowInfo;
+                @ShowInfo.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnShowInfo;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -468,6 +483,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Drop.started += instance.OnDrop;
                 @Drop.performed += instance.OnDrop;
                 @Drop.canceled += instance.OnDrop;
+                @ShowInfo.started += instance.OnShowInfo;
+                @ShowInfo.performed += instance.OnShowInfo;
+                @ShowInfo.canceled += instance.OnShowInfo;
             }
         }
     }
@@ -482,5 +500,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnB(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
+        void OnShowInfo(InputAction.CallbackContext context);
     }
 }

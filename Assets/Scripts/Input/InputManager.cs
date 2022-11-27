@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     public bool b_Input;
     private bool interactInput;
     private bool dropInput;
+    private bool showInfoInput;
 
     private void Awake() {
         animatorManager = GetComponent<AnimatorManager>();
@@ -45,6 +46,11 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.Drop.performed += (i => {
                 dropInput = i.ReadValueAsButton();
                 EventManager.TriggerEvent("Drop");
+            });
+
+            playerControls.PlayerActions.ShowInfo.performed += (i => {
+                showInfoInput = i.ReadValueAsButton();
+                EventManager.TriggerEvent("ShowInfo");
             });
         }
 

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour
 {
     public UnityEvent interactAction;
+    public UnityEvent showInfoAction;
 
     [HideInInspector]
     public bool playerIsInRange = false;
@@ -20,6 +21,7 @@ public class Interactable : MonoBehaviour
     private void OnEnable()
     {
         EventManager.StartListening("Interact", PerformInteraction);
+        EventManager.StartListening("ShowInfo", ShowInfo);
     }
 
     // Update is called once per frame
@@ -33,6 +35,14 @@ public class Interactable : MonoBehaviour
         if (playerIsInRange)
         {
             interactAction.Invoke();
+        }
+    }
+
+    void ShowInfo()
+    {
+        if (playerIsInRange)
+        {
+            showInfoAction.Invoke();
         }
     }
 
