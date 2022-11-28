@@ -70,7 +70,7 @@ public class ChamberHealthManager : MonoBehaviour
         }
         else
         {
-            EventLog.LogError("Need to hold chamber food to feed the chamber!");
+            EventLog.LogError("No chamber food in hand!");
         }
     }
 

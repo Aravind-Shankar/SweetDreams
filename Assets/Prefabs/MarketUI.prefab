@@ -845,7 +845,7 @@ GameObject:
   - component: {fileID: 5978269281330295282}
   - component: {fileID: 5978269281330295283}
   m_Layer: 0
-  m_Name: Market
+  m_Name: MarketUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

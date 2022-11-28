@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9332fce7b39107a4dabbf13fe3e51f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactMessage: Collect Empty Flask
   interactAction:
     m_PersistentCalls:
       m_Calls:
@@ -186,6 +187,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  infoActionPossible: 1
   playerIsInRange: 0
 --- !u!1 &1262561382276537422
 GameObject:

@@ -13,6 +13,7 @@ public class MarketController : MonoBehaviour
     public GameObject marketIngredientPanelPrefab;
     
     PlayerManager playerManager;
+    private ControlsViewManager _controlsViewManager;
 
     //the distance required for player to open market
     public float distanceRequired;
@@ -27,6 +28,7 @@ public class MarketController : MonoBehaviour
     void Awake()
     {
         playerManager = FindObjectOfType<PlayerManager>();
+        _controlsViewManager = FindObjectOfType<ControlsViewManager>();
     }
 
     // Update is called once per frame
@@ -34,10 +36,23 @@ public class MarketController : MonoBehaviour
     {
         //get and update the distance between player and counter
         distanceFromCounter = Vector3.Distance(counter.transform.position, gameObject.transform.position);
-        isNextToCounter = distanceFromCounter < distanceRequired;
-        if (Input.GetKeyDown(KeyCode.E) && isNextToCounter)
+        if (distanceFromCounter < distanceRequired)
         {
-            ToggleMarketUI();
+            if (!isNextToCounter)
+            {
+                isNextToCounter = true;
+                _controlsViewManager.interactKeyPanel.SetState(true, "Shop for ingredients");
+                _controlsViewManager.infoKeyPanel.SetState(true, "More Info");
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+                ToggleMarketUI();
+        }
+        else if (isNextToCounter)
+        {
+            isNextToCounter = false;
+            _controlsViewManager.interactKeyPanel.SetState(false);
+            _controlsViewManager.infoKeyPanel.SetState(false);
         }
     }
 
