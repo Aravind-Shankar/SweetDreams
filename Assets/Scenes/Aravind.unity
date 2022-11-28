@@ -3828,6 +3828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   win: 0
   lose: 0
+  inMarket: 0
 --- !u!114 &523740219
 MonoBehaviour:
   m_ObjectHideFlags: 0
