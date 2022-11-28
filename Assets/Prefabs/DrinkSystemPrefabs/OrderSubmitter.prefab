@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9332fce7b39107a4dabbf13fe3e51f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerIsInRange: 0
+  interactMessage: Deliver Order
   interactAction:
     m_PersistentCalls:
       m_Calls:
@@ -307,6 +307,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  infoMessage: More Info
+  playerIsInRange: 0
 --- !u!1 &4060301210842323430
 GameObject:
   m_ObjectHideFlags: 0

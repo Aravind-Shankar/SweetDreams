@@ -5,23 +5,26 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
+    public string interactMessage = "Interact";
     public UnityEvent interactAction;
-    public UnityEvent showInfoAction;
+    public string infoMessage = "More Info";
 
     [HideInInspector]
     public bool playerIsInRange = false;
+
+    private ControlsViewManager _controlsViewManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _controlsViewManager = FindObjectOfType<ControlsViewManager>();
     }
 
     private void OnEnable()
     {
         EventManager.StartListening("Interact", PerformInteraction);
-        EventManager.StartListening("ShowInfo", ShowInfo);
+        //EventManager.StartListening("ShowInfo", ShowInfo);
     }
 
     // Update is called once per frame
@@ -42,7 +45,7 @@ public class Interactable : MonoBehaviour
     {
         if (playerIsInRange)
         {
-            showInfoAction.Invoke();
+            //showInfoAction.Invoke();
         }
     }
 
@@ -51,6 +54,8 @@ public class Interactable : MonoBehaviour
         if (c.gameObject.CompareTag("Player"))
         {
             playerIsInRange = true;
+            _controlsViewManager.interactKeyPanel.SetState(interactMessage != "", interactMessage);
+            _controlsViewManager.infoKeyPanel.SetState(infoMessage != "", infoMessage);
         }
     }
 
@@ -59,6 +64,8 @@ public class Interactable : MonoBehaviour
         if (c.gameObject.CompareTag("Player"))
         {
             playerIsInRange = false;
+            _controlsViewManager.interactKeyPanel.SetState(false);
+            _controlsViewManager.infoKeyPanel.SetState(false);
         }
     }
 }
