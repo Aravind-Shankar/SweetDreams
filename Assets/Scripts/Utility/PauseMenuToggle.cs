@@ -12,14 +12,19 @@ public class PauseMenuToggle : MonoBehaviour
     
     PlayerManager playerManager;
 
-    private Transform loseText;
-    private Transform winText;
+    private Transform losePanel;
+    private Transform winPanel;
+    private Transform pausePanel;
+
+    public bool win; // check for win
+    public bool lose; // check for lose
 
     void Awake() {
         canvasGroup = GetComponent<CanvasGroup>();
         playerManager = FindObjectOfType<PlayerManager>();
-        loseText = transform.Find("Fail");
-        winText = transform.Find("Win");
+        losePanel = transform.Find("LosePanel");
+        winPanel = transform.Find("WinPanel");
+        pausePanel = transform.Find("PausePanel");
         if (canvasGroup == null) {
             Debug.LogError("No Canvas Group added!");
         }
@@ -33,15 +38,22 @@ public class PauseMenuToggle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape)) {
+        if (Input.GetKeyUp(KeyCode.Escape) && !(win || lose)) { // if won or lose, can't trigger pause
             if (canvasGroup.interactable) {
                 pauseStateText.text = "Pause";
                 CloseMenu();
+                pausePanel.gameObject.SetActive(false);
             } else {
                 pauseStateText.text = "Resume";
                 OpenMenu();
+                pausePanel.gameObject.SetActive(true);
             }
         }
+
+        if (win && canvasGroup.alpha != 1)
+            Win();
+        if (lose && canvasGroup.alpha != 1)
+            Lose();
     }
 
     public void OpenMenu() {
@@ -64,11 +76,17 @@ public class PauseMenuToggle : MonoBehaviour
 
     public void Lose() {
         OpenMenu();
-        loseText.gameObject.SetActive(true);
+        losePanel.gameObject.SetActive(true);
+        GameObject score = losePanel.transform.Find("Score").gameObject;
+        TextMeshProUGUI textmeshPro = score.GetComponent<TextMeshProUGUI>();
+        textmeshPro.SetText("Score: {0}", MoneySystem.Instance.Money);
     }
 
     public void Win() {
         OpenMenu();
-        winText.gameObject.SetActive(true);
+        winPanel.gameObject.SetActive(true);
+        GameObject score = winPanel.transform.Find("Score").gameObject;
+        TextMeshProUGUI textmeshPro = score.GetComponent<TextMeshProUGUI>();
+        textmeshPro.SetText("Score: {0}", MoneySystem.Instance.Money);
     }
 }

@@ -73,10 +73,10 @@ public class InputManager : MonoBehaviour
         animatorManager.UpdateAnimatorValues(0, moveAmount, playerLocomotion.isSprinting);
     }
     private void HandleSprintingInput() {
-        if (b_Input && moveAmount > 0.5f) {
-            playerLocomotion.isSprinting = true;
-        } else {
-            playerLocomotion.isSprinting = false;
-        }
+        //if (b_Input && moveAmount > 0.5f) {
+        //    playerLocomotion.isSprinting = true;
+        //} else {
+        //    playerLocomotion.isSprinting = false;
+        //}
     }
 }

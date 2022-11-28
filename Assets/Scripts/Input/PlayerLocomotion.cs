@@ -11,7 +11,7 @@ public class PlayerLocomotion : MonoBehaviour
     Transform cameraObject;
     Rigidbody playerRigidbody;
 
-    public bool isSprinting;
+    public bool isSprinting = false;
 
     public float walkingSpeed = 1.5f;
     public float runningSpeed = 5;

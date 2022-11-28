@@ -18,7 +18,7 @@ public class SusBar : MonoBehaviour
 
     private void Update() {
         if (slider.value == slider.maxValue) {
-            menu.Lose();
+            menu.lose = true;
         }
     }
 
