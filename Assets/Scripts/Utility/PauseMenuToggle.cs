@@ -14,11 +14,18 @@ public class PauseMenuToggle : MonoBehaviour
     private Transform winPanel;
     private Transform pausePanel;
     private Transform infoPanel;
+
+    private TextMeshProUGUI infoTitleMesh;
+    private string _defaultInfoTitle;
     private TextMeshProUGUI infoTextMesh;
     private string _defaultInfoText;
 
+    [HideInInspector]
     public bool win; // check for win
+    [HideInInspector]
     public bool lose; // check for lose
+    [HideInInspector]
+    public bool inMarket; // if in market, can't pause
 
     void Awake() {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -29,6 +36,9 @@ public class PauseMenuToggle : MonoBehaviour
         infoPanel = transform.Find("InfoPanel");
         infoTextMesh = infoPanel.Find("Info Text").GetComponent<TextMeshProUGUI>();
         _defaultInfoText = infoTextMesh.text;
+        infoTitleMesh = infoPanel.Find("Info Title Text").GetComponent<TextMeshProUGUI>();
+        _defaultInfoTitle = infoTitleMesh.text;
+        
         if (canvasGroup == null) {
             Debug.LogError("No Canvas Group added!");
         }
@@ -40,7 +50,7 @@ public class PauseMenuToggle : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Input.GetKeyUp(KeyCode.Q) && !(win || lose)) { // if won or lose, can't trigger pause
+        if (Input.GetKeyUp(KeyCode.Q) && !(win || lose || inMarket)) { // if won or lose, can't trigger pause
             if (canvasGroup.interactable) {
                 CloseMenu();
                 pausePanel.gameObject.SetActive(false);
@@ -76,13 +86,20 @@ public class PauseMenuToggle : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void SetInfoText(string infoText)
+    public bool IsPaused()
     {
+        return canvasGroup.interactable;
+    }
+
+    public void SetInfoText(string infoTitle, string infoText)
+    {
+        infoTitleMesh.text = infoTitle;
         infoTextMesh.text = infoText;
     }
 
     public void ResetInfoText()
     {
+        infoTitleMesh.text = _defaultInfoTitle;
         infoTextMesh.text = _defaultInfoText;
     }
 

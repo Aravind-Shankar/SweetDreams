@@ -90,14 +90,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59619c071dab0cb48bc4312d7bed5cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPanelData:
-  - panelType: 1
-    keyPanel: {fileID: 5199905391359485119}
-    defaultText: 
-    held: 0
+  _keyPanelData:
   - panelType: 0
     keyPanel: {fileID: 4979684674340649703}
     defaultText: Pause / General Info
+    held: 0
+  - panelType: 1
+    keyPanel: {fileID: 5199905391359485119}
+    defaultText: 
     held: 0
   - panelType: 2
     keyPanel: {fileID: 1167533158093758999}

@@ -475,14 +475,13 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   infoActionPossible: 1
-  infoText: 'Human Chamber
+  infoTitle: Human Chamber
+  infoText: 'Keeps extracting the Dream Liquid from the human held inside. Pipes
+    route this liquid to the Dream Machine.
 
 
-    Extracts the Dream Liquid from the human held inside.
-
-
-    Fails
-    if human is starved. Feed chamber food to keep healthy.'
+    Cannot function if human is starved.
+    Feed chamber food to keep healthy.'
   playerIsInRange: 0
 --- !u!1 &782532950386559333
 GameObject:

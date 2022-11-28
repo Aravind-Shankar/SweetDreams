@@ -68,7 +68,7 @@ public class PotionPanel : MonoBehaviour
             return;
         }
 
-        Color logColor = Color.blue, headerColor = Color.black;
+        Color logColor = Color.green, headerColor = Color.white;
         EventLog.LogInfo("-----------------");
         if (_potion.ingredientFrequency != null)
         {

@@ -5,9 +5,13 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
+    [Header("Interaction handling")]
     public string interactMessage = "Interact";
     public UnityEvent interactAction;
+
+    [Header("Info display handling")]
     public bool infoActionPossible = true;
+    public string infoTitle;
     [Multiline(6)]
     public string infoText;
 
@@ -52,8 +56,8 @@ public class Interactable : MonoBehaviour
             _controlsViewManager.HoldPanel(KeyPanelType.Interact, interactMessage);
             if (infoActionPossible)
             {
-                _pauseMenuToggle.SetInfoText(infoText);
-                _controlsViewManager.HoldPanel(KeyPanelType.Info, "More Info");
+                _pauseMenuToggle.SetInfoText(infoTitle, infoText);
+                _controlsViewManager.HoldPanel(KeyPanelType.Info, "Details");
             }
         }
     }

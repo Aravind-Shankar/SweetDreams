@@ -13,7 +13,7 @@ public enum KeyPanelType
 public class ControlsViewManager : MonoBehaviour
 {
     [System.Serializable]
-    public struct KeyPanelData
+    public class KeyPanelData
     {
         public KeyPanelType panelType;
         public KeyPanel keyPanel;
@@ -47,17 +47,17 @@ public class ControlsViewManager : MonoBehaviour
     }
 
     [SerializeField]
-    private KeyPanelData[] keyPanelData;
+    private KeyPanelData[] _keyPanelData;
 
     private void Start()
     {
-        foreach (var data in keyPanelData)
+        foreach (var data in _keyPanelData)
             data.Init();
     }
 
     public void HoldPanel(KeyPanelType panelType, string panelText)
     {
-        foreach (var data in keyPanelData)
+        foreach (var data in _keyPanelData)
             if (data.panelType == panelType)
             {
                 data.Hold(panelText);
@@ -67,7 +67,7 @@ public class ControlsViewManager : MonoBehaviour
 
     public void ReleasePanel(KeyPanelType panelType)
     {
-        foreach (var data in keyPanelData)
+        foreach (var data in _keyPanelData)
             if (data.panelType == panelType)
             {
                 data.Release();

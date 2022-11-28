@@ -345,6 +345,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   infoActionPossible: 1
+  infoTitle: Chamber Food Dispenser
+  infoText: 'Take chamber food from here to feed starved Human Chambers.
+
+
+    Once
+    fed, the chamber can be used to make potions again.'
   playerIsInRange: 0
 --- !u!1 &2620720076884519083
 GameObject:

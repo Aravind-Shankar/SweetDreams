@@ -74,6 +74,13 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   infoActionPossible: 1
+  infoTitle: Dream Machine
+  infoText: 'Uses Human Chambers to supply Dream Liquid - the base (substrate) for
+    all potions.
+
+
+    Fails if you aren''t holding an empty flask, or if all chambers
+    are starved.'
   playerIsInRange: 0
 --- !u!1 &7317939653596602426
 GameObject:

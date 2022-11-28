@@ -188,6 +188,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   infoActionPossible: 1
+  infoTitle: Flask Dispenser
+  infoText: Collect an empty flask from here to start making potions.
   playerIsInRange: 0
 --- !u!1 &1262561382276537422
 GameObject:
@@ -330,7 +332,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Empty Flasks
+  m_text: Flask Dispenser
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
