@@ -20,12 +20,12 @@ public class TrashCanHandler : MonoBehaviour
 
     public void ThrowawayItem()
     {
-        Debug.Log("Throwaway");
         if (inventory.HasItem())
         {
             inventory.RemoveItem();
-            EventLog.LogInfo("Item thrown away");
+            EventLog.LogInfo("Held item disposed");
         }
-
+        else
+            EventLog.LogError("No held item to dispose!");
     }
 }

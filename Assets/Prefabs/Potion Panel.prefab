@@ -94,12 +94,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db2f66f98d79584f82b5b009688a673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  potionIcon: {fileID: 1549669675744170174}
+  potionIconUIImage: {fileID: 1549669675744170174}
   potionNameText: {fileID: 8885164275107275912}
   priceCanvasGroup: {fileID: 1540169518674634144}
   potionPriceText: {fileID: 8532195944188264014}
   currentIndicatorText: {fileID: 4124362979493972391}
   ingredientSO: {fileID: 11400000, guid: 48738e151929cde4b8c81a7cc1c17041, type: 2}
+  potionSO: {fileID: 11400000, guid: 77d3dce5e8afa4a4a9e7303efdbb1e25, type: 2}
 --- !u!225 &3463756366707572837
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -712,7 +713,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 67e612dc0fa02ec4681843e3f8563ed9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ad24157da95d364b8b5138b360c83a0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -13,9 +13,16 @@ public class MarketController : MonoBehaviour
     public GameObject marketIngredientPanelPrefab;
     
     PlayerManager playerManager;
+    private ControlsViewManager _controlsViewManager;
+    private PauseMenuToggle _pauseMenuToggle;
 
     //the distance required for player to open market
     public float distanceRequired;
+
+    [Header("Info display handling")]
+    public string infoTitle;
+    [Multiline(6)]
+    public string infoText;
 
     //if player is next to counter
     private bool isNextToCounter = false;
@@ -27,6 +34,8 @@ public class MarketController : MonoBehaviour
     void Awake()
     {
         playerManager = FindObjectOfType<PlayerManager>();
+        _controlsViewManager = FindObjectOfType<ControlsViewManager>();
+        _pauseMenuToggle = FindObjectOfType<PauseMenuToggle>();
     }
 
     // Update is called once per frame
@@ -34,10 +43,25 @@ public class MarketController : MonoBehaviour
     {
         //get and update the distance between player and counter
         distanceFromCounter = Vector3.Distance(counter.transform.position, gameObject.transform.position);
-        isNextToCounter = distanceFromCounter < distanceRequired;
-        if (Input.GetKeyDown(KeyCode.E) && isNextToCounter)
+        if (distanceFromCounter < distanceRequired)
         {
-            ToggleMarketUI();
+            if (!isNextToCounter)
+            {
+                isNextToCounter = true;
+                _pauseMenuToggle.SetInfoText(infoTitle, infoText);
+                _controlsViewManager.HoldPanel(KeyPanelType.Interact, "Shop for ingredients");
+                _controlsViewManager.HoldPanel(KeyPanelType.Info, "Details");
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && !_pauseMenuToggle.IsPaused())
+                ToggleMarketUI();
+        }
+        else if (isNextToCounter)
+        {
+            isNextToCounter = false;
+            _pauseMenuToggle.ResetInfoText();
+            _controlsViewManager.ReleasePanel(KeyPanelType.Interact);
+            _controlsViewManager.ReleasePanel(KeyPanelType.Info);
         }
     }
 
@@ -67,14 +91,11 @@ public class MarketController : MonoBehaviour
     {
         if (!menuIsOpen)
         {
-            //set market UI active
-            //toggle boolean menuIsOpen
-            //disable movement
-            //disable camera movement
             marketUI.SetActive(true);
             PopulateIngredientListUI();
             menuIsOpen = !menuIsOpen;
             playerManager.pauseGame += 1;
+            _pauseMenuToggle.inMarket = true;
         }
         else
         {
@@ -82,6 +103,7 @@ public class MarketController : MonoBehaviour
             marketUI.SetActive(false);
             menuIsOpen = !menuIsOpen;
             playerManager.pauseGame -= 1;
+            _pauseMenuToggle.inMarket = false;
         }
     }
 }

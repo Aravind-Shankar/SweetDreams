@@ -233,6 +233,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ShowInfo",
+                    "type": "Button",
+                    "id": "f91d0dd1-c59e-4f78-bd8c-c6086da9f535",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -282,12 +291,12 @@
                 },
                 {
                     "name": "",
-                    "id": "f1e91e7f-e8f2-427f-9d4d-214e6da740c7",
+                    "id": "85e92dfb-43f5-4d94-9bf2-b3f3520a98a2",
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Drop",
+                    "action": "ShowInfo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

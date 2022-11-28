@@ -7,9 +7,9 @@ using UnityEngine;
 public class PotionSO : ScriptableObject
 {
     public IngredientSO ingredientSO;
+    public Sprite potionIconBase;
     public Potion wildcardPotion;
 
-    [Tooltip("Ensure: array indices match the ids of the respective elements.")]
     public Potion[] potions;
 
     private Dictionary<string, Potion> _potionsDict = null;
@@ -51,9 +51,7 @@ public class Potion
     public string name;
     public IngredientNameCountPair[] ingredientComposition;
     public int sellingPrice;
-    public Sprite icon;
-    public Color iconColor = Color.white;
-    public Color potionColor = Color.magenta;
+    public Color color = Color.white;
 
     [HideInInspector]
     public Dictionary<string, int> ingredientFrequency;

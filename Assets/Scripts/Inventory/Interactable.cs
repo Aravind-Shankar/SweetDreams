@@ -5,16 +5,28 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
+    [Header("Interaction handling")]
+    public string interactMessage = "Interact";
     public UnityEvent interactAction;
+
+    [Header("Info display handling")]
+    public bool infoActionPossible = true;
+    public string infoTitle;
+    [Multiline(6)]
+    public string infoText;
 
     [HideInInspector]
     public bool playerIsInRange = false;
+
+    private ControlsViewManager _controlsViewManager;
+    private PauseMenuToggle _pauseMenuToggle;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _controlsViewManager = FindObjectOfType<ControlsViewManager>();
+        _pauseMenuToggle = FindObjectOfType<PauseMenuToggle>();
     }
 
     private void OnEnable()
@@ -41,6 +53,12 @@ public class Interactable : MonoBehaviour
         if (c.gameObject.CompareTag("Player"))
         {
             playerIsInRange = true;
+            _controlsViewManager.HoldPanel(KeyPanelType.Interact, interactMessage);
+            if (infoActionPossible)
+            {
+                _pauseMenuToggle.SetInfoText(infoTitle, infoText);
+                _controlsViewManager.HoldPanel(KeyPanelType.Info, "Details");
+            }
         }
     }
 
@@ -49,6 +67,12 @@ public class Interactable : MonoBehaviour
         if (c.gameObject.CompareTag("Player"))
         {
             playerIsInRange = false;
+            _controlsViewManager.ReleasePanel(KeyPanelType.Interact);
+            if (infoActionPossible)
+            {
+                _pauseMenuToggle.ResetInfoText();
+                _controlsViewManager.ReleasePanel(KeyPanelType.Info);
+            }   
         }
     }
 }

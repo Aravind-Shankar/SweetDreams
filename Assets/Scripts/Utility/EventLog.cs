@@ -33,7 +33,7 @@ public class EventLog : MonoBehaviour
 
     public static void LogInfo(string logMessage)
     {
-        Instance.AddLog(logMessage, Color.black);
+        Instance.AddLog(logMessage, Color.white);
     }
 
     public static void LogError(string logMessage)

@@ -6,8 +6,6 @@ using TMPro;
 [RequireComponent(typeof(CanvasGroup))]
 public class PauseMenuToggle : MonoBehaviour
 {
-    public TextMeshProUGUI pauseStateText;
-
     private CanvasGroup canvasGroup;
     
     PlayerManager playerManager;
@@ -15,9 +13,19 @@ public class PauseMenuToggle : MonoBehaviour
     private Transform losePanel;
     private Transform winPanel;
     private Transform pausePanel;
+    private Transform infoPanel;
 
+    private TextMeshProUGUI infoTitleMesh;
+    private string _defaultInfoTitle;
+    private TextMeshProUGUI infoTextMesh;
+    private string _defaultInfoText;
+
+    [HideInInspector]
     public bool win; // check for win
+    [HideInInspector]
     public bool lose; // check for lose
+    [HideInInspector]
+    public bool inMarket; // if in market, can't pause
 
     void Awake() {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -25,28 +33,32 @@ public class PauseMenuToggle : MonoBehaviour
         losePanel = transform.Find("LosePanel");
         winPanel = transform.Find("WinPanel");
         pausePanel = transform.Find("PausePanel");
+        infoPanel = transform.Find("InfoPanel");
+        infoTextMesh = infoPanel.Find("Info Text").GetComponent<TextMeshProUGUI>();
+        _defaultInfoText = infoTextMesh.text;
+        infoTitleMesh = infoPanel.Find("Info Title Text").GetComponent<TextMeshProUGUI>();
+        _defaultInfoTitle = infoTitleMesh.text;
+        
         if (canvasGroup == null) {
             Debug.LogError("No Canvas Group added!");
         }
         else
         {
             canvasGroup.interactable = false;
-            pauseStateText.text = "Pause";
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        if (Input.GetKeyUp(KeyCode.Escape) && !(win || lose)) { // if won or lose, can't trigger pause
+        if (Input.GetKeyUp(KeyCode.Q) && !(win || lose || inMarket)) { // if won or lose, can't trigger pause
             if (canvasGroup.interactable) {
-                pauseStateText.text = "Pause";
                 CloseMenu();
                 pausePanel.gameObject.SetActive(false);
+                infoPanel.gameObject.SetActive(false);
             } else {
-                pauseStateText.text = "Resume";
                 OpenMenu();
                 pausePanel.gameObject.SetActive(true);
+                infoPanel.gameObject.SetActive(true);
             }
         }
 
@@ -72,6 +84,23 @@ public class PauseMenuToggle : MonoBehaviour
         playerManager.pauseGame -= 1;
 
         Time.timeScale = 1f;
+    }
+
+    public bool IsPaused()
+    {
+        return canvasGroup.interactable;
+    }
+
+    public void SetInfoText(string infoTitle, string infoText)
+    {
+        infoTitleMesh.text = infoTitle;
+        infoTextMesh.text = infoText;
+    }
+
+    public void ResetInfoText()
+    {
+        infoTitleMesh.text = _defaultInfoTitle;
+        infoTextMesh.text = _defaultInfoText;
     }
 
     public void Lose() {

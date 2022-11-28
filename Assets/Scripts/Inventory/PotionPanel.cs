@@ -7,12 +7,13 @@ using TMPro;
 [RequireComponent(typeof(CanvasGroup))]
 public class PotionPanel : MonoBehaviour
 {
-    public Image potionIcon;
+    public Image potionIconUIImage;
     public TextMeshProUGUI potionNameText;
     public CanvasGroup priceCanvasGroup; 
     public TextMeshProUGUI potionPriceText;
     public TextMeshProUGUI currentIndicatorText;
     public IngredientSO ingredientSO;
+    public PotionSO potionSO;
 
     private CanvasGroup _overallCanvasGroup;
     private Potion _potion;
@@ -39,8 +40,8 @@ public class PotionPanel : MonoBehaviour
         _overallCanvasGroup.blocksRaycasts = true;
         _potion = potion;
 
-        potionIcon.sprite = potion.icon;
-        potionIcon.color = potion.iconColor;
+        potionIconUIImage.sprite = potionSO.potionIconBase;
+        potionIconUIImage.color = new Color(potion.color.r, potion.color.g, potion.color.b, potionIconUIImage.color.a);
         potionNameText.text = potion.name;
 
         if (showPrice)
@@ -67,7 +68,7 @@ public class PotionPanel : MonoBehaviour
             return;
         }
 
-        Color logColor = Color.blue, headerColor = Color.black;
+        Color logColor = Color.green, headerColor = Color.white;
         EventLog.LogInfo("-----------------");
         if (_potion.ingredientFrequency != null)
         {

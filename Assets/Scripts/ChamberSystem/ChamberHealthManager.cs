@@ -1,28 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class ChamberHealthManager : MonoBehaviour
 {
     public int maxHealth = 2;
-    public TextMeshProUGUI healthText;
-    public Gradient textColorGradient;
+    public MeshRenderer tintRenderer;
+    public Color defaultColor;
+    public Color zeroHealthColor;
+    public GameObject statusPanel;
 
     private int _health;
+    private bool _statusFlashing;
+    private float _tintAlpha;
     private Inventory _inventory;
 
     private void Start()
     {
         _inventory = FindObjectOfType<Inventory>();
         _health = maxHealth;
-        SetHealthText();
+        _tintAlpha = tintRenderer.material.color.a;
+        _statusFlashing = false;
+        ShowHealthStatus();
     }
 
-    private void SetHealthText()
+    private void ShowHealthStatus()
     {
-        healthText.text = $"Health: {_health}/{maxHealth}";
-        healthText.color = textColorGradient.Evaluate((float)(_health) / maxHealth);
+        var currentColor = _health == 0 ? zeroHealthColor : defaultColor;
+        tintRenderer.material.color = new Color(currentColor.r, currentColor.g, currentColor.b, _tintAlpha);
+
+        if (_health == 0)
+        {
+            if (!_statusFlashing)
+            {
+                InvokeRepeating(nameof(ToggleStatusPanel), 0f, 1f);
+                _statusFlashing = true;
+            }
+        }
+        else
+        {
+            CancelInvoke(nameof(ToggleStatusPanel));
+            statusPanel.SetActive(false);
+            _statusFlashing = false;
+        }
+    }
+
+    private void ToggleStatusPanel()
+    {
+        statusPanel.SetActive(!statusPanel.activeSelf);
     }
 
     public void FeedFood()
@@ -31,8 +57,8 @@ public class ChamberHealthManager : MonoBehaviour
         {
             if (_health < maxHealth)
             {
-                ++_health;
-                SetHealthText();
+                _health = maxHealth;
+                ShowHealthStatus();
                 _inventory.RemoveItem();
 
                 EventLog.LogInfo("Fed food to chamber.");
@@ -44,7 +70,7 @@ public class ChamberHealthManager : MonoBehaviour
         }
         else
         {
-            EventLog.LogError("Need to hold chamber food to feed the chamber!");
+            EventLog.LogError("No chamber food in hand!");
         }
     }
 
@@ -54,7 +80,7 @@ public class ChamberHealthManager : MonoBehaviour
         if (_health == 0)
             return false;
         --_health;
-        SetHealthText();
+        ShowHealthStatus();
         return true;
     }
 }
