@@ -54,7 +54,7 @@ public class CustomerQueue : MonoBehaviour
 
         if (customerSpawnQueue.Count == 0 && customerAIOrderQueue.Count == 0 && !orderPending) {
             // no new customers to spawn, no customers with active orders, no orders pending => won!
-            menu.Win();
+            menu.win = true;
         }
     }
 

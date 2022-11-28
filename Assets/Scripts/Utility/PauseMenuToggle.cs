@@ -16,6 +16,9 @@ public class PauseMenuToggle : MonoBehaviour
     private Transform winPanel;
     private Transform pausePanel;
 
+    public bool win; // check for win
+    public bool lose; // check for lose
+
     void Awake() {
         canvasGroup = GetComponent<CanvasGroup>();
         playerManager = FindObjectOfType<PlayerManager>();
@@ -35,7 +38,7 @@ public class PauseMenuToggle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape)) {
+        if (Input.GetKeyUp(KeyCode.Escape) && !(win || lose)) { // if won or lose, can't trigger pause
             if (canvasGroup.interactable) {
                 pauseStateText.text = "Pause";
                 CloseMenu();
@@ -46,6 +49,11 @@ public class PauseMenuToggle : MonoBehaviour
                 pausePanel.gameObject.SetActive(true);
             }
         }
+
+        if (win && canvasGroup.alpha != 1)
+            Win();
+        if (lose && canvasGroup.alpha != 1)
+            Lose();
     }
 
     public void OpenMenu() {
