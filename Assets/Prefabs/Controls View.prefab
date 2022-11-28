@@ -90,9 +90,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59619c071dab0cb48bc4312d7bed5cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoKeyPanel: {fileID: 4979684674340649703}
-  interactKeyPanel: {fileID: 5199905391359485119}
-  dropKeyPanel: {fileID: 1167533158093758999}
+  keyPanelData:
+  - panelType: 1
+    keyPanel: {fileID: 5199905391359485119}
+    defaultText: 
+    held: 0
+  - panelType: 0
+    keyPanel: {fileID: 4979684674340649703}
+    defaultText: Pause / General Info
+    held: 0
+  - panelType: 2
+    keyPanel: {fileID: 1167533158093758999}
+    defaultText: 
+    held: 0
 --- !u!1 &6251002441972958482
 GameObject:
   m_ObjectHideFlags: 0

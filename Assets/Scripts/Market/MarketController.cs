@@ -41,8 +41,8 @@ public class MarketController : MonoBehaviour
             if (!isNextToCounter)
             {
                 isNextToCounter = true;
-                _controlsViewManager.interactKeyPanel.SetState(true, "Shop for ingredients");
-                _controlsViewManager.infoKeyPanel.SetState(true, "More Info");
+                _controlsViewManager.HoldPanel(KeyPanelType.Interact, "Shop for ingredients");
+                _controlsViewManager.HoldPanel(KeyPanelType.Info, "More Info");
             }
 
             if (Input.GetKeyDown(KeyCode.E))
@@ -51,8 +51,8 @@ public class MarketController : MonoBehaviour
         else if (isNextToCounter)
         {
             isNextToCounter = false;
-            _controlsViewManager.interactKeyPanel.SetState(false);
-            _controlsViewManager.infoKeyPanel.SetState(false);
+            _controlsViewManager.ReleasePanel(KeyPanelType.Interact);
+            _controlsViewManager.ReleasePanel(KeyPanelType.Info);
         }
     }
 

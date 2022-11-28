@@ -13,6 +13,9 @@ public class PauseMenuToggle : MonoBehaviour
     private Transform losePanel;
     private Transform winPanel;
     private Transform pausePanel;
+    private Transform infoPanel;
+    private TextMeshProUGUI infoTextMesh;
+    private string _defaultInfoText;
 
     public bool win; // check for win
     public bool lose; // check for lose
@@ -23,6 +26,9 @@ public class PauseMenuToggle : MonoBehaviour
         losePanel = transform.Find("LosePanel");
         winPanel = transform.Find("WinPanel");
         pausePanel = transform.Find("PausePanel");
+        infoPanel = transform.Find("InfoPanel");
+        infoTextMesh = infoPanel.Find("Info Text").GetComponent<TextMeshProUGUI>();
+        _defaultInfoText = infoTextMesh.text;
         if (canvasGroup == null) {
             Debug.LogError("No Canvas Group added!");
         }
@@ -32,16 +38,17 @@ public class PauseMenuToggle : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        if (Input.GetKeyUp(KeyCode.Escape) && !(win || lose)) { // if won or lose, can't trigger pause
+        if (Input.GetKeyUp(KeyCode.Q) && !(win || lose)) { // if won or lose, can't trigger pause
             if (canvasGroup.interactable) {
                 CloseMenu();
                 pausePanel.gameObject.SetActive(false);
+                infoPanel.gameObject.SetActive(false);
             } else {
                 OpenMenu();
                 pausePanel.gameObject.SetActive(true);
+                infoPanel.gameObject.SetActive(true);
             }
         }
 
@@ -67,6 +74,16 @@ public class PauseMenuToggle : MonoBehaviour
         playerManager.pauseGame -= 1;
 
         Time.timeScale = 1f;
+    }
+
+    public void SetInfoText(string infoText)
+    {
+        infoTextMesh.text = infoText;
+    }
+
+    public void ResetInfoText()
+    {
+        infoTextMesh.text = _defaultInfoText;
     }
 
     public void Lose() {

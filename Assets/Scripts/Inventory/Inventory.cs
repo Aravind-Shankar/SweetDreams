@@ -79,7 +79,7 @@ public class Inventory : MonoBehaviour
         currentItemData = currentItem.GetComponent<ItemData>();
         UpdateHeldPotion();
 
-        _controlsViewManager.dropKeyPanel.SetState(true, "Drop Held Item");
+        _controlsViewManager.HoldPanel(KeyPanelType.Drop, "Drop Held Item");
     }
 
     public void RemoveItem()
@@ -94,7 +94,7 @@ public class Inventory : MonoBehaviour
         currentItemData = null;
         UpdateHeldPotion();
 
-        _controlsViewManager.dropKeyPanel.SetState(false);
+        _controlsViewManager.ReleasePanel(KeyPanelType.Drop);
     }
 
     public void DropItem()
@@ -111,7 +111,7 @@ public class Inventory : MonoBehaviour
 
         EventLog.LogInfo("Dropped item in hand.");
 
-        _controlsViewManager.dropKeyPanel.SetState(false);
+        _controlsViewManager.ReleasePanel(KeyPanelType.Drop);
     }
 
     public bool HasItem()

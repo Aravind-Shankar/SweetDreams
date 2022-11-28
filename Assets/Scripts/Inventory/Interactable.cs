@@ -8,24 +8,26 @@ public class Interactable : MonoBehaviour
     public string interactMessage = "Interact";
     public UnityEvent interactAction;
     public bool infoActionPossible = true;
+    [Multiline(6)]
+    public string infoText;
 
     [HideInInspector]
     public bool playerIsInRange = false;
 
     private ControlsViewManager _controlsViewManager;
+    private PauseMenuToggle _pauseMenuToggle;
 
 
     // Start is called before the first frame update
     void Start()
     {
         _controlsViewManager = FindObjectOfType<ControlsViewManager>();
+        _pauseMenuToggle = FindObjectOfType<PauseMenuToggle>();
     }
 
     private void OnEnable()
     {
         EventManager.StartListening("Interact", PerformInteraction);
-        if (infoActionPossible)
-            EventManager.StartListening("ShowInfo", ShowInfo);
     }
 
     // Update is called once per frame
@@ -42,21 +44,17 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    void ShowInfo()
-    {
-        if (playerIsInRange)
-        {
-            //showInfoAction.Invoke();
-        }
-    }
-
     private void OnTriggerEnter(Collider c)
     {
         if (c.gameObject.CompareTag("Player"))
         {
             playerIsInRange = true;
-            _controlsViewManager.interactKeyPanel.SetState(true, interactMessage);
-            _controlsViewManager.infoKeyPanel.SetState(infoActionPossible, "More Info");
+            _controlsViewManager.HoldPanel(KeyPanelType.Interact, interactMessage);
+            if (infoActionPossible)
+            {
+                _pauseMenuToggle.SetInfoText(infoText);
+                _controlsViewManager.HoldPanel(KeyPanelType.Info, "More Info");
+            }
         }
     }
 
@@ -65,8 +63,12 @@ public class Interactable : MonoBehaviour
         if (c.gameObject.CompareTag("Player"))
         {
             playerIsInRange = false;
-            _controlsViewManager.interactKeyPanel.SetState(false);
-            _controlsViewManager.infoKeyPanel.SetState(false);
+            _controlsViewManager.ReleasePanel(KeyPanelType.Interact);
+            if (infoActionPossible)
+            {
+                _pauseMenuToggle.ResetInfoText();
+                _controlsViewManager.ReleasePanel(KeyPanelType.Info);
+            }   
         }
     }
 }
