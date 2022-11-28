@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour
     public GameObject emptyItem;
 
     private ItemData currentItemData;
+    private ControlsViewManager _controlsViewManager;
 
     private void Awake()
     {
@@ -24,6 +25,8 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
+        _controlsViewManager = FindObjectOfType<ControlsViewManager>();
+
         EventManager.StartListening("Drop", DropItem);
         UpdateHeldPotion();
     }
@@ -75,6 +78,8 @@ public class Inventory : MonoBehaviour
 
         currentItemData = currentItem.GetComponent<ItemData>();
         UpdateHeldPotion();
+
+        _controlsViewManager.dropKeyPanel.SetState(true, "Drop Held Item");
     }
 
     public void RemoveItem()
@@ -88,6 +93,8 @@ public class Inventory : MonoBehaviour
         currentItem = emptyItem;
         currentItemData = null;
         UpdateHeldPotion();
+
+        _controlsViewManager.dropKeyPanel.SetState(false);
     }
 
     public void DropItem()
@@ -103,6 +110,8 @@ public class Inventory : MonoBehaviour
         UpdateHeldPotion();
 
         EventLog.LogInfo("Dropped item in hand.");
+
+        _controlsViewManager.dropKeyPanel.SetState(false);
     }
 
     public bool HasItem()
