@@ -6,8 +6,6 @@ using TMPro;
 [RequireComponent(typeof(CanvasGroup))]
 public class PauseMenuToggle : MonoBehaviour
 {
-    public TextMeshProUGUI pauseStateText;
-
     private CanvasGroup canvasGroup;
     
     PlayerManager playerManager;
@@ -31,7 +29,6 @@ public class PauseMenuToggle : MonoBehaviour
         else
         {
             canvasGroup.interactable = false;
-            pauseStateText.text = "Pause";
         }
     }
 
@@ -40,11 +37,9 @@ public class PauseMenuToggle : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Escape) && !(win || lose)) { // if won or lose, can't trigger pause
             if (canvasGroup.interactable) {
-                pauseStateText.text = "Pause";
                 CloseMenu();
                 pausePanel.gameObject.SetActive(false);
             } else {
-                pauseStateText.text = "Resume";
                 OpenMenu();
                 pausePanel.gameObject.SetActive(true);
             }
