@@ -9,10 +9,12 @@ public class Dispenser : MonoBehaviour
     public GameObject dispensedObject;
     public ItemType objectType;
     public string dispensedMessage;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Dispense()
@@ -27,6 +29,8 @@ public class Dispenser : MonoBehaviour
             inventory.SetItem(newObject);
             if (dispensedMessage != null && dispensedMessage != "")
                 EventLog.LogInfo(dispensedMessage);
+            
+            audioSource.Play();
         }
         else
         {

@@ -15,6 +15,7 @@ public class ChamberHealthManager : MonoBehaviour
     private bool _statusFlashing;
     private float _tintAlpha;
     private Inventory _inventory;
+    private AudioSource audioSource;
 
     private void Start()
     {
@@ -23,6 +24,8 @@ public class ChamberHealthManager : MonoBehaviour
         _tintAlpha = tintRenderer.material.color.a;
         _statusFlashing = false;
         ShowHealthStatus();
+        audioSource = GetComponent<AudioSource>();
+        
     }
 
     private void ShowHealthStatus()
@@ -32,6 +35,7 @@ public class ChamberHealthManager : MonoBehaviour
 
         if (_health == 0)
         {
+            audioSource.Play();
             if (!_statusFlashing)
             {
                 InvokeRepeating(nameof(ToggleStatusPanel), 0f, 1f);

@@ -10,10 +10,13 @@ public class OrderSubmitter : MonoBehaviour
 
     private CustomerQueue customerQueue;
 
+    private AudioSource audioSource;
+
     private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
         customerQueue = FindObjectOfType<CustomerQueue>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void SubmitOrder()
@@ -21,6 +24,7 @@ public class OrderSubmitter : MonoBehaviour
         if (customerQueue.TryCompleteOrder())
         {
             inventory.RemoveItem();
+            audioSource.Play();
         }
     }
 }
