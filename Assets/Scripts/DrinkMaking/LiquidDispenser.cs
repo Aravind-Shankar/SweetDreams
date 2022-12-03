@@ -10,11 +10,13 @@ public class LiquidDispenser : MonoBehaviour
 
     public GameObject chamberParent;
     private ChamberHealthManager[] chamberHealthManagers;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         inventory = FindObjectOfType<Inventory>();
         chamberHealthManagers = chamberParent.GetComponentsInChildren<ChamberHealthManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private bool TryUseChamber()
@@ -68,6 +70,7 @@ public class LiquidDispenser : MonoBehaviour
                 //var drinkRenderer = drink.GetComponent<MeshRenderer>();
                 //drinkRenderer.material.SetTextureOffset(
                 EventLog.LogInfo("Filled flask with Dream Liquid.");
+                audioSource.Play();
             }
             else
             {

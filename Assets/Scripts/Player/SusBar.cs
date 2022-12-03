@@ -39,4 +39,8 @@ public class SusBar : MonoBehaviour
     public void RemoveSus(float sus) {
         SetSus(slider.value - sus);
     }
+
+    public float GetSus() {
+        return slider.value;
+    }
 }
