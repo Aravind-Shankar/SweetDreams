@@ -57,6 +57,7 @@ public class Interactable : MonoBehaviour
             if (infoActionPossible)
             {
                 _pauseMenuToggle.SetInfoText(infoTitle, infoText);
+                _pauseMenuToggle.SetTutorialPanelText(infoTitle, infoText);
                 _controlsViewManager.HoldPanel(KeyPanelType.Info, "Details");
             }
         }

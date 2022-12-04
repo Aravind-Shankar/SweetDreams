@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MarketController : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class MarketController : MonoBehaviour
     //player's distance from counter, default set to positive infinity
     private float distanceFromCounter = float.PositiveInfinity;
 
+    // bool for tutorial scene if the tutorial panel has been shown to player
+    private bool tutorialAlreadyShownToPlayer = false;
+
     void Awake()
     {
         playerManager = FindObjectOfType<PlayerManager>();
@@ -49,6 +53,14 @@ public class MarketController : MonoBehaviour
             {
                 isNextToCounter = true;
                 _pauseMenuToggle.SetInfoText(infoTitle, infoText);
+                _pauseMenuToggle.SetTutorialPanelText(infoTitle, infoText);
+
+                if (SceneManager.GetActiveScene().name == "Tutorial" && !tutorialAlreadyShownToPlayer)
+                {
+                    _pauseMenuToggle.OpenTutorialTip();
+                    tutorialAlreadyShownToPlayer = true;
+                }
+
                 _controlsViewManager.HoldPanel(KeyPanelType.Interact, "Shop for ingredients");
                 _controlsViewManager.HoldPanel(KeyPanelType.Info, "Details");
             }

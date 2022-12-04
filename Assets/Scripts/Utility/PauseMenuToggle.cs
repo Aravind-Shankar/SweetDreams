@@ -14,11 +14,15 @@ public class PauseMenuToggle : MonoBehaviour
     private Transform winPanel;
     private Transform pausePanel;
     private Transform infoPanel;
+    private Transform tutorialPanel;
 
     private TextMeshProUGUI infoTitleMesh;
     private string _defaultInfoTitle;
     private TextMeshProUGUI infoTextMesh;
     private string _defaultInfoText;
+
+    private TextMeshProUGUI tutorialTitleMesh;
+    private TextMeshProUGUI tutorialTextMesh;
 
     [HideInInspector]
     public bool win; // check for win
@@ -34,11 +38,16 @@ public class PauseMenuToggle : MonoBehaviour
         winPanel = transform.Find("WinPanel");
         pausePanel = transform.Find("PausePanel");
         infoPanel = transform.Find("InfoPanel");
+        tutorialPanel = transform.Find("TutorialPanel");
+
         infoTextMesh = infoPanel.Find("Info Text").GetComponent<TextMeshProUGUI>();
         _defaultInfoText = infoTextMesh.text;
         infoTitleMesh = infoPanel.Find("Info Title Text").GetComponent<TextMeshProUGUI>();
         _defaultInfoTitle = infoTitleMesh.text;
-        
+
+        tutorialTextMesh = tutorialPanel.Find("Tutorial Text").GetComponent<TextMeshProUGUI>();
+        tutorialTitleMesh = tutorialPanel.Find("Tutorial Title Text").GetComponent<TextMeshProUGUI>();
+                
         if (canvasGroup == null) {
             Debug.LogError("No Canvas Group added!");
         }
@@ -50,17 +59,8 @@ public class PauseMenuToggle : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Input.GetKeyUp(KeyCode.Q) && !(win || lose || inMarket)) { // if won or lose, can't trigger pause
-            if (canvasGroup.interactable) {
-                CloseMenu();
-                pausePanel.gameObject.SetActive(false);
-                infoPanel.gameObject.SetActive(false);
-            } else {
-                OpenMenu();
-                pausePanel.gameObject.SetActive(true);
-                infoPanel.gameObject.SetActive(true);
-            }
-        }
+
+        CheckToOpenMenu();
 
         if (win && canvasGroup.alpha != 1)
             Win();
@@ -117,5 +117,54 @@ public class PauseMenuToggle : MonoBehaviour
         GameObject score = winPanel.transform.Find("Score").gameObject;
         TextMeshProUGUI textmeshPro = score.GetComponent<TextMeshProUGUI>();
         textmeshPro.SetText("Score: {0}", MoneySystem.Instance.Money);
+    }
+
+    public void CheckToOpenMenu()
+    {
+        if (Input.GetKeyUp(KeyCode.Q) && !(win || lose || inMarket))
+        { // if won or lose, can't trigger pause
+            if (canvasGroup.interactable)
+            {
+                CloseMenu();
+                pausePanel.gameObject.SetActive(false);
+                infoPanel.gameObject.SetActive(false);
+                tutorialPanel.gameObject.SetActive(false);
+                Debug.Log("Closed Menu");
+            }
+            else
+            {
+                OpenMenu();
+                pausePanel.gameObject.SetActive(true);
+                infoPanel.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void OpenTutorialTip()
+    {
+        if (canvasGroup.interactable)
+        {
+            CloseMenu();
+            // center info panel to the middle of the screen
+            //infoPanel.GetComponent<RectTransform>().anchoredPosition = new Vector3(100, 0, 0);
+            tutorialPanel.gameObject.SetActive(false);
+            Debug.Log("Closed tutorial tip");
+        }
+        else
+        {
+            OpenMenu();
+            // center info panel to the middle of the screen
+            //infoPanel.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
+            //infoPanel.position = new Vector3(0, 0, 0);
+
+            tutorialPanel.gameObject.SetActive(true);
+        }
+    }
+
+    // set tutorial panel text
+    public void SetTutorialPanelText(string tutorialTitle, string tutorialText)
+    {
+        tutorialTitleMesh.text = tutorialTitle;
+        tutorialTextMesh.text = tutorialText;
     }
 }
