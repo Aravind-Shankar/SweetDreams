@@ -73,7 +73,7 @@ public class CustomerQueue : MonoBehaviour
         GameObject customerObject = Instantiate(customerPrefab, spawnPoint.transform.position, Quaternion.identity);
         CustomerAI customerAI = customerObject.GetComponent<CustomerAI>();
         customerAI.orderedPotion = customerSO.potionSO.LookupPotionByName(customer.orderedPotionName);
-        customerAI.potionPanel = potionPanelObject.GetComponent<PotionPanel>();
+        customerAI.queuePotionPanel = potionPanelObject.GetComponent<PotionPanel>();
 
         orderPending = true;
     }
@@ -83,7 +83,7 @@ public class CustomerQueue : MonoBehaviour
         if (customerAIOrderQueue.Count == 0)
             return;
 
-        customerAIOrderQueue.Peek().potionPanel.SetAsCurrent();
+        customerAIOrderQueue.Peek().queuePotionPanel.SetAsCurrent();
         orderPending = false;
     }
 
