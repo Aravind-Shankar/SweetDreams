@@ -10,6 +10,7 @@ public class ChamberHealthManager : MonoBehaviour
     public Color defaultColor;
     public Color zeroHealthColor;
     public GameObject statusPanel;
+    public AudioSource healthAudio;
 
     private int _health;
     private bool _statusFlashing;
@@ -66,6 +67,7 @@ public class ChamberHealthManager : MonoBehaviour
                 _inventory.RemoveItem();
 
                 EventLog.LogInfo("Fed food to chamber.");
+                healthAudio.Play();
             }
             else
             {

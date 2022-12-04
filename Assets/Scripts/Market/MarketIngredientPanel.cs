@@ -11,7 +11,8 @@ public class MarketIngredientPanel : MonoBehaviour
     public TextMeshProUGUI ingredientDescriptionText;
     public TextMeshProUGUI ingredientPriceText;
     public Button buyButton;
-
+    
+    private AudioSource audioSource;
     private CanvasGroup _overallCanvasGroup;
     private Ingredient _ingredient;
     private Inventory _inventory;
@@ -21,6 +22,7 @@ public class MarketIngredientPanel : MonoBehaviour
         _inventory = FindObjectOfType<Inventory>();
         _overallCanvasGroup = GetComponent<CanvasGroup>();
         this.Clear();
+        audioSource = GameObject.Find("MarketUI").GetComponent<AudioSource>();
     }
 
     public void Clear()
@@ -65,6 +67,7 @@ public class MarketIngredientPanel : MonoBehaviour
         {
             MoneySystem.Instance.Money -= _ingredient.cost;
             EventLog.LogInfo($"Bought & added one {_ingredient.name}!");
+            audioSource.Play();
         }
     }
 }
