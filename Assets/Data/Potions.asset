@@ -18,27 +18,23 @@ MonoBehaviour:
     name: ??? Potion
     ingredientComposition: []
     sellingPrice: -1
-    icon: {fileID: 21300000, guid: 1ad24157da95d364b8b5138b360c83a0, type: 3}
     color: {r: 0, g: 0, b: 0, a: 1}
   potions:
   - name: Standard Dream Potion
     ingredientComposition: []
     sellingPrice: 100
-    icon: {fileID: 21300000, guid: 1ad24157da95d364b8b5138b360c83a0, type: 3}
     color: {r: 0.6509434, g: 0.4267978, b: 0.55660343, a: 1}
   - name: Victory Dream Potion
     ingredientComposition:
     - ingredientName: Victory Extract
       count: 1
     sellingPrice: 150
-    icon: {fileID: 21300000, guid: 1ad24157da95d364b8b5138b360c83a0, type: 3}
     color: {r: 0.1509434, g: 0.3080007, b: 0.6037736, a: 1}
   - name: Anti-Depressant Potion
     ingredientComposition:
     - ingredientName: De-Depresso
       count: 1
     sellingPrice: 175
-    icon: {fileID: 21300000, guid: 1ad24157da95d364b8b5138b360c83a0, type: 3}
     color: {r: 0.18325028, g: 0.5471698, b: 0.22423095, a: 1}
   - name: Ecstatic Potion
     ingredientComposition:
@@ -47,8 +43,7 @@ MonoBehaviour:
     - ingredientName: Mood Spiker
       count: 1
     sellingPrice: 300
-    icon: {fileID: 21300000, guid: 1ad24157da95d364b8b5138b360c83a0, type: 3}
-    color: {r: 0.5283019, g: 0.5030108, b: 0, a: 1}
+    color: {r: 1, g: 0.94814813, b: 0, a: 1}
   - name: Zen Potion
     ingredientComposition:
     - ingredientName: De-Depresso
@@ -56,5 +51,4 @@ MonoBehaviour:
     - ingredientName: The Calm Storm
       count: 2
     sellingPrice: 400
-    icon: {fileID: 21300000, guid: 1ad24157da95d364b8b5138b360c83a0, type: 3}
     color: {r: 0.6415094, g: 0, b: 0.40635467, a: 1}

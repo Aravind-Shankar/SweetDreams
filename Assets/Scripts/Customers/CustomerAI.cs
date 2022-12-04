@@ -7,6 +7,7 @@ using TMPro;
 [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class CustomerAI : MonoBehaviour
 {
+    public MeshRenderer meshRenderer;
     public PotionPanel overheadPotionPanel;
     public GameObject barWaypoint;
     public GameObject leaveWaypoint;
@@ -47,6 +48,7 @@ public class CustomerAI : MonoBehaviour
         if (queuePotionPanel)
             queuePotionPanel.Clear();
         overheadPotionPanel.gameObject.SetActive(false);
+        meshRenderer.material.color = orderedPotion.color;
         triggerTime = Time.time;
     }
 
