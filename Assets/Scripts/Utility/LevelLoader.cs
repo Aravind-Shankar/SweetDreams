@@ -15,6 +15,12 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadLevel("Store"));
     }
 
+    public void StartTutorial()
+    {
+        Time.timeScale = 1f;
+        StartCoroutine(LoadLevel("Tutorial"));
+    }
+
     IEnumerator LoadLevel(string level) {
         transition.SetTrigger("Start");
 

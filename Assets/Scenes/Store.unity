@@ -6145,6 +6145,7 @@ MonoBehaviour:
   win: 0
   lose: 0
   inMarket: 0
+  showedInitialTutorialTip: 0
 --- !u!114 &786049902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8923,6 +8924,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5913263078250144913, guid: c00979a61047f7b459d9396f20c031d0, type: 3}
+      propertyPath: customerSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 508e5f80fdfc4cd4abfda1d1b634da55, type: 2}
     - target: {fileID: 5913263078250144913, guid: c00979a61047f7b459d9396f20c031d0, type: 3}
       propertyPath: orderViewContent
       value: 

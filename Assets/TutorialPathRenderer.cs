@@ -13,12 +13,16 @@ public class TutorialPathRenderer : MonoBehaviour
     private LineRenderer lineRenderer;
     private NavMeshTriangulation triangulation;
     private Coroutine drawPathCoroutine;
+
+    public GameObject[] pointsOfInterest;
+    public int currentPointOfInterest;
     private void Awake()
     {
         triangulation = NavMesh.CalculateTriangulation();
         player = GameObject.FindGameObjectWithTag("Player");
         orderSubmitter = GameObject.Find("OrderSubmitter");
         lineRenderer = FindObjectOfType<LineRenderer>();
+        currentPointOfInterest = 0;
     }
 
     private void Start()
@@ -34,15 +38,30 @@ public class TutorialPathRenderer : MonoBehaviour
     private void Update()
     {
         NavMeshPath path = new NavMeshPath();
-
-        if (NavMesh.CalculatePath(player.transform.position, new Vector3(0, 0, 0), NavMesh.AllAreas, path))
+        if (currentPointOfInterest < pointsOfInterest.Length)
         {
-            lineRenderer.positionCount = path.corners.Length;
-
-            for (int i = 0; i < lineRenderer.positionCount; i++)
+            if (NavMesh.CalculatePath(player.transform.position, pointsOfInterest[currentPointOfInterest].transform.position, NavMesh.AllAreas, path))
             {
-                lineRenderer.SetPosition(i, path.corners[i] + Vector3.up * pathHeightOffset);
+                lineRenderer.positionCount = path.corners.Length;
+
+                for (int i = 0; i < lineRenderer.positionCount; i++)
+                {
+                    lineRenderer.SetPosition(i, path.corners[i] + Vector3.up * pathHeightOffset);
+                }
             }
+        }
+
+    }
+
+    public void IncrementPointsOfInterestId()
+    {
+        if (currentPointOfInterest + 1 >= pointsOfInterest.Length)
+        {
+            lineRenderer.enabled = false;
+            currentPointOfInterest += 1;
+        } else
+        {
+            currentPointOfInterest += 1;
         }
     }
 

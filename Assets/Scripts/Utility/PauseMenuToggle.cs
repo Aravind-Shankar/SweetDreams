@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class PauseMenuToggle : MonoBehaviour
@@ -31,6 +32,8 @@ public class PauseMenuToggle : MonoBehaviour
     [HideInInspector]
     public bool inMarket; // if in market, can't pause
 
+    public bool showedInitialTutorialTip = false;
+
     void Awake() {
         canvasGroup = GetComponent<CanvasGroup>();
         playerManager = FindObjectOfType<PlayerManager>();
@@ -38,16 +41,20 @@ public class PauseMenuToggle : MonoBehaviour
         winPanel = transform.Find("WinPanel");
         pausePanel = transform.Find("PausePanel");
         infoPanel = transform.Find("InfoPanel");
-        tutorialPanel = transform.Find("TutorialPanel");
 
         infoTextMesh = infoPanel.Find("Info Text").GetComponent<TextMeshProUGUI>();
         _defaultInfoText = infoTextMesh.text;
         infoTitleMesh = infoPanel.Find("Info Title Text").GetComponent<TextMeshProUGUI>();
         _defaultInfoTitle = infoTitleMesh.text;
 
-        tutorialTextMesh = tutorialPanel.Find("Tutorial Text").GetComponent<TextMeshProUGUI>();
-        tutorialTitleMesh = tutorialPanel.Find("Tutorial Title Text").GetComponent<TextMeshProUGUI>();
-                
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            tutorialPanel = transform.Find("TutorialPanel");
+
+            tutorialTextMesh = tutorialPanel.Find("Tutorial Text").GetComponent<TextMeshProUGUI>();
+            tutorialTitleMesh = tutorialPanel.Find("Tutorial Title Text").GetComponent<TextMeshProUGUI>();
+        }
+
         if (canvasGroup == null) {
             Debug.LogError("No Canvas Group added!");
         }
@@ -59,9 +66,31 @@ public class PauseMenuToggle : MonoBehaviour
 
     void LateUpdate()
     {
-
-        CheckToOpenMenu();
-
+        //if (!showedInitialTutorialTip)
+        //{
+        //    OpenTutorialTip();
+        //    showedInitialTutorialTip = true;
+        //}
+        if (Input.GetKeyUp(KeyCode.Q) && !(win || lose || inMarket))
+        { // if won or lose, can't trigger pause
+            if (canvasGroup.interactable)
+            {
+                CloseMenu();
+                pausePanel.gameObject.SetActive(false);
+                infoPanel.gameObject.SetActive(false);
+                if (SceneManager.GetActiveScene().name == "Tutorial")
+                {
+                    tutorialPanel.gameObject.SetActive(false);
+                }
+                Debug.Log("Closed Menu");
+            }
+            else
+            {
+                OpenMenu();
+                pausePanel.gameObject.SetActive(true);
+                infoPanel.gameObject.SetActive(true);
+            }
+        }
         if (win && canvasGroup.alpha != 1)
             Win();
         if (lose && canvasGroup.alpha != 1)
@@ -116,27 +145,12 @@ public class PauseMenuToggle : MonoBehaviour
         winPanel.gameObject.SetActive(true);
         GameObject score = winPanel.transform.Find("Score").gameObject;
         TextMeshProUGUI textmeshPro = score.GetComponent<TextMeshProUGUI>();
-        textmeshPro.SetText("Score: {0}", MoneySystem.Instance.Money);
-    }
-
-    public void CheckToOpenMenu()
-    {
-        if (Input.GetKeyUp(KeyCode.Q) && !(win || lose || inMarket))
-        { // if won or lose, can't trigger pause
-            if (canvasGroup.interactable)
-            {
-                CloseMenu();
-                pausePanel.gameObject.SetActive(false);
-                infoPanel.gameObject.SetActive(false);
-                tutorialPanel.gameObject.SetActive(false);
-                Debug.Log("Closed Menu");
-            }
-            else
-            {
-                OpenMenu();
-                pausePanel.gameObject.SetActive(true);
-                infoPanel.gameObject.SetActive(true);
-            }
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            textmeshPro.SetText("Ready to Start?\nScore: {0}", MoneySystem.Instance.Money);
+        } else
+        {
+            textmeshPro.SetText("Score: {0}", MoneySystem.Instance.Money);
         }
     }
 
@@ -161,6 +175,7 @@ public class PauseMenuToggle : MonoBehaviour
             
         }
     }
+
 
     // set tutorial panel text
     public void SetTutorialPanelText(string tutorialTitle, string tutorialText)

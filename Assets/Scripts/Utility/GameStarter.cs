@@ -18,4 +18,11 @@ public class GameStarter : MonoBehaviour
         levelLoader.StartGame();
     }
 
+    public void StartTutorial()
+    {
+        levelLoader = FindObjectOfType<LevelLoader>();
+
+        levelLoader.StartTutorial();
+    }
+
 }

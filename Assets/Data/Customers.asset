@@ -30,3 +30,12 @@ MonoBehaviour:
   - name: Ke
     arrivalTime: 60
     orderedPotionName: Zen Potion
+  - name: Jess
+    arrivalTime: 75
+    orderedPotionName: Anti-Depressant Potion
+  - name: David
+    arrivalTime: 90
+    orderedPotionName: Ecstatic Potion
+  - name: Amy
+    arrivalTime: 105
+    orderedPotionName: Victory Dream Potion

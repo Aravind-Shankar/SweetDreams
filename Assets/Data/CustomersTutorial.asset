@@ -18,3 +18,6 @@ MonoBehaviour:
   - name: Steven
     arrivalTime: 0
     orderedPotionName: Victory Dream Potion
+  - name: Steven
+    arrivalTime: 15
+    orderedPotionName: Standard Dream Potion

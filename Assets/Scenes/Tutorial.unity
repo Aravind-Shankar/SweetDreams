@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.34
+    agentRadius: 0.58
     agentHeight: 0.68
-    agentSlope: 40.3
+    agentSlope: 34.63
     agentClimb: 0.2
     ledgeDropHeight: 0.69
     maxJumpAcrossDistance: 0.96
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.11333334
+    cellSize: 0.19333333
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 1
@@ -1440,6 +1440,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138053534}
   m_CullTransparentMesh: 1
+--- !u!1 &145820684 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 724955011272265274, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+  m_PrefabInstance: {fileID: 1100968164}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &145820688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145820684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc96e569255290409ad7db9da792a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointOfInterestId: 5
 --- !u!1 &163329214
 GameObject:
   m_ObjectHideFlags: 0
@@ -3405,6 +3423,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2897355307937203851, guid: 48f4b7cf8785dae40b08bc19e68f4aff, type: 3}
   m_PrefabInstance: {fileID: 1189391285}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &359234873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2438607076128150648, guid: c410bfb5480ed9e4ea88fc5e8969bc77, type: 3}
+  m_PrefabInstance: {fileID: 1616853620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &359234877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359234873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc96e569255290409ad7db9da792a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointOfInterestId: 4
 --- !u!1 &370651289
 GameObject:
   m_ObjectHideFlags: 0
@@ -3836,6 +3872,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &471311182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 471311185}
+  - component: {fileID: 471311184}
+  - component: {fileID: 471311183}
+  m_Layer: 0
+  m_Name: TutorialStartTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &471311183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471311182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54da2e9a7c559f9499cd48f05a01e326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &471311184
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471311182}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &471311185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471311182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.69, y: 1.5746629, z: 0.61}
+  m_LocalScale: {x: 1, y: 1, z: 8.21}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &481695704
 GameObject:
   m_ObjectHideFlags: 0
@@ -4253,6 +4346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc96e569255290409ad7db9da792a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointOfInterestId: 1
 --- !u!1 &525374524
 GameObject:
   m_ObjectHideFlags: 0
@@ -4641,6 +4735,36 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &574366906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 574366910}
+  m_Layer: 0
+  m_Name: MarketMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &574366910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574366906}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.6, y: -6.97, z: -59.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &580706615
 GameObject:
   m_ObjectHideFlags: 0
@@ -4986,6 +5110,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1632a2ea4c7c20f45aced5f19f9c53d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsOfInterest:
+  - {fileID: 935097007}
+  - {fileID: 1457670686}
+  - {fileID: 574366906}
+  - {fileID: 1364550848}
+  - {fileID: 816404995}
+  - {fileID: 986785841}
+  currentPointOfInterest: 0
 --- !u!120 &626209436
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -5005,7 +5137,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 62cd77835e1e24e49af10c360c7a2d00, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5049,7 +5181,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.2615877, g: 0.58201224, b: 0.8301887, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -6308,6 +6440,7 @@ MonoBehaviour:
   win: 0
   lose: 0
   inMarket: 0
+  showedInitialTutorialTip: 0
 --- !u!114 &786049902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6582,6 +6715,90 @@ Transform:
   m_Father: {fileID: 37745230}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &797728248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 797728249}
+  - component: {fileID: 797728252}
+  - component: {fileID: 797728251}
+  - component: {fileID: 797728250}
+  m_Layer: 0
+  m_Name: InteractableCube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &797728249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797728248}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.6400003, y: 0, z: 0.09000015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 986785843}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &797728250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797728248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc96e569255290409ad7db9da792a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointOfInterestId: 5
+--- !u!114 &797728251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797728248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9332fce7b39107a4dabbf13fe3e51f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactMessage: Feed Chamber
+  interactAction:
+    m_PersistentCalls:
+      m_Calls: []
+  infoActionPossible: 1
+  infoTitle: Human Chamber
+  infoText: 'Keeps extracting the Dream Liquid from the human held inside. Pipes
+    route this liquid to the Dream Machine.
+
+
+    Cannot function if human is starved.
+    Feed chamber food to keep healthy.'
+  playerIsInRange: 0
+--- !u!65 &797728252
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797728248}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &798582776
 GameObject:
   m_ObjectHideFlags: 0
@@ -6657,6 +6874,15 @@ PrefabInstance:
       propertyPath: chamberParent
       value: 
       objectReference: {fileID: 1488851876}
+    - target: {fileID: 3597505593156677782, guid: d8f03426ee996e241afcc40a199e3edf, type: 3}
+      propertyPath: infoText
+      value: 'Press E to fill up your empty potion flask
+
+
+        Make sure you''re
+        holding an empty potion flask or you''ll spill your precious Dream Liquid
+        everywhere!'
+      objectReference: {fileID: 0}
     - target: {fileID: 6080531373470884741, guid: d8f03426ee996e241afcc40a199e3edf, type: 3}
       propertyPath: m_Name
       value: DreamMachine
@@ -6741,6 +6967,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 37745230}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &816404995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 816404999}
+  m_Layer: 0
+  m_Name: ChamberFoodMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &816404999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816404995}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.89, y: -6.65, z: -42.77}
+  m_LocalScale: {x: 1, y: 1, z: 0.33}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &819259387
 GameObject:
@@ -7298,6 +7554,36 @@ Transform:
   m_Father: {fileID: 37745230}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &935097007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 935097011}
+  m_Layer: 0
+  m_Name: FlaskDispenserMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &935097011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935097007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.36, y: -6.97, z: -33.41289}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &947670935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7640,6 +7926,51 @@ Transform:
   m_Father: {fileID: 502608913}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &986785841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 986785843}
+  - component: {fileID: 986785842}
+  m_Layer: 0
+  m_Name: HumanChamberMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &986785842
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986785841}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &986785843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986785841}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.403, y: -6.733, z: -60.09}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 797728249}
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1012958282
 GameObject:
   m_ObjectHideFlags: 0
@@ -7779,6 +8110,10 @@ PrefabInstance:
     - target: {fileID: 1617301632269894640, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630855966560319653, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+      propertyPath: maxHealth
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4630855966560319653, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: healthAudio
@@ -8123,7 +8458,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score:'
+  m_text: 'Ready to Start?
+
+    Score:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 23ed9b71f91a7504ebc242fea6bb0568, type: 2}
   m_sharedMaterial: {fileID: -6405873086550709522, guid: 23ed9b71f91a7504ebc242fea6bb0568, type: 2}
@@ -9088,6 +9425,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5913263078250144913, guid: c00979a61047f7b459d9396f20c031d0, type: 3}
+      propertyPath: customerSO
+      value: 
+      objectReference: {fileID: 11400000, guid: ef5060700a2bdfb4c8c5ab96b0ce32a6, type: 2}
+    - target: {fileID: 5913263078250144913, guid: c00979a61047f7b459d9396f20c031d0, type: 3}
       propertyPath: orderViewContent
       value: 
       objectReference: {fileID: 18081781}
@@ -9146,6 +9487,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1066542622}
     m_Modifications:
+    - target: {fileID: 4060301210531975068, guid: c3d26788738012743abdc2bb1a751301, type: 3}
+      propertyPath: infoText
+      value: 'Here is where you''ll give your orders to the customers.
+
+
+        Make
+        sure you make the right potion for the right customer!'
+      objectReference: {fileID: 0}
     - target: {fileID: 4060301210842323425, guid: c3d26788738012743abdc2bb1a751301, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -9281,6 +9630,10 @@ PrefabInstance:
     - target: {fileID: 1617301632269894640, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630855966560319653, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+      propertyPath: maxHealth
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4630855966560319653, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: healthAudio
@@ -9849,6 +10202,54 @@ Transform:
   m_Father: {fileID: 37745230}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1364550848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1364550849}
+  m_Layer: 0
+  m_Name: OrderSubmitterMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1364550849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364550848}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3.99}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1367927770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 724955011272265274, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+  m_PrefabInstance: {fileID: 2108740957}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1367927774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367927770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc96e569255290409ad7db9da792a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointOfInterestId: 5
 --- !u!1 &1376768686
 GameObject:
   m_ObjectHideFlags: 0
@@ -10071,6 +10472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc96e569255290409ad7db9da792a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointOfInterestId: 3
 --- !u!1 &1405614788 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8392193275502414048, guid: cf9ecb673a8184444883dd716601d530, type: 3}
@@ -10393,6 +10795,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456582039}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1457670686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1457670690}
+  m_Layer: 0
+  m_Name: DreamMachineMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1457670690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457670686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.36, y: -6.97, z: -45.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1460150162
 GameObject:
   m_ObjectHideFlags: 0
@@ -11524,6 +11956,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630538880}
   m_CullTransparentMesh: 1
+--- !u!1 &1645666019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 724955011272265274, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+  m_PrefabInstance: {fileID: 1283181370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1645666023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645666019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc96e569255290409ad7db9da792a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointOfInterestId: 5
 --- !u!1 &1651955409
 GameObject:
   m_ObjectHideFlags: 0
@@ -12568,6 +13018,10 @@ PrefabInstance:
     - target: {fileID: 203715159182987872, guid: 962ed26f782842441b8d40fc4079714b, type: 3}
       propertyPath: m_Size.z
       value: 7.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 203715159182987875, guid: 962ed26f782842441b8d40fc4079714b, type: 3}
+      propertyPath: infoText
+      value: Press E to collect an empty flask from here to start making potions.
       objectReference: {fileID: 0}
     - target: {fileID: 1281893589535389383, guid: 962ed26f782842441b8d40fc4079714b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14306,7 +14760,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: General
+  m_text: Welcome!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -14514,16 +14968,12 @@ MonoBehaviour:
   marketIngredientPanelPrefab: {fileID: 1258675241890403910, guid: 3b09906fe8379d744972bb8c32f2ad8e, type: 3}
   distanceRequired: 5
   infoTitle: Market
-  infoText: 'Buy & add ingredients here to make different kinds of potions.
+  infoText: 'Here is where you''ll buy ingredients to make all different kinds of
+    potions.
 
 
-    Click
-    "Show Recipe" on any potion in the queue (or in your hand) to check what you
-    need to buy.
-
-
-    Fails if you don''t have a flask in hand with Dream Liquid
-    in it.'
+    Click "Show Recipe" on any potion in the queue (or in your hand)
+    to check what you need to buy.'
 --- !u!114 &1863389797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14760,7 +15210,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Info
+  m_text: Tutorial
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -15911,7 +16361,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6989316229226472368, guid: 2676ff5c94fc9f1489d59bf570d079e3, type: 3}
+  m_Sprite: {fileID: -5968572204171906042, guid: 2676ff5c94fc9f1489d59bf570d079e3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16732,6 +17182,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2077376855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077376852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a200785532d7f49ae7b6fa15902384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2086159532
 GameObject:
   m_ObjectHideFlags: 0
@@ -17232,6 +17694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc96e569255290409ad7db9da792a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointOfInterestId: 0
 --- !u!1001 &2108740957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17246,6 +17709,10 @@ PrefabInstance:
     - target: {fileID: 1617301632269894640, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630855966560319653, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+      propertyPath: maxHealth
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4630855966560319653, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: healthAudio
@@ -17571,15 +18038,22 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'On top (left->right):
+  m_text: 'Follow the Yellow Line to find the things you need to make potions and
+    keep your customers happy!
 
-    active order queue, current score/money
+
+    Be sure to do it quickly or else they might
+    start getting suspicious about what''s going on downstairs!
 
 
-    On
-    bottom (left->right):
+    Your Current
+    Orders on Top
 
-    potion in hand, controls
+
+    Your Controls are on Bottom
+
+
+    Happy Cooking!
 
 '
   m_isRightToLeft: 0

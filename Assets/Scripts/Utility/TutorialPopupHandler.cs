@@ -10,11 +10,15 @@ public class TutorialPopupHandler : MonoBehaviour
 
     private PauseMenuToggle pauseMenuToggle;
     private bool alreadyShownToPlayer;
+
+    public int pointOfInterestId;
+    private TutorialPathRenderer tutorialPathRenderer;
     void Awake()
     {
         tutorialPanel = transform.Find("TutorialPanel");
         pauseMenuToggle = FindObjectOfType<PauseMenuToggle>();
         alreadyShownToPlayer = false;
+        tutorialPathRenderer = FindObjectOfType<TutorialPathRenderer>();
     }
 
     // Update is called once per frame
@@ -25,12 +29,13 @@ public class TutorialPopupHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (SceneManager.GetActiveScene().name == "Tutorial" && !alreadyShownToPlayer)
+        if (SceneManager.GetActiveScene().name == "Tutorial" && pointOfInterestId == tutorialPathRenderer.currentPointOfInterest && !alreadyShownToPlayer)
         {
             if (other.gameObject.CompareTag("Player"))
             {
                 pauseMenuToggle.OpenTutorialTip();
                 alreadyShownToPlayer = true;
+                tutorialPathRenderer.IncrementPointsOfInterestId();
             }
         }
 

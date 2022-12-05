@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Interactable : MonoBehaviour
 {
@@ -57,7 +58,11 @@ public class Interactable : MonoBehaviour
             if (infoActionPossible)
             {
                 _pauseMenuToggle.SetInfoText(infoTitle, infoText);
-                _pauseMenuToggle.SetTutorialPanelText(infoTitle, infoText);
+                if (SceneManager.GetActiveScene().name == "Tutorial") 
+                { 
+                    _pauseMenuToggle.SetTutorialPanelText(infoTitle, infoText);
+                }
+
                 _controlsViewManager.HoldPanel(KeyPanelType.Info, "Details");
             }
         }
