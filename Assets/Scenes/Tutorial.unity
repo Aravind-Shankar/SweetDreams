@@ -6715,90 +6715,6 @@ Transform:
   m_Father: {fileID: 37745230}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &797728248
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 797728249}
-  - component: {fileID: 797728252}
-  - component: {fileID: 797728251}
-  - component: {fileID: 797728250}
-  m_Layer: 0
-  m_Name: InteractableCube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &797728249
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797728248}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.6400003, y: 0, z: 0.09000015}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 986785843}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &797728250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797728248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cc96e569255290409ad7db9da792a62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointOfInterestId: 5
---- !u!114 &797728251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797728248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9332fce7b39107a4dabbf13fe3e51f40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactMessage: Feed Chamber
-  interactAction:
-    m_PersistentCalls:
-      m_Calls: []
-  infoActionPossible: 1
-  infoTitle: Human Chamber
-  infoText: 'Keeps extracting the Dream Liquid from the human held inside. Pipes
-    route this liquid to the Dream Machine.
-
-
-    Cannot function if human is starved.
-    Feed chamber food to keep healthy.'
-  playerIsInRange: 0
---- !u!65 &797728252
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797728248}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 12, y: 3, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &798582776
 GameObject:
   m_ObjectHideFlags: 0
@@ -6876,12 +6792,15 @@ PrefabInstance:
       objectReference: {fileID: 1488851876}
     - target: {fileID: 3597505593156677782, guid: d8f03426ee996e241afcc40a199e3edf, type: 3}
       propertyPath: infoText
-      value: 'Press E to fill up your empty potion flask
+      value: 'Here is where you go to fill up your empty potion flask
 
 
-        Make sure you''re
-        holding an empty potion flask or you''ll spill your precious Dream Liquid
-        everywhere!'
+        Make
+        sure you''re holding an empty potion flask or you''ll spill your precious
+        Dream Liquid everywhere!
+
+
+        This stuff is totally ethically sourced'
       objectReference: {fileID: 0}
     - target: {fileID: 6080531373470884741, guid: d8f03426ee996e241afcc40a199e3edf, type: 3}
       propertyPath: m_Name
@@ -7935,7 +7854,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 986785843}
-  - component: {fileID: 986785842}
   m_Layer: 0
   m_Name: HumanChamberMarker
   m_TagString: Untagged
@@ -7943,19 +7861,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &986785842
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986785841}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &986785843
 Transform:
   m_ObjectHideFlags: 0
@@ -7966,8 +7871,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.403, y: -6.733, z: -60.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 797728249}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8119,6 +8023,15 @@ PrefabInstance:
       propertyPath: healthAudio
       value: 
       objectReference: {fileID: 1488851878}
+    - target: {fileID: 4693839638919492774, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+      propertyPath: infoText
+      value: 'Here''s where we''re extracting the Dream Liquid from the human held
+        inside. The pipes route this stuff to the Dream Machine.
+
+
+        Keep them
+        fed and you''ll keep your job. Sound good?'
+      objectReference: {fileID: 0}
     - target: {fileID: 8392193275502414048, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: m_Name
       value: HumanChamber (3)
@@ -9639,6 +9552,15 @@ PrefabInstance:
       propertyPath: healthAudio
       value: 
       objectReference: {fileID: 1488851878}
+    - target: {fileID: 4693839638919492774, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+      propertyPath: infoText
+      value: 'Here''s where we''re extracting the Dream Liquid from the human held
+        inside. The pipes route this stuff to the Dream Machine.
+
+
+        Keep them
+        fed and you''ll keep your job. Sound good?'
+      objectReference: {fileID: 0}
     - target: {fileID: 8392193275502414048, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: m_Name
       value: HumanChamber (2)
@@ -11605,6 +11527,73 @@ Transform:
   m_Father: {fileID: 1728096087}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1609331944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1609331947}
+  - component: {fileID: 1609331946}
+  - component: {fileID: 1609331945}
+  m_Layer: 0
+  m_Name: TutorialEndTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1609331945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609331944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c190d1cef099a4a43a4497092569325a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialTitle: Finished!
+  tutorialText: 'Well done!
+
+
+    Now finish up that last potion on your queue and
+    let''s get on with the real fun! Shall we?
+
+
+    Good luck!'
+  pointOfInterestId: 6
+--- !u!65 &1609331946
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609331944}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.78}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1609331947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609331944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.95, y: -6.31, z: -58.63}
+  m_LocalScale: {x: 1, y: 1, z: 8.21}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1616414237
 GameObject:
   m_ObjectHideFlags: 0
@@ -11701,6 +11690,14 @@ PrefabInstance:
     - target: {fileID: 2438607075528862228, guid: c410bfb5480ed9e4ea88fc5e8969bc77, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438607076128150406, guid: c410bfb5480ed9e4ea88fc5e8969bc77, type: 3}
+      propertyPath: infoText
+      value: 'Take chamber food from here to feed starved Human Chambers.
+
+
+        Once
+        fed, the chambers will start producing the sweet, sweet Dream Liquid again.'
       objectReference: {fileID: 0}
     - target: {fileID: 2438607076128150407, guid: c410bfb5480ed9e4ea88fc5e8969bc77, type: 3}
       propertyPath: m_Size.x
@@ -13021,7 +13018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 203715159182987875, guid: 962ed26f782842441b8d40fc4079714b, type: 3}
       propertyPath: infoText
-      value: Press E to collect an empty flask from here to start making potions.
+      value: Here is where you go to collect an empty flask to start making potions.
       objectReference: {fileID: 0}
     - target: {fileID: 1281893589535389383, guid: 962ed26f782842441b8d40fc4079714b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17718,6 +17715,15 @@ PrefabInstance:
       propertyPath: healthAudio
       value: 
       objectReference: {fileID: 1488851878}
+    - target: {fileID: 4693839638919492774, guid: cf9ecb673a8184444883dd716601d530, type: 3}
+      propertyPath: infoText
+      value: 'Here''s where we''re extracting the Dream Liquid from the human held
+        inside. The pipes route this stuff to the Dream Machine.
+
+
+        Keep them
+        fed and you''ll keep your job. Sound good?'
+      objectReference: {fileID: 0}
     - target: {fileID: 8392193275502414048, guid: cf9ecb673a8184444883dd716601d530, type: 3}
       propertyPath: m_Name
       value: HumanChamber (1)
