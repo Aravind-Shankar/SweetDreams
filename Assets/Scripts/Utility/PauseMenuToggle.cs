@@ -158,6 +158,7 @@ public class PauseMenuToggle : MonoBehaviour
             //infoPanel.position = new Vector3(0, 0, 0);
 
             tutorialPanel.gameObject.SetActive(true);
+            
         }
     }
 
