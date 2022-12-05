@@ -3232,7 +3232,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 331411711}
         m_TargetAssemblyTypeName: GameStarter, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: StartTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9406,7 +9406,7 @@ PrefabInstance:
 
 
         Make
-        sure you make the right potion for the right customer!'
+        sure you make the right potion for the right customer or you''ll waste money!'
       objectReference: {fileID: 0}
     - target: {fileID: 4060301210842323425, guid: c3d26788738012743abdc2bb1a751301, type: 3}
       propertyPath: m_RootOrder
@@ -13018,7 +13018,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 203715159182987875, guid: 962ed26f782842441b8d40fc4079714b, type: 3}
       propertyPath: infoText
-      value: Here is where you go to collect an empty flask to start making potions.
+      value: 'Here is where you go to collect an empty flask to start making potions.
+
+
+        We
+        got a lot of these so don''t worry about running out. '
       objectReference: {fileID: 0}
     - target: {fileID: 1281893589535389383, guid: 962ed26f782842441b8d40fc4079714b, type: 3}
       propertyPath: m_LocalRotation.w

@@ -20,10 +20,10 @@ MonoBehaviour:
     orderedPotionName: Victory Dream Potion
   - name: Ryan
     arrivalTime: 15
-    orderedPotionName: Ecstatic Potion
+    orderedPotionName: Anti-Depressant Potion
   - name: Aravind
     arrivalTime: 30
-    orderedPotionName: Anti-Depressant Potion
+    orderedPotionName: Ecstatic Potion
   - name: Brian
     arrivalTime: 45
     orderedPotionName: Standard Dream Potion
