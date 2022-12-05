@@ -7,7 +7,8 @@ using TMPro;
 [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class CustomerAI : MonoBehaviour
 {
-    public TextMeshProUGUI orderText;
+    public MeshRenderer meshRenderer;
+    public PotionPanel overheadPotionPanel;
     public GameObject barWaypoint;
     public GameObject leaveWaypoint;
 
@@ -16,7 +17,7 @@ public class CustomerAI : MonoBehaviour
     [HideInInspector]
     public Potion orderedPotion;
     [HideInInspector]
-    public PotionPanel potionPanel;
+    public PotionPanel queuePotionPanel;
 
     private NavMeshAgent navMeshAgent;
     private float triggerTime;
@@ -44,8 +45,10 @@ public class CustomerAI : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.SetDestination(barWaypoint.transform.position);
 
-        if (potionPanel)
-            potionPanel.Clear();
+        if (queuePotionPanel)
+            queuePotionPanel.Clear();
+        overheadPotionPanel.gameObject.SetActive(false);
+        meshRenderer.material.color = orderedPotion.color;
         triggerTime = Time.time;
     }
 
@@ -55,15 +58,16 @@ public class CustomerAI : MonoBehaviour
         switch (aiState) {
 
             case States.Arriving:
-                orderText.text = "";
+                overheadPotionPanel.gameObject.SetActive(false);
                 if (navMeshAgent.pathPending == false && navMeshAgent.remainingDistance <= 1) 
                 {
                     aiState = States.Waiting;
-                    orderText.text = orderedPotion.name;
+                    overheadPotionPanel.gameObject.SetActive(true);
+                    overheadPotionPanel.SetPotion(orderedPotion);
                     customerQueue.AddActiveOrder(this);
 
-                    if (potionPanel)
-                        potionPanel.SetPotion(orderedPotion);
+                    if (queuePotionPanel)
+                        queuePotionPanel.SetPotion(orderedPotion);
                 }
                 break;
             
@@ -77,10 +81,10 @@ public class CustomerAI : MonoBehaviour
                     // Remove sus for finishing order
                     susBar.RemoveSus(20.0f);
 
-                    orderText.text = "";
+                    overheadPotionPanel.gameObject.SetActive(false);
 
-                    if (potionPanel)
-                        Destroy(potionPanel.gameObject);
+                    if (queuePotionPanel)
+                        Destroy(queuePotionPanel.gameObject);
                 }
                 else if (Time.time > triggerTime)
                 {
