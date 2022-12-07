@@ -38,17 +38,17 @@ MonoBehaviour:
     color: {r: 0.18325028, g: 0.5471698, b: 0.22423095, a: 1}
   - name: Ecstatic Potion
     ingredientComposition:
-    - ingredientName: Victory Extract
-      count: 2
     - ingredientName: Mood Spiker
       count: 1
+    - ingredientName: Victory Extract
+      count: 2
     sellingPrice: 300
     color: {r: 1, g: 0.94814813, b: 0, a: 1}
   - name: Zen Potion
     ingredientComposition:
-    - ingredientName: De-Depresso
-      count: 1
     - ingredientName: The Calm Storm
       count: 2
+    - ingredientName: De-Depresso
+      count: 1
     sellingPrice: 400
     color: {r: 0.6415094, g: 0, b: 0.40635467, a: 1}
